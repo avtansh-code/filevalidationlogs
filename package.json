@@ -1,0 +1,30 @@
+{
+  "name": "filevalidationlogs",
+  "version": "1.0.0",
+  "description": "A module which is used to display the errors and the warnings that have occured in a file when it is uploaded.",
+  "main": "app.config.js",
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-animate": "^1.6.4",
+    "angular-aria": "^1.6.4",
+    "angular-material": "^1.1.4",
+    "angular-messages": "^1.6.4",
+    "angular-route": "^1.6.4",
+    "angular-touch": "^1.6.4",
+    "bootstrap": "^3.3.7",
+    "svg-assets-cache": "^1.0.0"
+  },
+  "devDependencies": {
+    "reload": "^1.1.5"
+  },
+  "scripts": {
+    "start": "http-server -a localhost -p 8000 -c-1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://avtansh95@bitbucket.org/Ruchita13104/filevalidationlogs.git"
+  },
+  "author": "Avtansh Gupta",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/Ruchita13104/filevalidationlogs#readme"
+}
