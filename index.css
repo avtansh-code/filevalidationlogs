@@ -21,3 +21,14 @@
 .more-less {
     float: right;
 }
+.download{
+  	position: absolute;
+	right:0;
+	z-index: 20;
+	width: auto;
+	height: 0.2em;
+	padding-bottom: 0px; 
+}
+.download:focus{
+	outline: none;
+}

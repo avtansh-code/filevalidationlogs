@@ -1,7 +1,7 @@
 {
   "name": "filevalidationlogs",
   "version": "1.0.0",
-  "description": "A module which is used to display the errors and the warnings that have occured in a file when it is uploaded.",
+  "description": "A Reusable frontend compenent which is used to display the error logs and the warnings of the files whose data is being prvided to us. The component is customisable to some extent. The user can as well download the error and warning logs as an html file.",
   "main": "app.config.js",
   "dependencies": {
     "angular": "^1.6.4",
@@ -9,8 +9,9 @@
     "angular-aria": "^1.6.4",
     "angular-material": "^1.1.4",
     "angular-messages": "^1.6.4",
-    "angular-route": "^1.6.4",
     "angular-touch": "^1.6.4",
+    "angular-ui-bootstrap": "^2.5.0",
+    "angular-utils-pagination": "^0.11.1",
     "bootstrap": "^3.3.7",
     "svg-assets-cache": "^1.0.0"
   },
