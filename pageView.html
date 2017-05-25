@@ -1,0 +1,56 @@
+<div ng-cloak="" class="tabsdemoDynamicHeight tabs">
+  <md-content>
+  <p class="download" 
+		ng-click="setupDownloadLink()" 
+		ng-style='{display: downloadIcon, paddingRight: "1.5em", 
+					fontSize: "1.5em", marginTop: "0.4em"}'>
+		<span class="glyphicon glyphicon-download-alt" style="margin: 0px;"></span>
+	</p>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab ng-repeat="d in file_list track by $index" label="{{d}}">
+        <md-content class="md-padding">
+          
+          <div class="panel-group" id="accordion{{$index}}">
+			  
+			  <div class="panel panel-default" 
+			  		ng-repeat="v in list_names" 
+			  		is-open="status.open{{v}}{{$parent.$index}}">
+
+				<div class="panel-heading" 
+					ng-style="{'background-color': '{{labelbg[v]}}'}">
+
+				  <a class="accordion-toggle" data-toggle="collapse" 
+				  	data-parent="#accordion{{$parent.$index}}" 
+				  	href="#{{v}}{{$parent.$index}}" >
+					  	
+					  	<h4 class="panel-title" ng-style="labelStyle[{{$index}}]">
+							<span class="more-less glyphicon glyphicon-chevron-down">
+							</span>
+							{{v | uppercase}}
+
+				  		</h4>
+
+					</a>
+
+				</div>
+
+				<div id="{{v}}{{$parent.$index}}" class="panel-collapse collapse">
+				  <div class="panel-body">
+					<div list-display list="data[d][v]" list-type="v" 
+						styling="textStyle[$index]"></div>
+				  </div>
+				</div>			  
+			  </div>
+			</div>
+		</md-content>
+      </md-tab>    
+    </md-tabs>  
+  </md-content>
+</div>
+<script>
+	$(function ($) {
+    	$('.collapse').on('show.bs.collapse hidden.bs.collapse', function () {
+        	$(this).prev().find('.glyphicon').toggleClass('glyphicon-chevron-up glyphicon-chevron-down');
+	    })
+	});
+</script>
