@@ -43,10 +43,11 @@ angular.module('filevalidationlogs').directive('fileTabs', function() {
 						$scope.logs = $scope.logs + '\t\t<h4>'+$scope.list_names[j]+'</h4>\n';
 						$scope.logs = $scope.logs + '\t\t<ul>\n';
 						for(var k = 0; 
-								k < $scope.data[$scope.file_list[i]][$scope.list_names[j]].length; k++){
+							k < $scope.data[$scope.file_list[i]][$scope.list_names[j]].length; 
+							k++){
 							$scope.logs = $scope.logs + '\t\t\t<li>'
-											+$scope.data[$scope.file_list[i]][$scope.list_names[j]][k]+
-											'</li>\n';
+							+$scope.data[$scope.file_list[i]][$scope.list_names[j]][k]+
+							'</li>\n';
 						}
 						$scope.logs = $scope.logs + '\t\t</ul><br/>\n';
 					}
