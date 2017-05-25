@@ -1,4 +1,8 @@
-angular.module('filevalidationlogs', ['ngMaterial', 'ngMessages', 'material.svgAssetsCache','ui.bootstrap']);
+angular.module('filevalidationlogs', [
+				'ngMaterial', 
+				'ngMessages', 
+				'material.svgAssetsCache', 
+				'ui.bootstrap']);
 angular.module('filevalidationlogs').directive('fileTabs', function() {
   	return {
 	    restrict: 'E',
@@ -38,8 +42,11 @@ angular.module('filevalidationlogs').directive('fileTabs', function() {
 					for(var j = 0; j < $scope.list_names.length; j++){
 						$scope.logs = $scope.logs + '\t\t<h4>'+$scope.list_names[j]+'</h4>\n';
 						$scope.logs = $scope.logs + '\t\t<ul>\n';
-						for(var k = 0; k < $scope.data[$scope.file_list[i]][$scope.list_names[j]].length; k++){
-							$scope.logs = $scope.logs + '\t\t\t<li>'+$scope.data[$scope.file_list[i]][$scope.list_names[j]][k]+'</li>\n';
+						for(var k = 0; 
+								k < $scope.data[$scope.file_list[i]][$scope.list_names[j]].length; k++){
+							$scope.logs = $scope.logs + '\t\t\t<li>'
+											+$scope.data[$scope.file_list[i]][$scope.list_names[j]][k]+
+											'</li>\n';
 						}
 						$scope.logs = $scope.logs + '\t\t</ul><br/>\n';
 					}
