@@ -22,7 +22,7 @@
     <script src="node_modules\svg-assets-cache\svg-assets-cache.js"></script>
     <script src="node_modules\angular-material\angular-material.js"></script>
     <script src="node_modules\angular-utils-pagination\dirPagination.js"></script>
-    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+    <script src="node_modules\angular-ui-bootstrap\ui-bootstrap-tpls.js"></script>
 
     <link rel="stylesheet" href="https://material.angularjs.org/1.1.4/docs.css"/>
     <link rel="stylesheet" href="node_modules\angular-material\angular-material.css"/>
@@ -42,17 +42,29 @@
         download-icon="block">
       </file-tabs>
       <script>
-        var data='{"file 1": {"error": ["error1", "error2", "error3", "error4", "error5", "error6"],"warning": []},'+
+        var data='{"file 1": {"error": ["error1", "error2", "error3", "error4", "error5", "error6"],'+
 
-        '"file 2": {"error": ["error1", "error2", "error3", "error4"],"warning": ["warning1", "warning2", "warning3", "warning4"]},'+
+        '"warning": []},'+
 
-        '"file 3": {"error": ["error1", "error2", "error3"],"warning": ["warning1", "warning2", "warning3", "warning4", "warning5", "warning6"]},'+
+        '"file 2": {"error": ["error1", "error2", "error3", "error4"],'+
 
-        '"file 4": {"error": [],"warning": ["warning1", "warning2", "warning3"]},'+
+        '"warning": ["warning1", "warning2", "warning3", "warning4"]},'+
 
-        '"file 5": {"error": ["error1", "error2", "error3", "error4"],"warning": ["warning1", "warning2", "warning3", "warning4", "warning5"]},'+
+        '"file 3": {"error": ["error1", "error2", "error3"],'+
 
-        '"file 6": {"error": ["error1"],"warning": ["warning1"]}}';
+        '"warning": ["warning1", "warning2", "warning3", "warning4", "warning5", "warning6"]},'+
+
+        '"file 4": {"error": [],'+
+
+        '"warning": ["warning1", "warning2", "warning3"]},'+
+
+        '"file 5": {"error": ["error1", "error2", "error3", "error4"],'+
+
+        '"warning": ["warning1", "warning2", "warning3", "warning4", "warning5"]},'+
+
+        '"file 6": {"error": ["error1"],'+
+
+        '"warning": ["warning1"]}}';
 
 
         var d = document.getElementById("data_upload").setAttribute("data",data);
