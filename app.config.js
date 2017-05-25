@@ -56,7 +56,7 @@ angular.module('filevalidationlogs').directive('fileTabs', function() {
 		       	document.body.removeChild(downloadLink);
 			};
 		},
-	    templateUrl: 'tags.html'	
+	    templateUrl: 'pageView.html'	
   	};
 });
 
@@ -90,6 +90,6 @@ angular.module('filevalidationlogs').directive('listDisplay', function(){
 			  	$scope.currentPage = 1; //reset to first paghe
 			}
 		},
-		templateUrl: 'pagination.html'
+		templateUrl: 'listView.html'
 	};
 });
