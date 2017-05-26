@@ -28,13 +28,35 @@
     <div>
 
       <file-tabs id="data_upload" 
-        data='{"file 1": {
-                    "error": ["error1", "error2", "error3", "error4", "error5", "error6"],
-                    "warning": []
-                }}'
-        labelcolors='{error:"#000000",warning:"#000000"}' 
-        textcolors='{error:"#EA4436",warning:"#FBBD09"}' 
-        labelbg='{error:"#EA4436",warning:"#FBBD09"}' 
+        data='{
+                "file 1": {
+                    "errors": ["error1", "error2", "error3", "error4", "error5", "error6"],
+                    "warnings": []
+                },
+                "file 2": {
+                    "errors": ["error1", "error2", "error3", "error4"],
+                    "warnings": ["warning1", "warning2", "warning3", "warning4"]
+                },
+                "file 3": {
+                    "errors": ["error1", "error2", "error3"],
+                    "warnings": ["warning1", "warning2", "warning3", "warning4", "warning5", "warning6"]
+                },
+                "file 4": {
+                    "errors": [],
+                    "warnings": ["warning1", "warning2", "warning3"],
+                },
+                "file 5": {
+                    "errors": ["error1", "error2", "error3", "error4"],
+                    "warnings": ["warning1", "warning2", "warning3", "warning4", "warning5"]
+                },
+                "file 6": {
+                    "errors": ["error1"],
+                    "warnings": ["warning1"]
+                }
+            }'
+        labelcolors='{errors:"#000000",warnings:"#000000"}' 
+        textcolors='{errors:"#EA4436",warnings:"#FBBD09"}' 
+        labelbg='{errors:"#EA4436",warnings:"#FBBD09"}' 
         labelweight='bold' labelsize='1.9em' textsize='1em'
         download-icon="block" page-size=20>
       </file-tabs>

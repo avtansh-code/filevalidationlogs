@@ -41,25 +41,36 @@ mod.directive('fileTabs', function() {
 					'color': $scope.textcolors[$scope.list_names[i]]
 				}
 			}  
+
+			$scope.total_count = new Array();
+			for (var i = 0; i < $scope.list_names.length; i++)
+				$scope.total_count[i] = 0;
 			$scope.logs = '';
-			for (var i = 0; i < $scope.file_list.length; i++) {
+			for (var i = 0; i < $scope.file_list.length; i++) 
+			{
 					$scope.logs = `${$scope.logs}\t<h1>${$scope.file_list[i]}</h1>\n\t<div>\n`;
-					for(var j = 0; j < $scope.list_names.length; j++){
-						if($scope.data[$scope.file_list[i]][$scope.list_names[j]].length>0){
+					for(var j = 0; j < $scope.list_names.length; j++)
+					{
+						if($scope.data[$scope.file_list[i]][$scope.list_names[j]].length>0)
+						{
 							$scope.logs = `${$scope.logs}\t\t<h4>${$scope.list_names[j]}</h4>\n`;
 							$scope.logs = `${$scope.logs}\t\t<ul>\n`;
 							for(var k = 0; 
 								k < $scope.data[$scope.file_list[i]][$scope.list_names[j]].length; 
-								k++){
+								k++)
+							{
 								$scope.logs = `${$scope.logs}\t\t\t<li>
 								${$scope.data[$scope.file_list[i]][$scope.list_names[j]][k]}
 								</li>\n`;
 							}
 							$scope.logs = `${$scope.logs}\t\t</ul><br/>\n`;
 						}
+						$scope.total_count[j] = $scope.total_count[j] + $scope.data[$scope.file_list[i]][$scope.list_names[j]].length;
 					}
 					$scope.logs = `${$scope.logs}\t</div><br/><br/>\n`;
+
 			}		
+			console.log($scope.total_count);
 
 			$scope.setupDownloadLink = function(code) {
 			    var uri = 'data:text/html;charset=utf-8,' + encodeURIComponent($scope.logs);
@@ -80,18 +91,21 @@ mod.directive('fileTabs', function() {
 			});	
 	    },
 
-	    template: 	`<div ng-cloak="" class="tabsdemoDynamicHeight tabs">
-					  <md-content>
-					  <p class="download" 
+	    template: 	`<div class="top_bar">
+	    				<span ng-repeat="list in list_names track by $index">
+	    					{{list | uppercase}} = {{total_count[$index]}}  
+	    				</span>
+						<p class="download" 
 							ng-click="setupDownloadLink()" 
-							ng-style='{display: downloadIcon, paddingRight: "1.5em", 
-										fontSize: "1.5em", marginTop: "0.4em"}'>
-							<span class="glyphicon glyphicon-download-alt" style="margin: 0px;"></span>
+							ng-style='{"display": downloadIcon}'>
+								<span class="glyphicon glyphicon-download-alt" style="margin: 0px;"></span>
 						</p>
+	    			</div>
+	    			<div ng-cloak="" class="tabsdemoDynamicHeight tabs">
+					  <md-content>
 					    <md-tabs md-dynamic-height md-border-bottom>
 					      <md-tab ng-repeat="file in file_list track by $index" label="{{file}}">
 					        <md-content class="md-padding">
-					          
 					          <div class="panel-group" id="accordion{{$index}}">
 								  
 								  <div class="panel panel-default" 

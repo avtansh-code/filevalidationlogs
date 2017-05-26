@@ -22,13 +22,19 @@
     float: right;
 }
 .download{
-  	position: absolute;
+	float: right;
 	right:0;
-	z-index: 20;
-	width: auto;
-	height: 0.2em;
-	padding-bottom: 0px; 
+	top: 0;
 }
+
+.top_bar{
+	font-size: 2em;
+	padding-right: 0.8em;
+	padding-left: 0.8em;
+	padding-bottom: 0.5em;
+	padding-top: 0.2em;
+}
+
 .download:focus{
 	outline: none;
 }
