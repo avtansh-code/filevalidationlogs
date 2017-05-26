@@ -16,7 +16,7 @@
     <script src="node_modules\angular-animate\angular-animate.min.js"></script>
     <script src="node_modules\angular-aria\angular-aria.min.js"></script>
     <script src="node_modules\angular-material\angular-material.min.js"></script>
-    <script src="node_modules\angular-ui-bootstrap\ui-bootstrap-tpls.js"></script>
+    <script src="node_modules\angular-ui-bootstrap\dist\ui-bootstrap-tpls.js"></script>
     <link rel="stylesheet" href="node_modules\angular-material\angular-material.min.css"/>
     
     <!-- Locally CSS and JS Files  -->
@@ -27,12 +27,16 @@
   <body>
     <div>
 
-      <file-tabs id="data_upload" data="data"
+      <file-tabs id="data_upload" 
+        data='{"file 1": {
+                    "error": ["error1", "error2", "error3", "error4", "error5", "error6"],
+                    "warning": []
+                }}'
         labelcolors='{error:"#000000",warning:"#000000"}' 
         textcolors='{error:"#EA4436",warning:"#FBBD09"}' 
         labelbg='{error:"#EA4436",warning:"#FBBD09"}' 
         labelweight='bold' labelsize='1.9em' textsize='1em'
-        download-icon="block">
+        download-icon="block" page-size=20>
       </file-tabs>
 
     </div>
