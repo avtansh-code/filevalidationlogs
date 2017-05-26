@@ -13,11 +13,15 @@ mod.directive('fileTabs', function() {
 			labelweight: '@',
 			labelsize: '@',
 			textsize: '@',
-			downloadIcon: '@'
+			downloadIcon: '@',
+			pageSize: '@'
 		},
 		controller: function($scope){
 			if($scope.downloadIcon === undefined)
 				$scope.downloadIcon = 'block';
+
+			if($scope.pageSize === undefined)
+				$scope.pageSize = 2;
 
 			$scope.file_list = Object.keys($scope.data);
 
@@ -41,16 +45,18 @@ mod.directive('fileTabs', function() {
 			for (var i = 0; i < $scope.file_list.length; i++) {
 					$scope.logs = `${$scope.logs}\t<h1>${$scope.file_list[i]}</h1>\n\t<div>\n`;
 					for(var j = 0; j < $scope.list_names.length; j++){
-						$scope.logs = `${$scope.logs}\t\t<h4>${$scope.list_names[j]}</h4>\n`;
-						$scope.logs = `${$scope.logs}\t\t<ul>\n`;
-						for(var k = 0; 
-							k < $scope.data[$scope.file_list[i]][$scope.list_names[j]].length; 
-							k++){
-							$scope.logs = `${$scope.logs}\t\t\t<li>
-							${$scope.data[$scope.file_list[i]][$scope.list_names[j]][k]}
-							</li>\n`;
+						if($scope.data[$scope.file_list[i]][$scope.list_names[j]].length>0){
+							$scope.logs = `${$scope.logs}\t\t<h4>${$scope.list_names[j]}</h4>\n`;
+							$scope.logs = `${$scope.logs}\t\t<ul>\n`;
+							for(var k = 0; 
+								k < $scope.data[$scope.file_list[i]][$scope.list_names[j]].length; 
+								k++){
+								$scope.logs = `${$scope.logs}\t\t\t<li>
+								${$scope.data[$scope.file_list[i]][$scope.list_names[j]][k]}
+								</li>\n`;
+							}
+							$scope.logs = `${$scope.logs}\t\t</ul><br/>\n`;
 						}
-						$scope.logs = `${$scope.logs}\t\t</ul><br/>\n`;
 					}
 					$scope.logs = `${$scope.logs}\t</div><br/><br/>\n`;
 			}		
@@ -90,7 +96,8 @@ mod.directive('fileTabs', function() {
 								  
 								  <div class="panel panel-default" 
 								  		ng-repeat="lname in list_names" 
-								  		is-open="status.open{{lname}}{{$parent.$index}}">
+								  		is-open="status.open{{lname}}{{$parent.$index}}"
+								  		data-ng-show="data[file][lname].length>0">
 
 									<div class="panel-heading" 
 										ng-style="{'background-color': '{{labelbg[lname]}}'}">
@@ -102,7 +109,11 @@ mod.directive('fileTabs', function() {
 										  	<h4 class="panel-title" ng-style="labelStyle[{{$index}}]">
 												<span class="more-less glyphicon glyphicon-chevron-down">
 												</span>
-												{{lname | uppercase}}
+
+												{{lname | uppercase}} | 
+												<span style="font-size:0.75em; font-weight:normal">
+													Count: {{data[file][lname].length}}
+												</span>
 									  		</h4>
 										</a>
 									</div>
@@ -132,12 +143,9 @@ mod.directive('listDisplay', function(){
 			styling: '='
 		},
 		controller: function($scope){
-			if($scope.list.length === 0){
-				$scope.list[0] = 'No '+$scope.listType+'s to show.';
-			}
 			$scope.totalItems = $scope.list.length;
   			$scope.currentPage = 1;
-  			$scope.itemsPerPage = 5;
+  			$scope.itemsPerPage = $scope.$parent.pageSize;
   			$scope.maxSize = 5; //Number of pager buttons to show
 
   			$scope.setPage = function (pageNo) {
@@ -162,7 +170,7 @@ mod.directive('listDisplay', function(){
 					</li>
 				</ul>
 				<center>
-					<pagination total-items="totalItems" 
+					<ul uib-pagination total-items="totalItems" 
 						ng-model="currentPage" 
 						max-size="maxSize" 
 						class="pagination-sm"
@@ -171,8 +179,9 @@ mod.directive('listDisplay', function(){
 						previous-text="&lsaquo;" 
 						next-text="&rsaquo;" 
 						first-text="&laquo;" 
-						last-text="&raquo;">
-					</pagination>
+						last-text="&raquo;"
+						data-ng-show="list.length > itemsPerPage">
+					</ul>
 				</center>`
 	};
 });
