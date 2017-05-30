@@ -8,7 +8,6 @@ mod.directive('fileTabs', function() {
 		scope:{
 			data: '=',
 			textcolors: '=',
-			labelcolors: '=',
 			labelbg: '=',
 			labelweight: '@',
 			labelsize: '@',
@@ -27,21 +26,21 @@ mod.directive('fileTabs', function() {
 
 			$scope.list_names = Object.keys($scope.data[$scope.file_list[0]]);
 			$scope.labelStyle = new Array();
-			for(var i=0;i<$scope.list_names.length;i++){
-				$scope.labelStyle[i] = {
-					'color': $scope.labelcolors[$scope.list_names[i]],
+			for(var count = 0; count<$scope.list_names.length; count++){
+				$scope.labelStyle[count] = {
+					'color': $scope.textcolors[$scope.list_names[count]],
 					'font-weight': $scope.labelweight,
 					'font-size': $scope.labelsize
 				}
 			}
 			$scope.textStyle = new Array();
-			for(var i=0;i<$scope.list_names.length;i++){
-				$scope.textStyle[i] = {
+			for(var count = 0; count<$scope.list_names.length; count++){
+				$scope.textStyle[count] = {
 					'font-size': $scope.textsize,
-					'color': $scope.textcolors[$scope.list_names[i]]
+					'color': $scope.textcolors[$scope.list_names[count]]
 				}
 			}  
-
+				
 			$scope.total_count = new Array();
 			for (var i = 0; i < $scope.list_names.length; i++)
 				$scope.total_count[i] = 0;
@@ -59,6 +58,7 @@ mod.directive('fileTabs', function() {
 								k < $scope.data[$scope.file_list[i]][$scope.list_names[j]].length; 
 								k++)
 							{
+								
 								$scope.logs = `${$scope.logs}\t\t\t<li>
 								${$scope.data[$scope.file_list[i]][$scope.list_names[j]][k]}
 								</li>\n`;
@@ -109,42 +109,25 @@ mod.directive('fileTabs', function() {
 					    style="background: white; border: 1px solid #e1e1e1; ">
 					      <md-tab ng-repeat="file in file_list track by $index" label="{{file}}">
 					        <md-content class="md-padding">
-					          <div class="panel-group" id="accordion{{$index}}">
-								  
-								  <div class="panel panel-default" 
-								  		ng-repeat="lname in list_names" 
-								  		is-open="status.open{{lname}}{{$parent.$index}}"
-								  		data-ng-show="data[file][lname].length>0">
-
-									<div class="panel-heading" 
-										ng-style="{'background-color': '{{labelbg[lname]}}'}">
-
-									  <a class="accordion-toggle" data-toggle="collapse" 
-									  	data-parent="#accordion{{$parent.$index}}" 
-									  	href="#{{lname}}{{$parent.$index}}" 
-									  	style="text-decoration: none !important;">
-										  	
-										  	<h4 class="panel-title" ng-style="labelStyle[{{$index}}]">
-
-												{{lname | uppercase}} | 
-												<span style="font-size:0.75em; font-weight:normal">
+								  <uib-accordion>
+									<div uib-accordion-group
+								  		ng-repeat="lname in list_names" data-ng-show="data[file][lname].length>0"
+								  		style="border:1px solid #000000;">
+										<uib-accordion-heading ng-style="{'background-color': '{{labelbg[lname]}}'}">
+											<h4 ng-style="labelStyle[{{$index}}]">{{lname | uppercase}} |
+											<span style="font-size:0.75em; font-weight:normal">
 													Count: {{data[file][lname].length}}
 												</span>
-												<span class="more-less glyphicon glyphicon-chevron-down"
-												style="float:right;">
-												</span>
-									  		</h4>
-										</a>
-									</div>
-
-									<div id="{{lname}}{{$parent.$index}}" class="panel-collapse collapse">
-									  <div class="panel-body">
+										    <i class="glyphicon" 
+										     	ng-class="{'glyphicon-triangle-bottom': status.open, 
+										    	'glyphicon-triangle-right': !status.open}" 
+										    	style="float:right;"></i></h4>
+										</uib-accordion-heading>
 										<div list-display list="data[file][lname]" list-type="lname" 
-											styling="textStyle[$index]"></div>
-									  </div>
-									</div>			  
-								  </div>
-								</div>
+											styling="textStyle[$index]">
+										</div>
+									</div>
+								</uib-accordion>
 							</md-content>
 					      </md-tab>    
 					    </md-tabs>  
@@ -180,12 +163,11 @@ mod.directive('listDisplay', function(){
 			  	$scope.currentPage = 1; //reset to first paghe
 			}
 		},
-		template: `<ul class="list-group">
-					<li ng-repeat="e in list.slice(((currentPage-1)*itemsPerPage), 
+		template: `<ul class="list-group" style="padding-left:2em;">
+					<li ng-repeat="list_item in list.slice(((currentPage-1)*itemsPerPage), 
 						((currentPage)*itemsPerPage))" 
-						class="list-group-item"
 						ng-style="styling">
-								{{e}}
+								{{list_item}}
 					</li>
 				</ul>
 				<center>
