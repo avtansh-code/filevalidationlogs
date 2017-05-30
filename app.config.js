@@ -26,21 +26,21 @@ mod.directive('fileTabs', function() {
 
 			$scope.list_names = Object.keys($scope.data[$scope.file_list[0]]);
 			$scope.labelStyle = new Array();
-			for(var i=0;i<$scope.list_names.length;i++){
-				$scope.labelStyle[i] = {
-					'color': $scope.textcolors[$scope.list_names[i]],
+			for(var count = 0; count<$scope.list_names.length; count++){
+				$scope.labelStyle[count] = {
+					'color': $scope.textcolors[$scope.list_names[count]],
 					'font-weight': $scope.labelweight,
 					'font-size': $scope.labelsize
 				}
 			}
 			$scope.textStyle = new Array();
-			for(var i=0;i<$scope.list_names.length;i++){
-				$scope.textStyle[i] = {
+			for(var count = 0; count<$scope.list_names.length; count++){
+				$scope.textStyle[count] = {
 					'font-size': $scope.textsize,
-					'color': $scope.textcolors[$scope.list_names[i]]
+					'color': $scope.textcolors[$scope.list_names[count]]
 				}
 			}  
-
+				
 			$scope.total_count = new Array();
 			for (var i = 0; i < $scope.list_names.length; i++)
 				$scope.total_count[i] = 0;
@@ -58,6 +58,7 @@ mod.directive('fileTabs', function() {
 								k < $scope.data[$scope.file_list[i]][$scope.list_names[j]].length; 
 								k++)
 							{
+								
 								$scope.logs = `${$scope.logs}\t\t\t<li>
 								${$scope.data[$scope.file_list[i]][$scope.list_names[j]][k]}
 								</li>\n`;
@@ -113,7 +114,10 @@ mod.directive('fileTabs', function() {
 								  		ng-repeat="lname in list_names" data-ng-show="data[file][lname].length>0"
 								  		style="border:1px solid #000000;">
 										<uib-accordion-heading ng-style="{'background-color': '{{labelbg[lname]}}'}">
-											<h4 ng-style="labelStyle[{{$index}}]">{{lname | uppercase}}
+											<h4 ng-style="labelStyle[{{$index}}]">{{lname | uppercase}} |
+											<span style="font-size:0.75em; font-weight:normal">
+													Count: {{data[file][lname].length}}
+												</span>
 										    <i class="glyphicon" 
 										     	ng-class="{'glyphicon-triangle-bottom': status.open, 
 										    	'glyphicon-triangle-right': !status.open}" 
@@ -160,10 +164,10 @@ mod.directive('listDisplay', function(){
 			}
 		},
 		template: `<ul class="list-group" style="padding-left:2em;">
-					<li ng-repeat="e in list.slice(((currentPage-1)*itemsPerPage), 
+					<li ng-repeat="list_item in list.slice(((currentPage-1)*itemsPerPage), 
 						((currentPage)*itemsPerPage))" 
 						ng-style="styling">
-								{{e}}
+								{{list_item}}
 					</li>
 				</ul>
 				<center>
