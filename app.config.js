@@ -91,19 +91,22 @@ mod.directive('fileTabs', function() {
 			});	
 	    },
 
-	    template: 	`<div class="top_bar">
-	    				<span ng-repeat="list in list_names track by $index">
-	    					{{list | uppercase}} = {{total_count[$index]}}  
+	    template: 	`<div class="top_bar" style="font-size: 1.8em; padding-right: 0.8em;
+	    				padding-left: 0.8em; padding-bottom: 0.5em; padding-top: 0.2em; font-weight: bold;">
+	    				|<span ng-repeat="list in list_names track by $index">
+	    					{{list | uppercase}} = {{total_count[$index]}} | 
 	    				</span>
 						<p class="download" 
 							ng-click="setupDownloadLink()" 
-							ng-style='{"display": downloadIcon}'>
+							ng-style='{"display": downloadIcon}'
+							style="float: right; right:0; top: 0;">
 								<span class="glyphicon glyphicon-download-alt" style="margin: 0px;"></span>
 						</p>
 	    			</div>
 	    			<div ng-cloak="" class="tabsdemoDynamicHeight tabs">
-					  <md-content>
-					    <md-tabs md-dynamic-height md-border-bottom>
+					  <md-content style="background: white; border: 1px solid #e1e1e1; margin-top: 0;">
+					    <md-tabs md-dynamic-height md-border-bottom
+					    style="background: white; border: 1px solid #e1e1e1; ">
 					      <md-tab ng-repeat="file in file_list track by $index" label="{{file}}">
 					        <md-content class="md-padding">
 					          <div class="panel-group" id="accordion{{$index}}">
@@ -118,15 +121,17 @@ mod.directive('fileTabs', function() {
 
 									  <a class="accordion-toggle" data-toggle="collapse" 
 									  	data-parent="#accordion{{$parent.$index}}" 
-									  	href="#{{lname}}{{$parent.$index}}" >
+									  	href="#{{lname}}{{$parent.$index}}" 
+									  	style="text-decoration: none !important;">
 										  	
 										  	<h4 class="panel-title" ng-style="labelStyle[{{$index}}]">
-												<span class="more-less glyphicon glyphicon-chevron-down">
-												</span>
 
 												{{lname | uppercase}} | 
 												<span style="font-size:0.75em; font-weight:normal">
 													Count: {{data[file][lname].length}}
+												</span>
+												<span class="more-less glyphicon glyphicon-chevron-down"
+												style="float:right;">
 												</span>
 									  		</h4>
 										</a>
