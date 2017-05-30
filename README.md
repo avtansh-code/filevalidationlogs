@@ -20,10 +20,8 @@ File Validation Logs is a resuable frontend component that is used for the displ
 
 3. Require the package
 
-	```
 	const v = require(‘filevalidationlogs’);
-	module(‘modulename’,[‘v’])
-	```
+	app.module(‘modulename’,[‘v’])
 
 ##Usage:
 
