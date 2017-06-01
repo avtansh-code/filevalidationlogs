@@ -60,7 +60,7 @@ The following packages need to be required in the project before the use of this
 ##Usage:
 
 
-	<file-tabs id="data_upload" 
+	<file-tabs
 	    data = "sample_data"
 	    textcolors='{error:"#EA4436",warning:"#FBBD09"}' 
 	    labelbg='{error:"#EA4436",warning:"#FBBD09"}' 
