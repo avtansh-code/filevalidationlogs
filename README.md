@@ -54,14 +54,14 @@ The following packages need to be required in the project before the use of this
 	
 		const filevalidationlogs = require(‘@eluci/filevalidationlogs’);
 
-		app.module('myModule',[‘filevalidationlogs’])
+		app.module('myModule',[filevalidationlogs])
 	
 
 ##Usage:
 
 
 	<file-tabs id="data_upload" 
-	    data = "data"
+	    data = "sample_data"
 	    textcolors='{error:"#EA4436",warning:"#FBBD09"}' 
 	    labelbg='{error:"#EA4436",warning:"#FBBD09"}' 
     	labelweight='bold' 
@@ -77,7 +77,7 @@ The following packages need to be required in the project before the use of this
 ######SAMPLE DATA
 
 
-	data = {
+	sample_data = {
 		"file 1": {
 			"error": ["error1", "error2", "error3", "error4", "error5", "error6"],
 			"warnsing": []
@@ -107,7 +107,7 @@ The following packages need to be required in the project before the use of this
 
 The file name is the key to an object. Each object will have arrays of the details that the users wishes to display. Here we are using only two details warning and error but the user can display summary as well. It will also be in the same manner.
 
-######The customisations possible in the module
+##The customisations possible in the module
 
 
 **1. textcolor – text color of the data displayed inside the accordion**
