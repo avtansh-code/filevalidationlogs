@@ -34,6 +34,8 @@ The following packages need to be required in the project before the use of this
 	1.1 open npmrc file
 
 		vim ~./npmrc
+
+	This needs to be done at the root folder
 	
 	1.2 add following lines to npmrc file for setting private and default npm registry
 
@@ -112,7 +114,7 @@ The file name is the key to an object. Each object will have arrays of the detai
 
 **1. textcolor – text color of the data displayed inside the accordion**
 
-It will take an object as input. The keys will be the same as the names of thee arrays in each object of the json data and the colors need to be input in the hex format.
+It will take an object as input. The keys will be the same as the names of thee arrays in each object of the json data and the colors need to be input in the hex format preferably.
 
 **e.g.**
 
