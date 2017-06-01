@@ -114,7 +114,7 @@ The file name is the key to an object. Each object will have arrays of the detai
 
 **1. textcolor – text color of the data displayed inside the accordion**
 
-It will take an object as input. The keys will be the same as the names of thee arrays in each object of the json data and the colors need to be input in the hex format preferably.
+It will take an object as input. The keys will be the same as the names of thee arrays in each object of the json data and the colors need to be input in the hex/string format.
 
 **e.g.**
 
