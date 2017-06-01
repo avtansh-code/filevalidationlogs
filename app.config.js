@@ -1,6 +1,7 @@
 var mod = angular.module('filevalidationlogs', [
 				'ngMaterial', 
-				'ui.bootstrap']);
+				'ui.bootstrap',
+				'ngSanitize']);
 
 mod.directive('fileTabs', function() {
   	return {
@@ -167,7 +168,7 @@ mod.directive('listDisplay', function(){
 					<li ng-repeat="list_item in list.slice(((currentPage-1)*itemsPerPage), 
 						((currentPage)*itemsPerPage))" 
 						ng-style="styling">
-								{{list_item}}
+								<div ng-bind-html="list_item"></div>
 					</li>
 				</ul>
 				<center>
