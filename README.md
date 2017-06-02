@@ -33,16 +33,16 @@ The following packages need to be required in the project before the use of this
 
 	1.1 open npmrc file
 
-		vim ~./npmrc
+		vim ~/.npmrc
 
 	This needs to be done at the root folder
 	
 	1.2 add following lines to npmrc file for setting private and default npm registry
 
 		
-		registry = http://registry.npmjs.org/
+		registry=http://registry.npmjs.org/
 
-		@eluci: registry = http://54.245.179.143:81/
+		@eluci:registry=http://54.245.179.143:81/
 		
 
 2. Install the package
@@ -82,7 +82,7 @@ The following packages need to be required in the project before the use of this
 	sample_data = {
 		"file 1": {
 			"error": ["error1", "error2", "error3", "error4", "error5", "error6"],
-			"warnsing": []
+			"warning": []
 		},
 		"file 2": {
 			"error": ["error1", "error2", "error3", "error4"],
@@ -114,7 +114,7 @@ The file name is the key to an object. Each object will have arrays of the detai
 
 **1. textcolor – text color of the data displayed inside the accordion**
 
-It will take an object as input. The keys will be the same as the names of thee arrays in each object of the json data and the colors need to be input in the hex/string format.
+It will take an object as input. The keys will be the same as the names of the arrays in each object of the json data and the colors need to be input in the hex/string format.
 
 **e.g.**
 

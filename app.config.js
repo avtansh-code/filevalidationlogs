@@ -45,6 +45,11 @@ mod.directive('fileTabs', function() {
 			$scope.total_count = new Array();
 			for (var i = 0; i < $scope.list_names.length; i++)
 				$scope.total_count[i] = 0;
+
+			$scope.file_log_count = new Array();
+			for (var i = 0; i < $scope.file_list.length; i++)
+				$scope.file_log_count[i] = 0;
+
 			$scope.logs = '';
 			for (var i = 0; i < $scope.file_list.length; i++) 
 			{
@@ -67,11 +72,11 @@ mod.directive('fileTabs', function() {
 							$scope.logs = `${$scope.logs}\t\t</ul><br/>\n`;
 						}
 						$scope.total_count[j] = $scope.total_count[j] + $scope.data[$scope.file_list[i]][$scope.list_names[j]].length;
+						$scope.file_log_count[i] = $scope.file_log_count[i] + $scope.data[$scope.file_list[i]][$scope.list_names[j]].length;
 					}
 					$scope.logs = `${$scope.logs}\t</div><br/><br/>\n`;
-
+					
 			}		
-			console.log($scope.total_count);
 
 			$scope.setupDownloadLink = function(code) {
 			    var uri = 'data:text/html;charset=utf-8,' + encodeURIComponent($scope.logs);
@@ -83,14 +88,6 @@ mod.directive('fileTabs', function() {
 		       	document.body.removeChild(downloadLink);
 			};
 		},
-
-	    link: function(){
-	    	$(function ($) {
-				$('.collapse').on('show.bs.collapse hidden.bs.collapse', function () {
-			    	$(this).prev().find('.glyphicon').toggleClass('glyphicon-chevron-up glyphicon-chevron-down');
-			    })
-			});	
-	    },
 
 	    template: 	`<div class="top_bar" style="font-size: 1.8em; padding-right: 0.8em;
 	    				padding-left: 0.8em; padding-bottom: 0.5em; padding-top: 0.2em; font-weight: bold;">
@@ -108,20 +105,22 @@ mod.directive('fileTabs', function() {
 					  <md-content style="background: white; border: 1px solid #e1e1e1; margin-top: 0;">
 					    <md-tabs md-dynamic-height md-border-bottom
 					    style="background: white; border: 1px solid #e1e1e1; ">
-					      <md-tab ng-repeat="file in file_list track by $index" label="{{file}}">
+					      <md-tab ng-repeat="file in file_list track by $index" 
+						  	ng-if="file_log_count[$index]>0"
+						  label="{{file}}">
 					        <md-content class="md-padding">
 								  <uib-accordion>
 									<div uib-accordion-group
 								  		ng-repeat="lname in list_names" data-ng-show="data[file][lname].length>0"
-								  		style="border:1px solid #000000;">
+								  		style="border:1px solid #000000;" is-open="status.open">
 										<uib-accordion-heading ng-style="{'background-color': '{{labelbg[lname]}}'}">
 											<h4 ng-style="labelStyle[{{$index}}]">{{lname | uppercase}} |
 											<span style="font-size:0.75em; font-weight:normal">
 													Count: {{data[file][lname].length}}
 												</span>
-										    <i class="glyphicon" 
-										     	ng-class="{'glyphicon-triangle-bottom': status.open, 
-										    	'glyphicon-triangle-right': !status.open}" 
+										    <i class="pull-right glyphicon" 
+												ng-class="{'glyphicon-chevron-down': status.open, 
+												'glyphicon-chevron-right': !status.open}"
 										    	style="float:right;"></i></h4>
 										</uib-accordion-heading>
 										<div list-display list="data[file][lname]" list-type="lname" 
