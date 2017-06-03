@@ -13,15 +13,16 @@ mod.directive('fileTabs', function() {
 			labelweight: '@',
 			labelsize: '@',
 			textsize: '@',
-			downloadIcon: '@',
-			pageSize: '@'
+			downloadIcon: '=',
+			pageSize: '='
 		},
 		controller: function($scope){
+			
 			if($scope.downloadIcon === undefined)
 				$scope.downloadIcon = 'block';
 
 			if($scope.pageSize === undefined)
-				$scope.pageSize = 2;
+				$scope.pageSize = 10;
 
 			$scope.file_list = Object.keys($scope.data);
 
@@ -92,7 +93,7 @@ mod.directive('fileTabs', function() {
 			};
 		},
 
-	    link: function(){
+	    link: function($scope,element){
 	    	$(function ($) {
 				$('.collapse').on('show.bs.collapse hidden.bs.collapse', function () {
 			    	$(this).prev().find('.glyphicon').toggleClass('glyphicon-chevron-up glyphicon-chevron-down');
@@ -195,4 +196,163 @@ mod.directive('listDisplay', function(){
 					</ul>
 				</center>`
 	};
+});
+
+mod.controller('myCtrl',function($scope){
+	$scope.sample_data1 = {
+		"raw_input_file_0.txt":{
+			"errors":[
+				"Row Number <b>21</b> : column <b>SAMPLE_#SNYGTT5_2_5</b> has <b>negative</b> value", 
+				"Row Number <b>6</b> : column <b>SAMPLE_#SNYGTT5_2_10</b> has <b>negative</b> value",
+				"Row Number <b>32</b> : column <b>SAMPLE_#SNYGTT5_2_5</b> has <b>negative</b> value", 
+				"Row Number <b>18</b> : column <b>SAMPLE_#SNYGTT5_2_10</b> has <b>negative</b> value",
+				"Row Number <b>12</b> : column <b>SAMPLE_#SNYGTT5_2_5</b> has <b>negative</b> value", 
+				"Row Number <b>11</b> : column <b>SAMPLE_#SNYGTT5_2_10</b> has <b>negative</b> value",
+				"Row Number <b>102</b> : column <b>SAMPLE_#SNYGTT5_2_5</b> has <b>negative</b> value", 
+				"Row Number <b>44</b> : column <b>SAMPLE_#SNYGTT5_2_10</b> has <b>negative</b> value",
+				"Row Number <b>73</b> : column <b>SAMPLE_#SNYGTT5_2_5</b> has <b>negative</b> value", 
+				"Row Number <b>97</b> : column <b>SAMPLE_#SNYGTT5_2_10</b> has <b>negative</b> value",
+				"Row Number <b>20</b> : column <b>SAMPLE_#SNYGTT5_2_5</b> has <b>negative</b> value", 
+				"Row Number <b>15</b> : column <b>SAMPLE_#SNYGTT5_2_10</b> has <b>negative</b> value"
+				],
+			"warnings":[
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>8192</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>8197</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>6</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>7</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>8</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>9</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>10</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>11</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>12</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>13</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>14</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>20</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>22</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>23</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>24</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>25</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>26</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>9562</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>30</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>31</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>32</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>33</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>34</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>35</b> : column <b>Area</b> has <b>missing</b> value"
+				]
+			},
+		"metadata_mq_0.xlsx":{
+			"errors":[
+				"Row Number <b>21</b> : column <b>SAMPLE_#SNYGTT5_2_5</b> has <b>negative</b> value", 
+				"Row Number <b>6</b> : column <b>SAMPLE_#SNYGTT5_2_10</b> has <b>negative</b> value"
+				],
+			"warnings":[
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>14</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>20</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>22</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>23</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>24</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>25</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>26</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>9562</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>30</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>31</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>32</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>33</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>34</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>35</b> : column <b>Area</b> has <b>missing</b> value"
+			]
+		}
+	};
+	$scope.sample_data2 = {
+		"raw_input_file_0.txt":{
+			"errors":[],
+			"warnings":[
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>14</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>20</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>22</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>23</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>24</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>25</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>26</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>9562</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>30</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>31</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>32</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>33</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>34</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>35</b> : column <b>Area</b> has <b>missing</b> value"
+			]
+		},
+		"metadata_mq_0.xlsx":{
+			"errors":[
+				"Row Number <b>211</b> : column <b>SAMPLE_#SNYGTT5_2_5</b> has <b>negative</b> value", 
+				"Row Number <b>16</b> : column <b>SAMPLE_#SNYGTT5_2_10</b> has <b>negative</b> value",
+				"Row Number <b>21</b> : column <b>SAMPLE_#SNYGTT5_2_5</b> has <b>negative</b> value", 
+				"Row Number <b>6</b> : column <b>SAMPLE_#SNYGTT5_2_10</b> has <b>negative</b> value",
+				"Row Number <b>32</b> : column <b>SAMPLE_#SNYGTT5_2_5</b> has <b>negative</b> value", 
+				"Row Number <b>18</b> : column <b>SAMPLE_#SNYGTT5_2_10</b> has <b>negative</b> value",
+				"Row Number <b>12</b> : column <b>SAMPLE_#SNYGTT5_2_5</b> has <b>negative</b> value", 
+				"Row Number <b>11</b> : column <b>SAMPLE_#SNYGTT5_2_10</b> has <b>negative</b> value",
+				"Row Number <b>102</b> : column <b>SAMPLE_#SNYGTT5_2_5</b> has <b>negative</b> value", 
+				"Row Number <b>44</b> : column <b>SAMPLE_#SNYGTT5_2_10</b> has <b>negative</b> value",
+				"Row Number <b>73</b> : column <b>SAMPLE_#SNYGTT5_2_5</b> has <b>negative</b> value", 
+				"Row Number <b>97</b> : column <b>SAMPLE_#SNYGTT5_2_10</b> has <b>negative</b> value",
+				"Row Number <b>20</b> : column <b>SAMPLE_#SNYGTT5_2_5</b> has <b>negative</b> value", 
+				"Row Number <b>15</b> : column <b>SAMPLE_#SNYGTT5_2_10</b> has <b>negative</b> value"
+				],
+				"warnings":[]
+			}
+		};
+		$scope.sample_data3 = {
+		"raw_input_file_0.txt":{
+			"errors":[
+				"Row Number <b>21</b> : column <b>SAMPLE_#SNYGTT5_2_5</b> has <b>negative</b> value", 
+				"Row Number <b>6</b> : column <b>SAMPLE_#SNYGTT5_2_10</b> has <b>negative</b> value",
+				"Row Number <b>32</b> : column <b>SAMPLE_#SNYGTT5_2_5</b> has <b>negative</b> value", 
+				"Row Number <b>18</b> : column <b>SAMPLE_#SNYGTT5_2_10</b> has <b>negative</b> value",
+				"Row Number <b>12</b> : column <b>SAMPLE_#SNYGTT5_2_5</b> has <b>negative</b> value", 
+				"Row Number <b>11</b> : column <b>SAMPLE_#SNYGTT5_2_10</b> has <b>negative</b> value",
+				"Row Number <b>102</b> : column <b>SAMPLE_#SNYGTT5_2_5</b> has <b>negative</b> value", 
+				"Row Number <b>44</b> : column <b>SAMPLE_#SNYGTT5_2_10</b> has <b>negative</b> value",
+				"Row Number <b>73</b> : column <b>SAMPLE_#SNYGTT5_2_5</b> has <b>negative</b> value", 
+				"Row Number <b>97</b> : column <b>SAMPLE_#SNYGTT5_2_10</b> has <b>negative</b> value",
+				"Row Number <b>20</b> : column <b>SAMPLE_#SNYGTT5_2_5</b> has <b>negative</b> value", 
+				"Row Number <b>15</b> : column <b>SAMPLE_#SNYGTT5_2_10</b> has <b>negative</b> value"
+				],
+			"warnings":[
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>8192</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>8197</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>6</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>7</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>8</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>9</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>10</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>11</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>12</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>13</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>14</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>20</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>22</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>23</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>24</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>25</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>26</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>9562</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>30</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>31</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>32</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>33</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>34</b> : column <b>Area</b> has <b>missing</b> value",
+				"<b>Action</b>: Missing value of columns replaced with 0<br/><b>Message</b>: Row Number <b>35</b> : column <b>Area</b> has <b>missing</b> value"
+				]
+			},
+		"metadata_mq_0.xlsx":{
+			"errors":[],
+			"warnings":[]
+		}
+	};
+	$scope.dataset = 1;
+	$scope.paginationsize = 10;
 });

@@ -23,31 +23,69 @@
     <!-- Locally CSS and JS Files  -->
     <!--link rel="stylesheet" href="index.css"></style-->
     <script src="app.config.js"></script>
-
+    <style>
+        a:hover{
+          text-decoration: none;
+        }
+        a:active{
+          text-decoration: none;
+        }
+        a:visited{
+          text-decoration: none;
+        }
+        a:link{
+          text-decoration: none;
+        }
+      </style>
   </head>
   <body>
-    <div>
-
-      <file-tabs id="data_upload" 
-        data='{"file 1": {
-                    "error": ["<b>error1</b>", "error2", "error3", "error4", "error5", "error6"],
-                    "warning": ["warning1"]
-                },
-                "file 2": {
-                    "error": [],
-                    "warning": []
-                },
-                "file 3": {
-                    "error": ["<b>error1</b>", "error2", "error3", "error4", "error5", "error6"],
-                    "warning": []
-                }
-              }'
-        textcolors='{error:"#EA4436",warning:"#FBBD09"}' 
-        labelbg='{error:"#EA4436",warning:"#FBBD09"}' 
+    <div ng-controller="myCtrl">
+      <file-tabs 
+        data='sample_data1'
+        textcolors='{errors:"#EA4436",warnings:"#FBBD09"}' 
+        labelbg='{errors:"#EA4436",warnings:"#FBBD09"}' 
         labelweight='bold' labelsize='1.9em' textsize='1em'
-        download-icon="block" page-size=20>
+        download-icon="block" page-size="paginationsize" 
+        ng-if="dataset==1">
       </file-tabs>
 
+      <file-tabs 
+        data ='sample_data2'
+        textcolors='{errors:"#EA4436",warnings:"#FBBD09"}' 
+        labelbg='{errors:"#EA4436",warnings:"#FBBD09"}' 
+        labelweight='bold' labelsize='1.9em' textsize='1em'
+        download-icon="block" page-size="paginationsize"
+        ng-if="dataset==2">
+      </file-tabs>
+
+      <file-tabs 
+        data ='sample_data3'
+        textcolors='{errors:"#EA4436",warnings:"#FBBD09"}' 
+        labelbg='{errors:"#EA4436",warnings:"#FBBD09"}' 
+        labelweight='bold' labelsize='1.9em' textsize='1em'
+        download-icon="block" page-size="paginationsize"
+        ng-if="dataset==3">
+      </file-tabs>
+
+      
+      <div layout="row" layout-align="space-around">
+        <div layout="column">
+          <h3> Different Data Sets</h3>
+        <md-radio-group ng-model="dataset">
+          <md-radio-button value=1>Data-Set 1(Each file has both errors and warnings)</md-radio-button>
+          <md-radio-button value=2>Data-Set 2(Errors or Warnings are missing in some files)</md-radio-button>
+          <md-radio-button value=3>Data-Set 3(Both Errors and Warnings are missing in a files)</md-radio-button>
+        </md-radio-group>
+        </div>
+        <div layout="column">
+          <h3>Items per Page</h3>
+        <md-radio-group ng-model="paginationsize">
+          <md-radio-button value=20>20</md-radio-button>
+          <md-radio-button value=10>10</md-radio-button>
+          <md-radio-button value=5>5</md-radio-button>
+        </md-radio-group>
+        </div>
+      </div>
     </div>
   </body>
 </html>
