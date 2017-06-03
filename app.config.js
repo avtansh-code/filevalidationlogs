@@ -43,35 +43,37 @@ mod.directive('fileTabs', function() {
 			}  
 				
 			$scope.total_count = new Array();
-			for (var i = 0; i < $scope.list_names.length; i++)
-				$scope.total_count[i] = 0;
+			for (var file_no = 0; file_no < $scope.list_names.length; file_no++)
+				$scope.total_count[file_no] = 0;
+
+
 			$scope.logs = '';
-			for (var i = 0; i < $scope.file_list.length; i++) 
+			for (var file_no = 0; file_no < $scope.file_list.length; file_no++) 
 			{
-					$scope.logs = `${$scope.logs}\t<h1>${$scope.file_list[i]}</h1>\n\t<div>\n`;
-					for(var j = 0; j < $scope.list_names.length; j++)
+					$scope.logs = `${$scope.logs}\t<h1>${$scope.file_list[file_no]}</h1>\n\t<div>\n`;
+					for(var list_no = 0; list_no < $scope.list_names.length; list_no++)
 					{
-						if($scope.data[$scope.file_list[i]][$scope.list_names[j]].length>0)
+						if($scope.data[$scope.file_list[file_no]][$scope.list_names[list_no]].length>0)
 						{
-							$scope.logs = `${$scope.logs}\t\t<h4>${$scope.list_names[j]}</h4>\n`;
+							$scope.logs = `${$scope.logs}\t\t<h4>${$scope.list_names[list_no]}</h4>\n`;
 							$scope.logs = `${$scope.logs}\t\t<ul>\n`;
-							for(var k = 0; 
-								k < $scope.data[$scope.file_list[i]][$scope.list_names[j]].length; 
-								k++)
+							for(var count = 0; 
+								count < $scope.data[$scope.file_list[file_no]][$scope.list_names[list_no]].length; 
+								count++)
 							{
 								
 								$scope.logs = `${$scope.logs}\t\t\t<li>
-								${$scope.data[$scope.file_list[i]][$scope.list_names[j]][k]}
+								${$scope.data[$scope.file_list[file_no]][$scope.list_names[list_no]][count]}
 								</li>\n`;
 							}
 							$scope.logs = `${$scope.logs}\t\t</ul><br/>\n`;
 						}
-						$scope.total_count[j] = $scope.total_count[j] + $scope.data[$scope.file_list[i]][$scope.list_names[j]].length;
+						$scope.total_count[list_no] = $scope.total_count[list_no] + 
+														$scope.data[$scope.file_list[file_no]][$scope.list_names[list_no]].length;
 					}
 					$scope.logs = `${$scope.logs}\t</div><br/><br/>\n`;
 
 			}		
-			console.log($scope.total_count);
 
 			$scope.setupDownloadLink = function(code) {
 			    var uri = 'data:text/html;charset=utf-8,' + encodeURIComponent($scope.logs);
