@@ -43,39 +43,36 @@ mod.directive('fileTabs', function() {
 			}  
 				
 			$scope.total_count = new Array();
-			for (var i = 0; i < $scope.list_names.length; i++)
-				$scope.total_count[i] = 0;
+			for (var file_no = 0; file_no < $scope.list_names.length; file_no++)
+				$scope.total_count[file_no] = 0;
 
-			$scope.file_log_count = new Array();
-			for (var i = 0; i < $scope.file_list.length; i++)
-				$scope.file_log_count[i] = 0;
 
 			$scope.logs = '';
-			for (var i = 0; i < $scope.file_list.length; i++) 
+			for (var file_no = 0; file_no < $scope.file_list.length; file_no++) 
 			{
-					$scope.logs = `${$scope.logs}\t<h1>${$scope.file_list[i]}</h1>\n\t<div>\n`;
-					for(var j = 0; j < $scope.list_names.length; j++)
+					$scope.logs = `${$scope.logs}\t<h1>${$scope.file_list[file_no]}</h1>\n\t<div>\n`;
+					for(var list_no = 0; list_no < $scope.list_names.length; list_no++)
 					{
-						if($scope.data[$scope.file_list[i]][$scope.list_names[j]].length>0)
+						if($scope.data[$scope.file_list[file_no]][$scope.list_names[list_no]].length>0)
 						{
-							$scope.logs = `${$scope.logs}\t\t<h4>${$scope.list_names[j]}</h4>\n`;
+							$scope.logs = `${$scope.logs}\t\t<h4>${$scope.list_names[list_no]}</h4>\n`;
 							$scope.logs = `${$scope.logs}\t\t<ul>\n`;
-							for(var k = 0; 
-								k < $scope.data[$scope.file_list[i]][$scope.list_names[j]].length; 
-								k++)
+							for(var count = 0; 
+								count < $scope.data[$scope.file_list[file_no]][$scope.list_names[list_no]].length; 
+								count++)
 							{
 								
 								$scope.logs = `${$scope.logs}\t\t\t<li>
-								${$scope.data[$scope.file_list[i]][$scope.list_names[j]][k]}
+								${$scope.data[$scope.file_list[file_no]][$scope.list_names[list_no]][count]}
 								</li>\n`;
 							}
 							$scope.logs = `${$scope.logs}\t\t</ul><br/>\n`;
 						}
-						$scope.total_count[j] = $scope.total_count[j] + $scope.data[$scope.file_list[i]][$scope.list_names[j]].length;
-						$scope.file_log_count[i] = $scope.file_log_count[i] + $scope.data[$scope.file_list[i]][$scope.list_names[j]].length;
+						$scope.total_count[list_no] = $scope.total_count[list_no] + 
+														$scope.data[$scope.file_list[file_no]][$scope.list_names[list_no]].length;
 					}
 					$scope.logs = `${$scope.logs}\t</div><br/><br/>\n`;
-					
+
 			}		
 
 			$scope.setupDownloadLink = function(code) {
@@ -88,6 +85,14 @@ mod.directive('fileTabs', function() {
 		       	document.body.removeChild(downloadLink);
 			};
 		},
+
+	    link: function(){
+	    	$(function ($) {
+				$('.collapse').on('show.bs.collapse hidden.bs.collapse', function () {
+			    	$(this).prev().find('.glyphicon').toggleClass('glyphicon-chevron-up glyphicon-chevron-down');
+			    })
+			});	
+	    },
 
 	    template: 	`<div class="top_bar" style="font-size: 1.8em; padding-right: 0.8em;
 	    				padding-left: 0.8em; padding-bottom: 0.5em; padding-top: 0.2em; font-weight: bold;">
@@ -105,22 +110,20 @@ mod.directive('fileTabs', function() {
 					  <md-content style="background: white; border: 1px solid #e1e1e1; margin-top: 0;">
 					    <md-tabs md-dynamic-height md-border-bottom
 					    style="background: white; border: 1px solid #e1e1e1; ">
-					      <md-tab ng-repeat="file in file_list track by $index" 
-						  	ng-if="file_log_count[$index]>0"
-						  label="{{file}}">
+					      <md-tab ng-repeat="file in file_list track by $index" label="{{file}}">
 					        <md-content class="md-padding">
 								  <uib-accordion>
 									<div uib-accordion-group
 								  		ng-repeat="lname in list_names" data-ng-show="data[file][lname].length>0"
-								  		style="border:1px solid #000000;" is-open="status.open">
+								  		style="border:1px solid #000000;">
 										<uib-accordion-heading ng-style="{'background-color': '{{labelbg[lname]}}'}">
 											<h4 ng-style="labelStyle[{{$index}}]">{{lname | uppercase}} |
 											<span style="font-size:0.75em; font-weight:normal">
 													Count: {{data[file][lname].length}}
 												</span>
-										    <i class="pull-right glyphicon" 
-												ng-class="{'glyphicon-chevron-down': status.open, 
-												'glyphicon-chevron-right': !status.open}"
+										    <i class="glyphicon" 
+										     	ng-class="{'glyphicon-triangle-bottom': status.open, 
+										    	'glyphicon-triangle-right': !status.open}" 
 										    	style="float:right;"></i></h4>
 										</uib-accordion-heading>
 										<div list-display list="data[file][lname]" list-type="lname" 
