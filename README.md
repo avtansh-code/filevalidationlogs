@@ -46,7 +46,7 @@ The following packages need to be required in the project before the use of this
 		
 2. The package has required css files locally and hence for these css files to work the user needs to use a css loader in his project, if not already used.
 
-The user can refer to the following link for browserify-css loader: https://github.com/cheton/browserify-css
+	The user can refer to the following link for browserify-css loader: https://github.com/cheton/browserify-css
 
 
 3. Install the package
@@ -117,7 +117,7 @@ The file name is the key to an object. Each object will have arrays of the detai
 
 **1. textcolor – text color of the data displayed inside the accordion**
 
-It will take an object as input. The keys will be the same as the names of the arrays in each object of the json data and the colors need to be input in the hex/string format.
+It will take an object as input. The keys will be the same as the names of the arrays in each object of the json data and the colors need to be input in the hex/string format. Default value is **black** for all the accordions.
 
 **e.g.**
 
@@ -128,7 +128,7 @@ if the object has two arrays – error and warning
 
 **2. labeweight – set if the label needs to be bold or not.**
 
-It will take in only two values as the input – bold or normal.
+It will take in only two values as the input – bold or normal. Default value is normal.
 
 **e.g.**
 	
@@ -137,7 +137,7 @@ It will take in only two values as the input – bold or normal.
 
 **3. labelsize – the font size of the accordion label – text size**
 
-It will take values just like the font-size attribute of csss
+It will take values just like the font-size attribute of css.
 
 **e.g.**
 

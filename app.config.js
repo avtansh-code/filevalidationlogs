@@ -9,7 +9,6 @@ mod.directive('fileTabs', function() {
 		scope:{
 			data: '=',
 			textcolors: '=',
-			labelbg: '=',
 			labelweight: '@',
 			labelsize: '@',
 			textsize: '@',
@@ -21,21 +20,38 @@ mod.directive('fileTabs', function() {
 				$scope.downloadIcon = 'block';
 
 			if($scope.pageSize === undefined)
-				$scope.pageSize = 2;
+				$scope.pageSize = 20;
 
 			$scope.file_list = Object.keys($scope.data);
-
 			$scope.list_names = Object.keys($scope.data[$scope.file_list[0]]);
+
 			$scope.labelStyle = new Array();
 			for(var count = 0; count<$scope.list_names.length; count++){
+				if($scope.textcolors === undefined){
+					$scope.labelStyle[count] = {
+						'color': '#000000',
+						'font-weight': $scope.labelweight,
+						'font-size': $scope.labelsize
+					}
+					continue;	
+				}
 				$scope.labelStyle[count] = {
 					'color': $scope.textcolors[$scope.list_names[count]],
 					'font-weight': $scope.labelweight,
 					'font-size': $scope.labelsize
 				}
 			}
+
+
 			$scope.textStyle = new Array();
 			for(var count = 0; count<$scope.list_names.length; count++){
+				if($scope.textcolors === undefined){
+					$scope.textStyle[count] = {
+						'font-size': $scope.textsize,
+						'color': '#000000'
+					}
+					continue;	
+				}
 				$scope.textStyle[count] = {
 					'font-size': $scope.textsize,
 					'color': $scope.textcolors[$scope.list_names[count]]
