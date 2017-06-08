@@ -43,7 +43,6 @@ mod.directive('fileTabs', function() {
 			$scope.textStyle = new Array();
 			$scope.labelStyle = new Array();
 			var r,g,b;
-
 			for(var count = 0; count<$scope.list_names.length; count++){
 				if($scope.listcolors === undefined){
 					$scope.labelText[count] = {
@@ -59,8 +58,8 @@ mod.directive('fileTabs', function() {
 					g = $scope.hexToRgb('#000000').g;
 					b = $scope.hexToRgb('#000000').b;
 					$scope.labelStyle[count] = {
-						'background-color': `'rgba(${r},${g},${b},0.3)'`,
-						'border-bottom': `'0.5px solid #000'`
+						'background-color': `rgba(${r},${g},${b},0.3)`,
+						'border-bottom': `0.5px solid #000`
 					}
 					continue;	
 				}
