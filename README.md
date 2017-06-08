@@ -44,14 +44,18 @@ The following packages need to be required in the project before the use of this
 
 		@eluci:registry=http://54.245.179.143:81/
 		
+2. The package has required css files locally and hence for these css files to work the user needs to use a css loader in his project, if not already used.
 
-2. Install the package
+	The user can refer to the following link for browserify-css loader: https://github.com/cheton/browserify-css
+
+
+3. Install the package
 
 
 		npm install @eluci/filevalidationlogs --save
 
 
-3. Require the package
+4. Require the package
 
 	
 		const filevalidationlogs = require(‘@eluci/filevalidationlogs’);
@@ -64,8 +68,7 @@ The following packages need to be required in the project before the use of this
 
 	<file-tabs
 	    data = "sample_data"
-	    textcolors='{error:"#EA4436",warning:"#FBBD09"}' 
-	    labelbg='{error:"#EA4436",warning:"#FBBD09"}' 
+	    textcolors='{error:"#EA4436",warning:"#FBBD09"}'
     	labelweight='bold' 
 		labelsize='1.9em' 
 		textsize='1em'
@@ -114,7 +117,7 @@ The file name is the key to an object. Each object will have arrays of the detai
 
 **1. textcolor – text color of the data displayed inside the accordion**
 
-It will take an object as input. The keys will be the same as the names of the arrays in each object of the json data and the colors need to be input in the hex/string format.
+It will take an object as input. The keys will be the same as the names of the arrays in each object of the json data and the colors need to be input in the hex/string format. Default value is **black** for all the accordions.
 
 **e.g.**
 
@@ -123,36 +126,25 @@ It will take an object as input. The keys will be the same as the names of the a
 if the object has two arrays – error and warning
 
 
-**2. labelbg – backround of the label for the accordion heading (group heading)**
+**2. labeweight – set if the label needs to be bold or not.**
 
-It will take an object as the input. It will be working the same way textcolor works.
-
-**e.g.**
-
-	labelbg = '{error:"#EA4436",warning:"#FBBD09"}'
-
-if the object has two arrays – error and warning
-
-
-**3. labeweight – set if the label needs to be bold or not.**
-
-It will take in only two values as the input – bold or normal.
+It will take in only two values as the input – bold or normal. Default value is normal.
 
 **e.g.**
 	
 	labelweight = 'bold'
 
 
-**4. labelsize – the font size of the accordion label – text size**
+**3. labelsize – the font size of the accordion label – text size**
 
-It will take values just like the font-size attribute of csss
+It will take values just like the font-size attribute of css.
 
 **e.g.**
 
 	labelsize = '1.9em'
 
 
-**5. textsize – the font size of the body of each accordion**
+**4. textsize – the font size of the body of each accordion**
 
 It will take values just like the font-size attribute of css
 
@@ -161,7 +153,7 @@ It will take values just like the font-size attribute of css
 	textsize = '1.2em'
 
 
-**6. download-icon – this is to set whether the user wishes to see the download icon or not**
+**5. download-icon – this is to set whether the user wishes to see the download icon or not**
 
 It takes in one of the two values – block(show icon) or none(hide icon). Default value is block
 
@@ -170,7 +162,7 @@ It takes in one of the two values – block(show icon) or none(hide icon). Defau
 	download-icon = 'block'
 
 
-**7. page-size – this is for the pagination section. This defines the number of items per page when applying pagination.**
+**6. page-size – this is for the pagination section. This defines the number of items per page when applying pagination.**
 
 It takes in a number as the input which depicts the item per page. Default value is 20
 

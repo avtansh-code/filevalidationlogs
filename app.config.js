@@ -9,7 +9,6 @@ mod.directive('fileTabs', function() {
 		scope:{
 			data: '=',
 			textcolors: '=',
-			labelbg: '=',
 			labelweight: '@',
 			labelsize: '@',
 			textsize: '@',
@@ -21,21 +20,38 @@ mod.directive('fileTabs', function() {
 				$scope.downloadIcon = 'block';
 
 			if($scope.pageSize === undefined)
-				$scope.pageSize = 2;
+				$scope.pageSize = 20;
 
 			$scope.file_list = Object.keys($scope.data);
-
 			$scope.list_names = Object.keys($scope.data[$scope.file_list[0]]);
+
 			$scope.labelStyle = new Array();
 			for(var count = 0; count<$scope.list_names.length; count++){
+				if($scope.textcolors === undefined){
+					$scope.labelStyle[count] = {
+						'color': '#000000',
+						'font-weight': $scope.labelweight,
+						'font-size': $scope.labelsize
+					}
+					continue;	
+				}
 				$scope.labelStyle[count] = {
 					'color': $scope.textcolors[$scope.list_names[count]],
 					'font-weight': $scope.labelweight,
 					'font-size': $scope.labelsize
 				}
 			}
+
+
 			$scope.textStyle = new Array();
 			for(var count = 0; count<$scope.list_names.length; count++){
+				if($scope.textcolors === undefined){
+					$scope.textStyle[count] = {
+						'font-size': $scope.textsize,
+						'color': '#000000'
+					}
+					continue;	
+				}
 				$scope.textStyle[count] = {
 					'font-size': $scope.textsize,
 					'color': $scope.textcolors[$scope.list_names[count]]
@@ -100,22 +116,19 @@ mod.directive('fileTabs', function() {
 			});	
 	    },
 
-	    template: 	`<div class="top_bar" style="font-size: 1.8em; padding-right: 0.8em;
-	    				padding-left: 0.8em; padding-bottom: 0.5em; padding-top: 0.2em; font-weight: bold;">
+	    template: 	`<div class="top_bar">
 	    				|<span ng-repeat="list in list_names track by $index">
 	    					{{list | uppercase}} = {{total_count[$index]}} | 
 	    				</span>
 						<p class="download" 
 							ng-click="setupDownloadLink()" 
-							ng-style='{"display": downloadIcon}'
-							style="float: right; right:0; top: 0;">
-								<span class="glyphicon glyphicon-download-alt" style="margin: 0px;"></span>
+							ng-style='{"display": downloadIcon}'>
+								<span class="glyphicon glyphicon-download-alt"></span>
 						</p>
 	    			</div>
 	    			<div ng-cloak="" class="tabsdemoDynamicHeight tabs">
-					  <md-content style="background: white; border: 1px solid #e1e1e1; margin-top: 0;">
-					    <md-tabs md-dynamic-height md-border-bottom
-					    style="background: white; border: 1px solid #e1e1e1; ">
+					  <md-content>
+					    <md-tabs md-dynamic-height md-border-bottom>
 					      <md-tab ng-repeat="file in file_list track by $index" 
 						  label="{{file}}"
 						  ng-if="file_count[$index]>0">
@@ -123,15 +136,15 @@ mod.directive('fileTabs', function() {
 								  <uib-accordion>
 									<div uib-accordion-group
 								  		ng-repeat="lname in list_names" data-ng-show="data[file][lname].length>0"
-								  		style="border:1px solid #000000;" is-open="status.open">
-										<uib-accordion-heading ng-style="{'background-color': '{{labelbg[lname]}}'}">
+								  		is-open="status.open"  class="accgrp {{lname}}">
+										<uib-accordion-heading>
 											<h4 ng-style="labelStyle[{{$index}}]">{{lname | uppercase}} |
 											<span style="font-size:0.75em; font-weight:normal">
 													Count: {{data[file][lname].length}}
 												</span>
 										    <i class="pull-right glyphicon" 
-												ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}" 
-										    	style="float:right;"></i></h4>
+												ng-class="{'glyphicon-chevron-down': status.open, 
+												'glyphicon-chevron-right': !status.open}"></i></h4>
 										</uib-accordion-heading>
 										<div list-display list="data[file][lname]" list-type="lname" 
 											styling="textStyle[$index]">
@@ -173,7 +186,7 @@ mod.directive('listDisplay', function(){
 			  	$scope.currentPage = 1; //reset to first paghe
 			}
 		},
-		template: `<ul class="list-group" style="padding-left:2em;">
+		template: `<ul class="list-group">
 					<li ng-repeat="list_item in list.slice(((currentPage-1)*itemsPerPage), 
 						((currentPage)*itemsPerPage))" 
 						ng-style="styling">

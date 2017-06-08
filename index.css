@@ -14,28 +14,49 @@
 .tabsdemoDynamicHeight md-content h1:first-child {
 	margin-top: 0; 
 }
-.accordion-toggle {
-  	text-decoration: none !important;
-}
 
-.more-less {
+.pull-right {
     float: right;
 }
+
 .download{
 	float: right;
 	right:0;
 	top: 0;
 }
-
+ 
 .top_bar{
 	font-size: 2em;
-	padding-right: 0.8em;
-	padding-left: 0.8em;
-	padding-bottom: 0.5em;
-	padding-top: 0.2em;
+	padding: 0.2em 0.8em 0.5em 0.8em;
 	font-weight: bold;
 }
 
 .download:focus{
-	outline: none;
+	outline: none !important;
+}
+
+.glyphicon{
+	margin: 0px !important;
+}
+
+.accgrp{
+	border:1px solid #000000 !important;
+	margin: 1em !important;
+	background-color: #F5F5F5!important;
+}
+
+.list-group{
+	padding-left: 2em !important;
+}
+
+.panel-heading{
+	padding: 0.1em 1em 0.1em 1em !important;
+}
+
+a:hover{
+	text-decoration: none;
+}
+
+a:link{
+	text-decoration: none;
 }
