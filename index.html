@@ -25,26 +25,39 @@
     <script src="app.config.js"></script>
 
   </head>
-  <body>
+  <body style="background-color:#F5F5F5">
     <div>
 
       <file-tabs id="data_upload" 
-        data='{"file 1": {
-                    "error": ["<b>error1</b>", "error2", "error3", "error4", "error5", "error6"],
-                    "warning": ["warning1"]
+        data='{
+                "file 1": {
+                  "errors": ["error1", "error2", "error3", "error4", "error5", "error6"],
+                  "warnings": []
                 },
                 "file 2": {
-                    "error": [],
-                    "warning": []
+                  "errors": ["error1", "error2", "error3", "error4"],
+                  "warnings": ["warning1", "warning2", "warning3", "warning4"]
                 },
                 "file 3": {
-                    "error": ["<b>error1</b>", "error2", "error3", "error4", "error5", "error6"],
-                    "warning": []
+                  "errors": ["error1", "error2", "error3"],
+                  "warnings": ["warning1", "warning2", "warning3", "warning4", "warning5", "warning6"]
+                },
+                "file 4": {
+                  "errors": [],
+                  "warnings": ["warning1", "warning2", "warning3"],
+                },
+                "file 5": {
+                  "errors": ["error1", "error2", "error3", "error4"],
+                  "warnings": ["warning1", "warning2", "warning3", "warning4", "warning5"]
+                },
+                "file 6": {
+                  "errors": ["error1"],
+                  "warnings": ["warning1"]
                 }
               }'
-        textcolors='{error:"#EA4436",warning:"#FBBD09"}' 
-        labelweight='bold' labelsize='1.9em' textsize='1em'
-        download-icon="block" page-size=20>
+        listcolors='{errors:"#EA4436",warnings:"#C57D00"}' 
+        labelsize='1.9em' textsize='1em'
+        download-icon="block" page-size=2>
       </file-tabs>
 
     </div>

@@ -8,14 +8,28 @@ mod.directive('fileTabs', function() {
 	    restrict: 'E',
 		scope:{
 			data: '=',
-			textcolors: '=',
-			labelweight: '@',
+			listcolors: '=',
 			labelsize: '@',
 			textsize: '@',
 			downloadIcon: '@',
 			pageSize: '@'
 		},
+
 		controller: function($scope){
+			$scope.hexToRgb = function(hex){
+				var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+				hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+					return r + r + g + g + b + b;
+				});
+
+				var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+				return result ? {
+					r: parseInt(result[1], 16),
+					g: parseInt(result[2], 16),
+					b: parseInt(result[3], 16)
+				} : null;
+			}
+
 			if($scope.downloadIcon === undefined)
 				$scope.downloadIcon = 'block';
 
@@ -25,39 +39,49 @@ mod.directive('fileTabs', function() {
 			$scope.file_list = Object.keys($scope.data);
 			$scope.list_names = Object.keys($scope.data[$scope.file_list[0]]);
 
+			$scope.labelText = new Array();
+			$scope.textStyle = new Array();
 			$scope.labelStyle = new Array();
+			var r,g,b;
+
 			for(var count = 0; count<$scope.list_names.length; count++){
-				if($scope.textcolors === undefined){
-					$scope.labelStyle[count] = {
+				if($scope.listcolors === undefined){
+					$scope.labelText[count] = {
 						'color': '#000000',
-						'font-weight': $scope.labelweight,
 						'font-size': $scope.labelsize
 					}
-					continue;	
-				}
-				$scope.labelStyle[count] = {
-					'color': $scope.textcolors[$scope.list_names[count]],
-					'font-weight': $scope.labelweight,
-					'font-size': $scope.labelsize
-				}
-			}
-
-
-			$scope.textStyle = new Array();
-			for(var count = 0; count<$scope.list_names.length; count++){
-				if($scope.textcolors === undefined){
 					$scope.textStyle[count] = {
 						'font-size': $scope.textsize,
-						'color': '#000000'
+						'color': '#000000',
+						'font-weight': 'bold'
+					}
+					r = $scope.hexToRgb('#000000').r;
+					g = $scope.hexToRgb('#000000').g;
+					b = $scope.hexToRgb('#000000').b;
+					$scope.labelStyle[count] = {
+						'background-color': `'rgba(${r},${g},${b},0.3)'`,
+						'border-bottom': `'0.5px solid #000'`
 					}
 					continue;	
+				}
+				$scope.labelText[count] = {
+					'color': $scope.listcolors[$scope.list_names[count]],
+					'font-size': $scope.labelsize
 				}
 				$scope.textStyle[count] = {
 					'font-size': $scope.textsize,
-					'color': $scope.textcolors[$scope.list_names[count]]
+					'color': $scope.listcolors[$scope.list_names[count]]
 				}
-			}  
+				r = $scope.hexToRgb($scope.listcolors[$scope.list_names[count]]).r;
+				g = $scope.hexToRgb($scope.listcolors[$scope.list_names[count]]).g;
+				b = $scope.hexToRgb($scope.listcolors[$scope.list_names[count]]).b;
+				$scope.labelStyle[count] = {
+					'background-color': `rgba(${r},${g},${b},0.3)`,
+					'border-bottom': `1px solid ${$scope.listcolors[$scope.list_names[count]]}`
+				}
+			}
 				
+			console.log($scope.labelStyle);
 			$scope.total_count = new Array();
 			for (var file_no = 0; file_no < $scope.list_names.length; file_no++)
 				$scope.total_count[file_no] = 0;
@@ -108,17 +132,19 @@ mod.directive('fileTabs', function() {
 			};
 		},
 
-	    link: function(){
-	    	$(function ($) {
-				$('.collapse').on('show.bs.collapse hidden.bs.collapse', function () {
-			    	$(this).prev().find('.glyphicon').toggleClass('glyphicon-chevron-up glyphicon-chevron-down');
-			    })
-			});	
+		
+	    link: function($scope, element, attrs){
+	    	
 	    },
 
 	    template: 	`<div class="top_bar">
-	    				|<span ng-repeat="list in list_names track by $index">
-	    					{{list | uppercase}} = {{total_count[$index]}} | 
+	    				The file(s) contains 
+						<span ng-repeat="list in list_names track by $index"
+						ng-style="{'color': listcolors[list]}">
+	    				 	{{total_count[$index]}} {{list | uppercase}}
+							 <span ng-if="$index<list_names.length-1" class="and-text">
+							  and
+							 </span>
 	    				</span>
 						<p class="download" 
 							ng-click="setupDownloadLink()" 
@@ -135,16 +161,19 @@ mod.directive('fileTabs', function() {
 					        <md-content class="md-padding">
 								  <uib-accordion>
 									<div uib-accordion-group
-								  		ng-repeat="lname in list_names" data-ng-show="data[file][lname].length>0"
-								  		is-open="status.open"  class="accgrp {{lname}}">
+								  	ng-repeat="lname in list_names" 
+									  style="border-color: {{listcolors[lname]}}"
+									ng-if="data[file][lname].length>0"
+								  	is-open="status.open"  class="accgrp {{lname}}">
 										<uib-accordion-heading>
-											<h4 ng-style="labelStyle[{{$index}}]">{{lname | uppercase}} |
-											<span style="font-size:0.75em; font-weight:normal">
-													Count: {{data[file][lname].length}}
-												</span>
+											<div class= "heading" 
+											ng-style="labelStyle[{{$index}}]">
+											<h4 ng-style="labelText[{{$index}}]">{{lname | uppercase}} 
+											({{data[file][lname].length}})
 										    <i class="pull-right glyphicon" 
-												ng-class="{'glyphicon-chevron-down': status.open, 
-												'glyphicon-chevron-right': !status.open}"></i></h4>
+												ng-class="{'glyphicon-triangle-bottom': status.open, 
+												'glyphicon-triangle-right': !status.open}"></i></h4>
+											</div>
 										</uib-accordion-heading>
 										<div list-display list="data[file][lname]" list-type="lname" 
 											styling="textStyle[$index]">

@@ -68,8 +68,7 @@ The following packages need to be required in the project before the use of this
 
 	<file-tabs
 	    data = "sample_data"
-	    textcolors='{error:"#EA4436",warning:"#FBBD09"}'
-    	labelweight='bold' 
+	    labelcolors='{error:"#EA4436",warning:"#FBBD09"}'
 		labelsize='1.9em' 
 		textsize='1em'
 	    download-icon='block' 
@@ -84,28 +83,28 @@ The following packages need to be required in the project before the use of this
 
 	sample_data = {
 		"file 1": {
-			"error": ["error1", "error2", "error3", "error4", "error5", "error6"],
-			"warning": []
+			"errors": ["error1", "error2", "error3", "error4", "error5", "error6"],
+			"warnings": []
 		},
 		"file 2": {
-			"error": ["error1", "error2", "error3", "error4"],
-			"warning": ["warning1", "warning2", "warning3", "warning4"]
+			"errors": ["error1", "error2", "error3", "error4"],
+			"warnings": ["warning1", "warning2", "warning3", "warning4"]
 		},
 		"file 3": {
-			"error": ["error1", "error2", "error3"],
-			"warning": ["warning1", "warning2", "warning3", "warning4", "warning5", "warning6"]
+			"errors": ["error1", "error2", "error3"],
+			"warnings": ["warning1", "warning2", "warning3", "warning4", "warning5", "warning6"]
 		},
 		"file 4": {
-			"error": [],
-			"warning": ["warning1", "warning2", "warning3"],
+			"errors": [],
+			"warnings": ["warning1", "warning2", "warning3"],
 		},
 		"file 5": {
-			"error": ["error1", "error2", "error3", "error4"],
-			"warning": ["warning1", "warning2", "warning3", "warning4", "warning5"]
+			"errors": ["error1", "error2", "error3", "error4"],
+			"warnings": ["warning1", "warning2", "warning3", "warning4", "warning5"]
 		},
 		"file 6": {
-			"error": ["error1"],
-			"warning": ["warning1"]
+			"errors": ["error1"],
+			"warnings": ["warning1"]
 		}
 	}
 
@@ -115,27 +114,18 @@ The file name is the key to an object. Each object will have arrays of the detai
 ##The customisations possible in the module
 
 
-**1. textcolor – text color of the data displayed inside the accordion**
+**1. listcolor – it will be the color corresponding to each list in the given data**
 
 It will take an object as input. The keys will be the same as the names of the arrays in each object of the json data and the colors need to be input in the hex/string format. Default value is **black** for all the accordions.
 
 **e.g.**
 
-	textcolors = '{error:"#EA4436",warning:"#FBBD09"}'
+	labelcolors = '{errors:"#EA4436",warnings:"#FBBD09"}'
 
-if the object has two arrays – error and warning
-
-
-**2. labeweight – set if the label needs to be bold or not.**
-
-It will take in only two values as the input – bold or normal. Default value is normal.
-
-**e.g.**
-	
-	labelweight = 'bold'
+if the object has two arrays – errors and warnings
 
 
-**3. labelsize – the font size of the accordion label – text size**
+**2. labelsize – the font size of the accordion label – text size**
 
 It will take values just like the font-size attribute of css.
 
@@ -144,7 +134,7 @@ It will take values just like the font-size attribute of css.
 	labelsize = '1.9em'
 
 
-**4. textsize – the font size of the body of each accordion**
+**3. textsize – the font size of the body of each accordion**
 
 It will take values just like the font-size attribute of css
 
@@ -153,7 +143,7 @@ It will take values just like the font-size attribute of css
 	textsize = '1.2em'
 
 
-**5. download-icon – this is to set whether the user wishes to see the download icon or not**
+**4. download-icon – this is to set whether the user wishes to see the download icon or not**
 
 It takes in one of the two values – block(show icon) or none(hide icon). Default value is block
 
@@ -162,7 +152,7 @@ It takes in one of the two values – block(show icon) or none(hide icon). Defau
 	download-icon = 'block'
 
 
-**6. page-size – this is for the pagination section. This defines the number of items per page when applying pagination.**
+**5. page-size – this is for the pagination section. This defines the number of items per page when applying pagination.**
 
 It takes in a number as the input which depicts the item per page. Default value is 20
 
