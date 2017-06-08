@@ -68,11 +68,11 @@ The following packages need to be required in the project before the use of this
 
 	<file-tabs
 	    data = "sample_data"
-	    labelcolors='{error:"#EA4436",warning:"#FBBD09"}'
-		labelsize='1.9em' 
+	    listcolors='{errors:"#EA4436",warnings:"#C57D00"}' 
+        labelsize='1.9em' 
 		textsize='1em'
-	    download-icon='block' 
-		page-size=20>
+        download-icon="block" 
+		page-size=2>
 	</file-tabs>
 
 
