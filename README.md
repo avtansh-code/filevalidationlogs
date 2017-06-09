@@ -116,7 +116,7 @@ The file name is the key to an object. Each object will have arrays of the detai
 ##The customisations possible in the module
 
 
-**1. listcolor – it will be the color corresponding to each list in the given data**
+**1. listcolors – it will be the color corresponding to each list in the given data**
 
 It will take an object as input. The keys will be the same as the names of the arrays in each object of the json data and the colors need to be input in the hex/string format. Default value is **black** for all the accordions.
 
