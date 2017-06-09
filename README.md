@@ -72,7 +72,7 @@ The following packages need to be required in the project before the use of this
         labelsize='1.9em' 
 		textsize='1em'
         download-icon="block" 
-		page-size=2>
+		page-size=5>
 	</file-tabs>
 
 
@@ -96,10 +96,10 @@ The following packages need to be required in the project before the use of this
 		},
 		"file 4": {
 			"errors": [],
-			"warnings": ["warning1", "warning2", "warning3"],
+			"warnings": [],
 		},
 		"file 5": {
-			"errors": ["error1", "error2", "error3", "error4"],
+			"errors": [],
 			"warnings": ["warning1", "warning2", "warning3", "warning4", "warning5"]
 		},
 		"file 6": {
@@ -109,7 +109,9 @@ The following packages need to be required in the project before the use of this
 	}
 
 
-The file name is the key to an object. Each object will have arrays of the details that the users wishes to display. Here we are using only two details warning and error but the user can display summary as well. It will also be in the same manner.
+The file name is the key to an object. Each object will have arrays of the details that the users wishes to display. Here we are using only two details warnings and errors but the user can display summary as well. It will also be in the same manner.
+
+**Note: All the objects in the JSON object should contain all the arrays. If the array does not have any entries associated to it for that particular file, then the list can be left empty, but it needs to be defined. For references please have a look at the above example.**
 
 ##The customisations possible in the module
 
@@ -145,7 +147,7 @@ It will take values just like the font-size attribute of css
 
 **4. download-icon – this is to set whether the user wishes to see the download icon or not**
 
-It takes in one of the two values – block(show icon) or none(hide icon). Default value is block
+It takes in one of the two values – block(show icon) or none(hide icon). Default value is block, i.e. the download icon will be displayed by default.
 
 **e.g.**
 
@@ -154,8 +156,8 @@ It takes in one of the two values – block(show icon) or none(hide icon). Defau
 
 **5. page-size – this is for the pagination section. This defines the number of items per page when applying pagination.**
 
-It takes in a number as the input which depicts the item per page. Default value is 20
+It takes in a number as the input which depicts the item per page. Default value is 20.
 
 **e.g.**
 	
-	page-size = 10
+	page-size = 5

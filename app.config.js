@@ -81,7 +81,6 @@ mod.directive('fileTabs', function() {
 				}
 			}
 				
-			console.log($scope.labelStyle);
 			$scope.total_count = new Array();
 			for (var file_no = 0; file_no < $scope.list_names.length; file_no++)
 				$scope.total_count[file_no] = 0;
@@ -89,35 +88,52 @@ mod.directive('fileTabs', function() {
 			$scope.file_count = new Array();
 			for (var file_no = 0; file_no < $scope.file_list.length; file_no++)
 				$scope.file_count[file_no] = 0;
-
-
-			$scope.logs = '';
+			
 			for (var file_no = 0; file_no < $scope.file_list.length; file_no++) 
 			{
-					$scope.logs = `${$scope.logs}\t<h1>${$scope.file_list[file_no]}</h1>\n\t<div>\n`;
 					for(var list_no = 0; list_no < $scope.list_names.length; list_no++)
 					{
-						if($scope.data[$scope.file_list[file_no]][$scope.list_names[list_no]].length>0)
-						{
-							$scope.logs = `${$scope.logs}\t\t<h4>${$scope.list_names[list_no]}</h4>\n`;
-							$scope.logs = `${$scope.logs}\t\t<ul>\n`;
-							for(var count = 0; 
-								count < $scope.data[$scope.file_list[file_no]][$scope.list_names[list_no]].length; 
-								count++)
-							{
-								
-								$scope.logs = `${$scope.logs}\t\t\t<li>
-								${$scope.data[$scope.file_list[file_no]][$scope.list_names[list_no]][count]}
-								</li>\n`;
-							}
-							$scope.logs = `${$scope.logs}\t\t</ul><br/>\n`;
-						}
 						$scope.total_count[list_no] = $scope.total_count[list_no] + 
 														$scope.data[$scope.file_list[file_no]][$scope.list_names[list_no]].length;
 						$scope.file_count[file_no] = $scope.file_count[file_no] + 
 														$scope.data[$scope.file_list[file_no]][$scope.list_names[list_no]].length;
 					}
-					$scope.logs = `${$scope.logs}\t</div><br/><br/>\n`;
+			}		
+			
+
+			$scope.logs = 'The file(s) contains';
+			for(var list_no = 0; list_no < $scope.list_names.length; list_no++){
+				$scope.logs = `${$scope.logs} 
+					<b>${$scope.total_count[list_no]} ${$scope.list_names[list_no]} </b>`;
+				if(list_no < $scope.list_names.length - 1)
+					$scope.logs = `${$scope.logs}and `;
+			}
+			$scope.logs = `${$scope.logs}\n\n`;
+			for (var file_no = 0; file_no < $scope.file_list.length; file_no++) 
+			{
+					if($scope.file_count[file_no] > 0){
+						$scope.logs = `${$scope.logs}\t<h1>${$scope.file_list[file_no]}</h1>\n\t<div>\n`;
+						for(var list_no = 0; list_no < $scope.list_names.length; list_no++)
+						{
+							if($scope.data[$scope.file_list[file_no]][$scope.list_names[list_no]].length>0)
+							{
+								$scope.logs = `${$scope.logs}\t\t<h4>${$scope.list_names[list_no]}
+								(${$scope.data[$scope.file_list[file_no]][$scope.list_names[list_no]].length})</h4>\n`;
+								$scope.logs = `${$scope.logs}\t\t<ul>\n`;
+								for(var count = 0; 
+									count < $scope.data[$scope.file_list[file_no]][$scope.list_names[list_no]].length; 
+									count++)
+								{
+									
+									$scope.logs = `${$scope.logs}\t\t\t<li>
+									${$scope.data[$scope.file_list[file_no]][$scope.list_names[list_no]][count]}
+									</li>\n`;
+								}
+								$scope.logs = `${$scope.logs}\t\t</ul><br/>\n`;
+							}
+						}
+						$scope.logs = `${$scope.logs}\t</div><br/><br/>\n`;
+					}
 
 			}		
 
