@@ -122,7 +122,7 @@ It will take an object as input. The keys will be the same as the names of the a
 
 **e.g.**
 
-	labelcolors = '{errors:"#EA4436",warnings:"#FBBD09"}'
+	listcolors = '{errors:"#EA4436",warnings:"#FBBD09"}'
 
 if the object has two arrays – errors and warnings
 
