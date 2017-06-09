@@ -16,6 +16,11 @@ mod.directive('fileTabs', function() {
 		},
 
 		controller: function($scope){
+
+			/*This function is used to convert the hex value of a color to its RGB format.
+			It takes in a hex string as input and outputs three variables R,G and B, ie, their 
+			cooresponding values*/
+
 			$scope.hexToRgb = function(hex){
 				var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
 				hex = hex.replace(shorthandRegex, function(m, r, g, b) {
@@ -43,6 +48,9 @@ mod.directive('fileTabs', function() {
 			$scope.textStyle = new Array();
 			$scope.labelStyle = new Array();
 			var r,g,b;
+
+			/*A loop to build the styling objects for the template*/
+
 			for(var count = 0; count<$scope.list_names.length; count++){
 				if($scope.listcolors === undefined){
 					$scope.labelText[count] = {
@@ -82,13 +90,16 @@ mod.directive('fileTabs', function() {
 			}
 				
 			$scope.total_count = new Array();
-			for (var file_no = 0; file_no < $scope.list_names.length; file_no++)
+			$scope.file_count = new Array();
+
+			//Loops to initialize the arrays
+			for (var file_no = 0; file_no < $scope.list_names.length; file_no++){}
 				$scope.total_count[file_no] = 0;
 
-			$scope.file_count = new Array();
 			for (var file_no = 0; file_no < $scope.file_list.length; file_no++)
 				$scope.file_count[file_no] = 0;
 			
+			//Loops to count the number of errors and warnings in each file and in total
 			for (var file_no = 0; file_no < $scope.file_list.length; file_no++) 
 			{
 					for(var list_no = 0; list_no < $scope.list_names.length; list_no++)
@@ -100,6 +111,7 @@ mod.directive('fileTabs', function() {
 					}
 			}		
 			
+			/*Loops to build the logs file that has to be downloaded*/
 
 			$scope.logs = 'The file(s) contains';
 			for(var list_no = 0; list_no < $scope.list_names.length; list_no++){
@@ -108,6 +120,8 @@ mod.directive('fileTabs', function() {
 				if(list_no < $scope.list_names.length - 1)
 					$scope.logs = `${$scope.logs}and `;
 			}
+
+
 			$scope.logs = `${$scope.logs}\n\n`;
 			for (var file_no = 0; file_no < $scope.file_list.length; file_no++) 
 			{
@@ -136,6 +150,10 @@ mod.directive('fileTabs', function() {
 					}
 
 			}		
+
+			/*This funtion generates the action of download when the download button is clicked.
+			It generates a temporary anchor tag that is used to download the required html file.
+			And then it deletes that anchor tag once done.*/
 
 			$scope.setupDownloadLink = function(code) {
 			    var uri = 'data:text/html;charset=utf-8,' + encodeURIComponent($scope.logs);
@@ -218,19 +236,7 @@ mod.directive('listDisplay', function(){
   			$scope.currentPage = 1;
   			$scope.itemsPerPage = $scope.$parent.pageSize;
   			$scope.maxSize = 5; //Number of pager buttons to show
-
-  			$scope.setPage = function (pageNo) {
-    			$scope.currentPage = pageNo;
-  			};
-
-  			$scope.pageChanged = function() {
-    			console.log('Page changed to: ' + $scope.currentPage);
-  			};
-
-			$scope.setItemsPerPage = function(num) {
-			  	$scope.itemsPerPage = num;
-			  	$scope.currentPage = 1; //reset to first paghe
-			}
+			  
 		},
 		template: `<ul class="list-group">
 					<li ng-repeat="list_item in list.slice(((currentPage-1)*itemsPerPage), 
