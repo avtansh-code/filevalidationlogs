@@ -14,7 +14,6 @@ mod.directive('fileTabs', function() {
 			downloadIcon: '@',
 			pageSize: '@'
 		},
-
 		controller: function($scope){
 
 			/*This function is used to convert the hex value of a color to its RGB format.
@@ -89,6 +88,8 @@ mod.directive('fileTabs', function() {
 				}
 			}
 				
+			
+			
 			$scope.total_count = new Array();
 			$scope.file_count = new Array();
 
@@ -194,27 +195,8 @@ mod.directive('fileTabs', function() {
 						  label="{{file}}"
 						  ng-if="file_count[$index]>0">
 					        <md-content class="md-padding">
-								  <uib-accordion>
-									<div uib-accordion-group
-								  	ng-repeat="lname in list_names" 
-									  style="border-color: {{listcolors[lname]}}"
-									ng-if="data[file][lname].length>0"
-								  	is-open="status.open"  class="accgrp {{lname}}">
-										<uib-accordion-heading>
-											<div class= "heading" 
-											ng-style="labelStyle[{{$index}}]">
-											<h4 ng-style="labelText[{{$index}}]">{{lname | uppercase}} 
-											({{data[file][lname].length}})
-										    <i class="pull-right glyphicon" 
-												ng-class="{'glyphicon-triangle-bottom': status.open, 
-												'glyphicon-triangle-right': !status.open}"></i></h4>
-											</div>
-										</uib-accordion-heading>
-										<div list-display list="data[file][lname]" list-type="lname" 
-											styling="textStyle[$index]">
-										</div>
-									</div>
-								</uib-accordion>
+								  <div accordion-view filedata=data[file]>
+								  </div>
 							</md-content>
 					      </md-tab>    
 					    </md-tabs>  
@@ -223,12 +205,113 @@ mod.directive('fileTabs', function() {
   	};
 });
 
+mod.directive('accordionView',function(){
+	return {
+		restrict: 'A',
+		scope:{
+			filedata: '='
+		},
+		controller: function($scope){
+			$scope.list_names = $scope.$parent.list_names;
+			$scope.listcolors = $scope.$parent.listcolors;
+			$scope.labelsize = $scope.$parent.labelsize;
+			$scope.textsize = $scope.$parent.textsize;
+			$scope.pageSize = $scope.$parent.pageSize;
+
+			/*This function is used to convert the hex value of a color to its RGB format.
+			It takes in a hex string as input and outputs three variables R,G and B, ie, their 
+			cooresponding values*/
+
+			$scope.hexToRgb = function(hex){
+				var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+				hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+					return r + r + g + g + b + b;
+				});
+
+				var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+				return result ? {
+					r: parseInt(result[1], 16),
+					g: parseInt(result[2], 16),
+					b: parseInt(result[3], 16)
+				} : null;
+			}
+
+			/*A loop to build the styling objects for the template*/
+			
+			$scope.labelText = new Array();
+			$scope.textStyle = new Array();
+			$scope.labelStyle = new Array();
+			var r,g,b;
+
+			for(var count = 0; count<$scope.list_names.length; count++){
+				if($scope.listcolors === undefined){
+					$scope.labelText[count] = {
+						'color': '#000000',
+						'font-size': $scope.labelsize
+					}
+					$scope.textStyle[count] = {
+						'font-size': $scope.textsize,
+						'color': '#000000',
+						'font-weight': 'bold'
+					}
+					r = $scope.hexToRgb('#000000').r;
+					g = $scope.hexToRgb('#000000').g;
+					b = $scope.hexToRgb('#000000').b;
+					$scope.labelStyle[count] = {
+						'background-color': `rgba(${r},${g},${b},0.3)`,
+						'border-bottom': `0.5px solid #000`
+					}
+					continue;	
+				}
+				$scope.labelText[count] = {
+					'color': $scope.listcolors[$scope.list_names[count]],
+					'font-size': $scope.labelsize,
+					'font-weight': 'bold'
+				}
+				$scope.textStyle[count] = {
+					'font-size': $scope.textsize,
+					'color': $scope.listcolors[$scope.list_names[count]]
+				}
+				r = $scope.hexToRgb($scope.listcolors[$scope.list_names[count]]).r;
+				g = $scope.hexToRgb($scope.listcolors[$scope.list_names[count]]).g;
+				b = $scope.hexToRgb($scope.listcolors[$scope.list_names[count]]).b;
+				$scope.labelStyle[count] = {
+					'background-color': `rgba(${r},${g},${b},0.3)`,
+					'border-bottom': `1px solid ${$scope.listcolors[$scope.list_names[count]]}`
+				}
+			}
+
+
+		},
+		template: `<uib-accordion>
+					<div uib-accordion-group
+					ng-repeat="lname in list_names" 
+						style="border-color: {{listcolors[lname]}}"
+						ng-if="filedata[lname].length>0"
+					is-open="status.open"  class="accgrp {{lname}}">
+						<uib-accordion-heading>
+							<div class= "heading" 
+							ng-style="labelStyle[{{$index}}]">
+							<h4 ng-style="labelText[{{$index}}]">{{lname | uppercase}} 
+							({{filedata[lname].length}})
+							<i class="pull-right glyphicon" 
+								ng-class="{'glyphicon-triangle-bottom': status.open, 
+								'glyphicon-triangle-right': !status.open}"></i></h4>
+							</div>
+						</uib-accordion-heading>
+						<div list-display list="filedata[lname]" 
+						styling="textStyle[$index]">
+						</div>
+					</div>
+				</uib-accordion>`
+	};
+});
+
 mod.directive('listDisplay', function(){
 	return {
 		restrict: 'A',
 		scope:{
 			list: '=',
-			listType: '=',
 			styling: '='
 		},
 		controller: function($scope){
@@ -236,6 +319,7 @@ mod.directive('listDisplay', function(){
   			$scope.currentPage = 1;
   			$scope.itemsPerPage = $scope.$parent.pageSize;
   			$scope.maxSize = 5; //Number of pager buttons to show
+  			$scope.maxSize = 5; 
 		},
 		template: `<ul class="list-group">
 					<li ng-repeat="list_item in list.slice(((currentPage-1)*itemsPerPage), 
