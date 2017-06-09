@@ -65,7 +65,8 @@ mod.directive('fileTabs', function() {
 				}
 				$scope.labelText[count] = {
 					'color': $scope.listcolors[$scope.list_names[count]],
-					'font-size': $scope.labelsize
+					'font-size': $scope.labelsize,
+					'font-weight': 'bold'
 				}
 				$scope.textStyle[count] = {
 					'font-size': $scope.textsize,
@@ -139,8 +140,9 @@ mod.directive('fileTabs', function() {
 	    template: 	`<div class="top_bar">
 	    				The file(s) contains 
 						<span ng-repeat="list in list_names track by $index"
-						ng-style="{'color': listcolors[list]}">
-	    				 	{{total_count[$index]}} {{list | uppercase}}
+						ng-style="{'color': listcolors[list]}"
+						ng-if="total_count[$index]>0">
+	    				 	<b>{{total_count[$index]}} {{list | uppercase}}</b>
 							 <span ng-if="$index<list_names.length-1" class="and-text">
 							  and
 							 </span>
