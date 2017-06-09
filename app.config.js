@@ -93,7 +93,7 @@ mod.directive('fileTabs', function() {
 			$scope.file_count = new Array();
 
 			//Loops to initialize the arrays
-			for (var file_no = 0; file_no < $scope.list_names.length; file_no++){}
+			for (var file_no = 0; file_no < $scope.list_names.length; file_no++)
 				$scope.total_count[file_no] = 0;
 
 			for (var file_no = 0; file_no < $scope.file_list.length; file_no++)
@@ -236,7 +236,6 @@ mod.directive('listDisplay', function(){
   			$scope.currentPage = 1;
   			$scope.itemsPerPage = $scope.$parent.pageSize;
   			$scope.maxSize = 5; //Number of pager buttons to show
-			  
 		},
 		template: `<ul class="list-group">
 					<li ng-repeat="list_item in list.slice(((currentPage-1)*itemsPerPage), 
