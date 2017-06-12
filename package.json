@@ -23,5 +23,8 @@
   },
   "author": "Avtansh Gupta",
   "license": "ISC",
-  "homepage": "https://avtansh95@bitbucket.org/elucidatainc/filevalidationlogs.git#readme"
+  "homepage": "https://avtansh95@bitbucket.org/elucidatainc/filevalidationlogs.git#readme",
+  "devDependencies": {
+    "ts-loader": "^2.1.0"
+  }
 }

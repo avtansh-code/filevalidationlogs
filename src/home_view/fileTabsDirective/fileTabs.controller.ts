@@ -1,5 +1,8 @@
+import { IfcFacadeService } from '../../home_core/services/FacadeService/IfcFacadeService';
+
 export class fileTabsController{
 
+    private facadeService: IfcFacadeService;
     static AngularDependencies = ['$scope', fileTabsController];
 
     constructor(private $scope: ng.IScope){
@@ -8,17 +11,23 @@ export class fileTabsController{
 
 		if($scope.pageSize === undefined)
 				$scope.pageSize = 20;
+        this.facadeService.data($scope.data);
+        this.facadeService.pagesize($scope.pageSize);
+        this.facadeService.listcolor($scope.listcolors);
+        this.facadeService.labelsize($scope.labelsize);
+        this.facadeService.textsize($scope.textsize);
     }
-    private file_list():string[]{
+
+    public file_list():string[]{
         return (Object.keys(this.$scope.data));
     }
 
-    private list_names():string[]{
+    public list_names():string[]{
         var files = this.file_list;
         return (Object.keys(files[0]));
     } 
 
-    private total_count(list:string):number{
+    public total_count(list:string):number{
         var file:string;
         var total_count:number;
         while (file in this.file_list) 
@@ -27,7 +36,7 @@ export class fileTabsController{
         }
         return total_count;
     }
-    private file_count(file:string):number{
+    public file_count(file:string):number{
         var list:string;
         var file_count:number;
         for (list in this.list_names) 
@@ -36,10 +45,10 @@ export class fileTabsController{
         }
         return file_count;
     }
-    private listcolor(list:string):string{
+    public listcolor(list:string):string{
         return this.$scope.listcolors[list];
     }
-    private setupDownloadLink():void{
+    public setupDownloadLink():void{
         /*Loops to build the logs file that has to be downloaded*/
 
         var logs:string;

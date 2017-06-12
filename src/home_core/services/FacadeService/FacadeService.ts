@@ -38,5 +38,4 @@ export class FacadeService implements IfcFacadeService{
     public get textsize(){
         return this.DataExchangeService.textsize();
     }
-    
 }

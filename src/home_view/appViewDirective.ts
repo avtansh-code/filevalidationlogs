@@ -1,9 +1,3 @@
-/**
- * @author Priya Gupta
- * @LastModifiedDate August 6 2016
- * Description Registering directive on appName.
- */
-
 /// <reference path="../../typings/index.d.ts" />
 
 import fileTabs from './fileTabsDirective/fileTabs.directive';
