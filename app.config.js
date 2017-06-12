@@ -167,11 +167,6 @@ mod.directive('fileTabs', function() {
 			};
 		},
 
-		
-	    link: function($scope, element, attrs){
-	    	
-	    },
-
 	    template: 	`<div class="top_bar">
 	    				The file(s) contains 
 						<span ng-repeat="list in list_names track by $index"
