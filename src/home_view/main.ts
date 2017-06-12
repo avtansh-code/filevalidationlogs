@@ -13,6 +13,12 @@ const bootstrap = require('bootstarp');
 
 export const AppName: string = 'home.view';
 
-angular.module('filevalidationlogs', [angularmaterial, uibootstrap, angularsanitize]);
+angular.module(AppName, [angularanimate, 
+                        angulararia, 
+                        angularmaterial, 
+                        uibootstrap, 
+                        angularsanitize,
+                        jquery,
+                        bootstrap]);
 
 registerAppDirective(AppName);
