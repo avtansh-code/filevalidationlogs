@@ -1,10 +1,10 @@
-import {fileTabsHtml} from './fileTabs.html';
 import {fileTabsController} from './fileTabs.controller';
 
 export class fileTabs {
 
     private link: (scope: angular.IScope, element: Element, attrs: angular.IAttributes) => void;
-    private template = fileTabsHtml;
+    private template = require('./fileTabs.html');
+    // private tempelate = require('./test.html');
     private restrict = 'E';
     private controller = fileTabsController;
     private controllerAs = 'vm';
@@ -19,6 +19,7 @@ export class fileTabs {
     private bindToController = true;
 
     public static Factory(): any {
+        console.log("Factory");
         let directive = () => {
             return new fileTabs();
         };

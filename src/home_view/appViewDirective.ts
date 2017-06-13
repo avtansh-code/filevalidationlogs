@@ -1,8 +1,6 @@
-/// <reference path="../../typings/index.d.ts" />
-
 import fileTabs from './fileTabsDirective/fileTabs.directive';
-import accordianView from './accordionViewDirective/accordionView.directive';
-import listView from './listViewDirective/listView.directive';
+// import accordionView from './accordionViewDirective/accordionView.directive';
+// import listView from './listViewDirective/listView.directive';
 
 export default function registerAppDirective( AppName: string ): void {
 
@@ -10,8 +8,8 @@ export default function registerAppDirective( AppName: string ): void {
 
     angular
         .module(AppName)
-        .directive('mainView', fileTabs.Factory())
-        .directive('uploadFile', accordianView.Factory())
-        .directive('selectTypeUpload', listView.Factory());
+        .directive('fileTabs', fileTabs.Factory());
+        // .directive('accordionView', accordionView.Factory())
+        // .directive('listView', listView.Factory());
 
 }

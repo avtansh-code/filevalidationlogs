@@ -1,4 +1,20 @@
-/// <reference path="../typings/index.d.ts" /> 
-export const AppName: string = 'filevalidationlogs';
+/// <reference path="../typings/index.d.ts" />
 
-angular.module( AppName, ['home.core', 'home.view']);
+const angular = require('angular');
+
+const AppName: string = 'filevalidationlogs';
+
+
+
+// import {AppName as HomeCore} from './home_core/main';
+import {AppName as HomeView} from './home_view/main';
+
+angular
+    .module( AppName, [HomeView]);
+
+declare const __TEST__: boolean;
+if (!__TEST__) {
+  angular.element(document).ready(
+    () => angular.bootstrap(document, [AppName])
+  );
+}
