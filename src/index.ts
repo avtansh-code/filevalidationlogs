@@ -1,6 +1,8 @@
 
-/// <reference path="../typings/index.d.ts" />
-export const AppName: string = 'app';
+
+export const AppName: string = 'filevalidationlogs';
+
+require('index.css');
 
 import {AppName as HomeCore} from './home_core/main';
 import {AppName as HomeView} from './home_view/main';
@@ -11,6 +13,6 @@ angular
 declare const __TEST__: boolean;
 if (!__TEST__) {
   angular.element(document).ready(
-    () => angular.bootstrap(document, ['app'])
+    () => angular.bootstrap(document, [AppName])
   );
 }

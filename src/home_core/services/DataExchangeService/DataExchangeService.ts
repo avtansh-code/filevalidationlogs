@@ -8,7 +8,7 @@ export class DataExchangeService implements IfcDataExchangeService{
     private _labelsize:string;
     private _textsize:string;
 
-        public set pagesize(psize: number){
+    public set pagesize(psize: number){
         this._pagesize = psize;
     }
     public get pagesize(){

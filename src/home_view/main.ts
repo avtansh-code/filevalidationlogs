@@ -9,7 +9,7 @@ const angularsanitize = require('angular-sanitize');
 
 const App = angular.module(AppName, ['ngMaterial', 
 				                    'ui.bootstrap',
-				                    'ngSanitize'
+				                    'ngSanitize',
                                     ]);
 
 registerAppDirective(AppName);

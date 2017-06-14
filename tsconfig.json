@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es6",
+        "noImplicitAny": true,
+        "inlineSourceMap": true,
+        "sourceMap": false,
+        "experimentalDecorators": true,
+        "baseUrl": "./src/",
+        "allowSyntheticDefaultImports":true
+    },
+    "awesomeTypescriptLoaderOptions": {
+        "useBabel": true,
+        "useCache": true,
+        "emitRequireType": false,
+        "doTypeCheck": false
+    },
+    "exclude": [
+        "node_modules",
+        "static/bower_components",
+        "typings",
+        "docs"
+    ]
+}

@@ -8,23 +8,10 @@ File Validation Logs is a resuable frontend component that is used for the displ
 
 ##Required External Dependecies
 
-The following packages need to be required in the project before the use of this component
-
-	npm install angular --save
-
-	npm install angular-animate --save
-	
-	npm install angular-aria --save
-
-	npm install angular-material --save
-
-	npm install angular-sanitize --save
-
-	npm install angular-ui-bootstrap --save
-
-	npm install bootstrap --save
-
-	npm install jquery --save
+The following files need to be used in the project before the use of this component - this can be done either by using cdn links or from the node modules
+	1. bootstrap.min.css
+	2. angular.min.js
+	3. anular-material.min.css
 
 
 ##Steps for Installation:
