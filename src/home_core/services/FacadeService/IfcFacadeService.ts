@@ -1,7 +1,6 @@
 export interface IfcFacadeService{
-    data;
-    pagesize;
-    listcolor;
-    labelsize;
-    textsize;
+    pagesize:number;
+    listcolor:any;
+    labelsize:string;
+    textsize:string;
 }

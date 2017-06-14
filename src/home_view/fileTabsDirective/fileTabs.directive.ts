@@ -1,13 +1,8 @@
 import {fileTabsController} from './fileTabs.controller';
 
-export class fileTabs {
+export class FileTabs {
 
-    private link: (scope: angular.IScope, element: Element, attrs: angular.IAttributes) => void;
-    private template = require('./fileTabs.html');
-    // private tempelate = require('./test.html');
-    private restrict = 'E';
-    private controller = fileTabsController;
-    private controllerAs = 'vm';
+    private link: (ctrl: fileTabsController, scope: angular.IScope, element: Element, attrs: angular.IAttributes) => void;
     private scope = {
         data: '=',
         listcolors: '=',
@@ -16,21 +11,29 @@ export class fileTabs {
         downloadIcon: '@',
         pageSize: '@'
     };
-    private bindToController = true;
+    private bindToController = {
+        data: '=',
+        listcolors: '=',
+        labelsize: '@',
+        textsize: '@',
+        downloadIcon: '@',
+        pageSize: '@'
+    };
+    private controllerAs = 'vm';
+    private controller = fileTabsController;
+    private template = require('./fileTabs.html');
 
     public static Factory(): any {
-        console.log("Factory");
         let directive = () => {
-            return new fileTabs();
+            return new FileTabs();
         };
         directive.$inject = [];
         return directive;
     }
 
     constructor() {
-        fileTabs.prototype.link = (scope: angular.IScope, element: Element, attrs: angular.IAttributes) => {
-        };
+        FileTabs.prototype.link = (ctrl: fileTabsController, scope: angular.IScope, element: Element, attrs: angular.IAttributes) => {};
     }
 }
 
-export default fileTabs;
+export default FileTabs;

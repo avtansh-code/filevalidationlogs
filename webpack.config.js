@@ -9,7 +9,7 @@ const postcssInit = require('./webpack/postcss');
 
 module.exports = {
   entry: {
-    app: './src/main.ts',
+    app: './src/index.ts',
   },
   externals: {
     angular: 'angular',
@@ -17,7 +17,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
-    filename: 'bundle.js',
+    filename: '[name].[chunkhash].js',
     sourceMapFilename: '[name].[chunkhash].map',
     chunkFilename: '[name].chunk.[chunkhash].js',
   },

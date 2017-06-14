@@ -1,0 +1,21 @@
+<ul class="list-group" ng-init="vm.datainit()">
+    <li ng-repeat="list_item in vm.list.slice(((vm.currentPage-1)*vm.itemsPerPage), 
+        ((vm.currentPage)*vm.itemsPerPage))" 
+        ng-style="vm.styling">
+                <div ng-bind-html="list_item"></div>
+    </li>
+</ul>
+<center>
+    <ul uib-pagination total-items="vm.totalItems" 
+        ng-model="vm.currentPage" 
+        max-size="vm.maxSize" 
+        class="pagination-sm"
+        rotate="false"
+        items-per-page="vm.itemsPerPage" 
+        previous-text="&lsaquo;" 
+        next-text="&rsaquo;" 
+        first-text="&laquo;" 
+        last-text="&raquo;"
+        data-ng-show="vm.list.length > vm.itemsPerPage">
+    </ul>
+</center>

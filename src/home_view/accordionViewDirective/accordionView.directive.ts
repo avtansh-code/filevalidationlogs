@@ -1,35 +1,29 @@
-import {accordionViewHtml} from './accordionView.html';
 import {accordionViewController} from './accordionView.controller';
 
-export class fileTabs {
+export class accordionView {
 
     private link: (scope: angular.IScope, element: Element, attrs: angular.IAttributes) => void;
-    private template = accordionViewHtml;
-    private restrict = 'E';
-    private controller = accordionViewController;
-    private controllerAs = 'vm';
     private scope = {
-        data: '=',
-        listcolors: '=',
-        labelsize: '@',
-        textsize: '@',
-        downloadIcon: '@',
-        pageSize: '@'
+        filedata: '='
     };
-    private bindToController = true;
+    private bindToController = {
+        filedata: '='
+    };
+    private controllerAs = 'vm';
+    private controller = accordionViewController;
+    private template = require('./accordionView.html');
 
     public static Factory(): any {
         let directive = () => {
-            return new fileTabs();
+            return new accordionView();
         };
         directive.$inject = [];
         return directive;
     }
 
     constructor() {
-        fileTabs.prototype.link = (scope: angular.IScope, element: Element, attrs: angular.IAttributes) => {
-        };
+        accordionView.prototype.link = (scope: angular.IScope, element: Element, attrs: angular.IAttributes) => {};
     }
 }
 
-export default fileTabs;
+export default accordionView;

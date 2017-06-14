@@ -2,11 +2,9 @@
 
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-//const StyleLintPlugin = require('stylelint-webpack-plugin');
 const SplitByPathPlugin = require('webpack-split-by-path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
-// const BowerWebpackPlugin = require('bower-webpack-plugin');
 const path = require('path');
 
 const sourceMap = process.env.TEST
@@ -19,7 +17,6 @@ const __TEST__ = JSON.stringify(process.env.TEST || false);
 
 const basePlugins = [
   new DashboardPlugin(),
-  // new BowerWebpackPlugin(),
   new webpack.ProvidePlugin({
     'window.$': "jquery",
     $: "jquery",
@@ -44,38 +41,12 @@ const basePlugins = [
     { from: 'src/assets', to: 'assets' },
     { from: 'static', to: 'static'}, // TODO: Remove this after cleaning up static, primarily bower_components
   ]),
-  // new webpack.optimize.CommonsChunkPlugin({
-  //   name: 'commons',
-  //   minCount: 2,
-  // }),
-  // new SplitByPathPlugin([
-  //   {
-  //     name: 'vendor',
-  //     path: [
-  //       path.join(__dirname, '../', '/node_modules/'),
-  //       path.join(__dirname, '../static/bower_components/'),
-  //     ]
-  //   },
-  // ], {
-  //   manifest: 'vendor'
-  // }),
-  // new webpack.optimize.OccurrenceOrderPlugin(true),
 ].concat(sourceMap);
 
 const devPlugins = [
-  // new StyleLintPlugin({
-  //   configFile: './.stylelintrc',
-  //   files: ['src/**/*.css'],
-  //   failOnError: false,
-  // }),
 ];
 
 const prodPlugins = [
-  // new webpack.optimize.UglifyJsPlugin({
-  //   compress: {
-  //     warnings: false,
-  //   },
-  // }),
 ];
 
 const nonTestPlugins = () => [
@@ -99,8 +70,5 @@ const nonTestPlugins = () => [
 
 
 module.exports = basePlugins
-  // .concat(__TEST__ ? [] : nonTestPlugins())
-  // .concat(__DEV__ ? devPlugins() : [])
-  // .concat(__PRODUCTION__ ? prodPlugins() : []);
   .concat(process.env.NODE_ENV === 'production' ? prodPlugins : [])
   .concat(process.env.NODE_ENV === 'development' ? devPlugins : []);

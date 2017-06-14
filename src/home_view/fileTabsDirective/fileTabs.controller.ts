@@ -3,79 +3,90 @@ import { IfcFacadeService } from '../../home_core/services/FacadeService/IfcFaca
 export class fileTabsController{
 
     private facadeService: IfcFacadeService;
-    private data;
-    private pageSize;
-    private listcolors;
-    private labelsize;
-    private textsize;
-    private downloadIcon;
-    static AngularDependencies = [fileTabsController];
+    private data:any;
+    private pageSize:number;
+    private listcolors:any;
+    private labelsize:string;
+    private textsize:string;
+    private downloadIcon:string;
+    // static AngularDependencies = [fileTabsController];
 
-    constructor(){
+    constructor(facadeService: IfcFacadeService){
+        this.facadeService = facadeService;
+    }
+
+    public datainit():void{
         if(this.downloadIcon === undefined)
 				this.downloadIcon = 'block';
 
 		if(this.pageSize === undefined)
 				this.pageSize = 20;
 
-        this.facadeService.data(this.data);
-        this.facadeService.pagesize(this.pageSize);
-        this.facadeService.listcolor(this.listcolors);
-        this.facadeService.labelsize(this.labelsize);
-        this.facadeService.textsize(this.textsize);
+        this.facadeService.pagesize = this.pageSize;
+        this.facadeService.listcolor = this.listcolors;
+        this.facadeService.labelsize = this.labelsize;
+        this.facadeService.textsize = this.textsize;
     }
-
     public file_list():string[]{
         return (Object.keys(this.data));
     }
 
     public list_names():string[]{
-        var files = this.file_list;
-        return (Object.keys(files[0]));
+        var files:string[] = this.file_list();
+        return (Object.keys(this.data[files[0]]));
     } 
 
     public total_count(list:string):number{
         var file:string;
-        var total_count:number;
-        while (file in this.file_list) 
+        var t_count:number = 0;
+        for (let file of this.file_list()) 
         {
-            total_count = total_count + this.data[file][list].length;
+            t_count = t_count + this.data[file][list].length;
         }
-        return total_count;
+        return t_count;
     }
+
     public file_count(file:string):number{
         var list:string;
-        var file_count:number;
-        for (list in this.list_names) 
+        var f_count:number = 0;
+        for (let list of this.list_names()) 
         {
-            file_count = file_count + this.data[file][list].length;
+            f_count = f_count + this.data[file][list].length;
         }
-        return file_count;
+        return f_count;
     }
+
     public listcolor(list:string):string{
         return this.listcolors[list];
     }
+
+    public filedata(file:string):any{
+        return this.data[file];
+    }
+
     public setupDownloadLink():void{
         /*Loops to build the logs file that has to be downloaded*/
-
         var logs:string;
         var list:string;
         var file:string;
         logs = 'The file(s) contains';
-        for(list in this.list_names){
+        var length:number = this.list_names().length;
+        var count:number= 0;
+
+        for(let list of this.list_names()){
             logs = `${logs} 
                 <b>${this.total_count(list)} ${list} </b>`;
-            if(list != this.list_names[this.list_names.length])
+            if(count < length-1)
                 logs = `${logs}and `;
+            count++;
         }
 
-
         logs = `${logs}\n\n`;
-        for (file in this.file_list) 
+        for (let file of this.file_list()) 
         {
                 if(this.file_count(file) > 0){
                     logs = `${logs}\t<h1>${file}</h1>\n\t<div>\n`;
-                    for(list in this.list_names)
+                    for(let list of this.list_names())
                     {
                         if(this.data[file][list].length>0)
                         {

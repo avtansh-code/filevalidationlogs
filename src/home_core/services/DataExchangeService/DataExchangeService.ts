@@ -2,20 +2,13 @@ import {IfcDataExchangeService} from './IfcDataExchangeService';
 
 export class DataExchangeService implements IfcDataExchangeService{
     
-    private _data;
+    private _data:any;
     private _pagesize:number;
-    private _listcolor;
+    private _listcolor:any;
     private _labelsize:string;
     private _textsize:string;
 
-    public set data(recdata){
-        this._data = recdata;
-    }
-    public get data(){
-        return this._data;
-    }
-
-    public set pagesize(psize: number){
+        public set pagesize(psize: number){
         this._pagesize = psize;
     }
     public get pagesize(){
@@ -25,8 +18,8 @@ export class DataExchangeService implements IfcDataExchangeService{
     public set listcolor(lcolor){
         this._listcolor = lcolor;
     }
-    public get listcolor(){
-        return this.listcolor;
+    public get listcolor():any{
+        return this._listcolor;
     }
 
     public set labelsize(lsize:string){

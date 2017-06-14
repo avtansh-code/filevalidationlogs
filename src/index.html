@@ -1,17 +1,59 @@
-<!DOCTYPE html >
+<!DOCTYPE html>
 <html>
-    <head>
-        <title></title>
-        <!--<script src="node_modules\angular\angular.min.js"></script>-->
-        
-         <!--<link rel="stylesheet" href="index.css">-->
-         <!--<script src="../dist/bundle.js"></script>-->
-    </head>
-    <body>
-        <div>
-        <file-tabs>
-        </file-tabs>
 
-        </div>
-    </body>
+<head>
+	<title>File Validation Logs</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!--JQuery Components-->
+    <script src="node_modules\jquery\dist\jquery.min.js"></script>
+    
+    <!-- Bootstrap Components -->
+    <link rel="stylesheet" href="node_modules\bootstrap\dist\css\bootstrap.min.css"/>
+    <script src="node_modules\bootstrap\dist\js\bootstrap.min.js"></script>
+    
+    <!-- Angular Components  -->
+    <script src="node_modules\angular\angular.min.js"></script>
+    <link rel="stylesheet" href="node_modules\angular-material\angular-material.min.css"/>
+
+	<link rel="stylesheet" href="./index.css">
+	
+</head>
+
+<body>
+	<file-tabs
+		data = '{
+			"file 1": {
+				"errors": ["error1", "error2", "error3", "error4", "error5", "error6"],
+				"warnings": []
+			},
+			"file 2": {
+				"errors": ["error1", "error2", "error3", "error4"],
+				"warnings": ["warning1", "warning2", "warning3", "warning4"]
+			},
+			"file 3": {
+				"errors": ["error1", "error2", "error3"],
+				"warnings": ["warning1", "warning2", "warning3", "warning4", "warning5", "warning6"]
+			},
+			"file 4": {
+				"errors": [],
+				"warnings": [],
+			},
+			"file 5": {
+				"errors": [],
+				"warnings": ["warning1", "warning2", "warning3", "warning4", "warning5"]
+			},
+			"file 6": {
+				"errors": ["error1"],
+				"warnings": ["warning1"]
+			}
+		}'
+		listcolors='{errors:"#EA4436",warnings:"#C57D00"}' 
+		labelsize='1.9em' 
+		textsize='1em'
+		download-icon="block" 
+		page-size=5>
+	</file-tabs>
+</body>
+
 </html>
