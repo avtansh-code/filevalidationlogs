@@ -1,5 +1,7 @@
 import {listViewController} from './listView.controller';
 
+//Class defining the listView directive
+
 export class listView {
 
     private link: (scope: angular.IScope, element: Element, attrs: angular.IAttributes) => void;

@@ -1,5 +1,6 @@
 import {fileTabsController} from './fileTabs.controller';
 
+//Class defining the cirective fileTabs
 export class FileTabs {
 
     private link: (ctrl: fileTabsController, scope: angular.IScope, element: Element, attrs: angular.IAttributes) => void;

@@ -1,5 +1,6 @@
 import {accordionViewController} from './accordionView.controller';
 
+//Class to define the accordionView directive
 export class accordionView {
 
     private link: (scope: angular.IScope, element: Element, attrs: angular.IAttributes) => void;

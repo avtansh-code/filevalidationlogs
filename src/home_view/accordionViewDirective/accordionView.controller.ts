@@ -1,5 +1,6 @@
 import { IfcFacadeService } from '../../home_core/services/FacadeService/IfcFacadeService';
 
+//Class defining the controller for accordionView directive
 export class accordionViewController{
 
     private facadeService: IfcFacadeService;
@@ -15,6 +16,8 @@ export class accordionViewController{
         this.facadeService = facadeService;
     }
     
+    /*initializing the variables with their default values
+    some variables are given a value that have been stored in services*/
     private datainit(){
         this.listcolors = this.facadeService.listcolor;
         this.labelsize = this.facadeService.labelsize;
@@ -27,6 +30,7 @@ export class accordionViewController{
         this.textStyle = this.facadeService.textstyle;
     }
 
+    //returning the names of the lists that are present in the data
     private list_names():string[]{
         return this.facadeService.list_names;
     }

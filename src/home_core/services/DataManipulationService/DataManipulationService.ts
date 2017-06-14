@@ -11,6 +11,7 @@ export class DataManipulationService implements IfcDataManipulationService{
         this.DataExchangeService = DataExchangeService;
     }
 
+    //returns the total count of values in all the files for the passed list
     public totalcount(list: string):number{
         let t_count:number = 0;
         for (let file of this.DataExchangeService.file_list) 
@@ -20,6 +21,7 @@ export class DataManipulationService implements IfcDataManipulationService{
         return t_count;
     }
 
+    //returns the count of all the logs for a passed file
     public filecount(file:string):number{
         let f_count:number = 0;
         for (let list of this.DataExchangeService.list_names) 
@@ -29,7 +31,10 @@ export class DataManipulationService implements IfcDataManipulationService{
         return f_count;
     }
 
+    //setup the html data for the download link and call the function to implement download
+
     public downloadlinkHtml():void{
+
         /*Loops to build the logs file that has to be downloaded*/
         let logs:string = 'The file(s) contains';
         let length:number = this.DataExchangeService.list_names.length;
@@ -46,36 +51,38 @@ export class DataManipulationService implements IfcDataManipulationService{
         logs = `${logs}\n\n`;
         for (let file of this.DataExchangeService.file_list) 
         {
-                if(this.filecount(file) > 0){
-                    logs = `${logs}\t<h1>${file}</h1>\n\t<div>\n`;
-                    for(let list of this.DataExchangeService.list_names)
+            if(this.filecount(file) > 0){
+                logs = `${logs}\t<h1>${file}</h1>\n\t<div>\n`;
+                for(let list of this.DataExchangeService.list_names)
+                {
+                    if(this.DataExchangeService.data[file][list].length>0)
                     {
-                        if(this.DataExchangeService.data[file][list].length>0)
+                        logs = `${logs}\t\t<h4>${list}
+                        (${this.DataExchangeService.data[file][list].length})</h4>\n`;
+                        logs = `${logs}\t\t<ul>\n`;
+                        for(let count = 0; 
+                            count < this.DataExchangeService.data[file][list].length; 
+                            count++)
                         {
-                            logs = `${logs}\t\t<h4>${list}
-                            (${this.DataExchangeService.data[file][list].length})</h4>\n`;
-                            logs = `${logs}\t\t<ul>\n`;
-                            for(let count = 0; 
-                                count < this.DataExchangeService.data[file][list].length; 
-                                count++)
-                            {
-                                
-                                logs = `${logs}\t\t\t<li>
-                                ${this.DataExchangeService.data[file][list][count]}
-                                </li>\n`;
-                            }
-                            logs = `${logs}\t\t</ul><br/>\n`;
+                            
+                            logs = `${logs}\t\t\t<li>
+                            ${this.DataExchangeService.data[file][list][count]}
+                            </li>\n`;
                         }
+                        logs = `${logs}\t\t</ul><br/>\n`;
                     }
-                    logs = `${logs}\t</div><br/><br/>\n`;
                 }
+                logs = `${logs}\t</div><br/><br/>\n`;
+            }
+        }
+        this.downloadaction(logs);	        
+    }
 
-        }	
- 
-        /*This section generates the action of download when the download button is clicked.
-        It generates a temporary anchor tag that is used to download the required html file.
-        And then it deletes that anchor tag once done.*/
+    /*This funtion generates the action of download when the download button is clicked.
+    It generates a temporary anchor tag that is used to download the required html file.
+    And then it deletes that anchor tag once done.*/
 
+    private downloadaction(logs:string){
         let uri = 'data:text/html;charset=utf-8,' + encodeURIComponent(logs);
         let downloadLink = document.createElement("a");
         downloadLink.setAttribute("href", uri);
@@ -103,9 +110,9 @@ export class DataManipulationService implements IfcDataManipulationService{
         } : null;
     }
 
+    /*This function is used to initialize the styling arrays(labelStyle, labelText, textStyle) 
+    that are required to give the style to the label and the text that are present in ui*/
     public initializestyles():void{
-         /*A loop to build the styling objects for the template*/
-    
         let r,g,b;
         for(let count = 0; count<this.DataExchangeService.list_names.length; count++){
             if(this.DataExchangeService.listcolor === undefined){
@@ -144,14 +151,17 @@ export class DataManipulationService implements IfcDataManipulationService{
         }
     }
     
+    //returns the array which stores the styling for the text
     public get textstyle():any{
         return this.textStyle;
     }
 
+    //retunrs the array which stores the styling for the label container
     public get labelstyle():any{
         return this.labelStyle;
     }
 
+    //returns the array which stores the styling for the label text
     public get labeltext():any{
         return this.labelText;
     }

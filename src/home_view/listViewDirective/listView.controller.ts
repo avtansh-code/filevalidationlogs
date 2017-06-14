@@ -1,5 +1,8 @@
 import { IfcFacadeService } from '../../home_core/services/FacadeService/IfcFacadeService';
 
+
+//Class defining the controller for the listVew directive
+
 export class listViewController{
 
     private facadeService: IfcFacadeService;
@@ -14,6 +17,7 @@ export class listViewController{
         this.facadeService = facadeService;
     }
     
+    //Initializing the variables in the controller for their initial values
     private datainit(){
         this.totalItems = this.list.length;
         this.currentPage = 1;
