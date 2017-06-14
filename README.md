@@ -9,6 +9,7 @@ File Validation Logs is a resuable frontend component that is used for the displ
 ##Required External Dependecies
 
 The following files need to be used in the project before the use of this component - this can be done either by using cdn links or from the node modules
+
 	1. bootstrap.min.css
 	2. angular.min.js
 	3. anular-material.min.css
