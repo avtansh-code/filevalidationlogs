@@ -8,6 +8,13 @@ export class DataExchangeService implements IfcDataExchangeService{
     private _labelsize:string;
     private _textsize:string;
 
+    public set data(rdata: any){
+        this._data = rdata;
+    }
+    public get data(){
+        return this._data;
+    }
+
     public set pagesize(psize: number){
         this._pagesize = psize;
     }
@@ -36,4 +43,12 @@ export class DataExchangeService implements IfcDataExchangeService{
         return this._textsize;
     }
 
+    public get file_list(){
+        return (Object.keys(this._data));
+    }
+
+    public get list_names(){
+        const files:string[] = this.file_list;
+        return (Object.keys(this.data[files[0]]));
+    }
 }
