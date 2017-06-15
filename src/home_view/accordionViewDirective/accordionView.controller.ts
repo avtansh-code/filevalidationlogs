@@ -16,9 +16,13 @@ export class accordionViewController{
         this.facadeService = facadeService;
     }
     
-    /*initializing the variables with their default values
-    some variables are given a value that have been stored in services*/
-    private datainit(){
+    
+    /**
+     * @returns void
+     * initializing the variables with their default values
+     * some variables are given a value that have been stored in services
+     */
+    private datainit():void{
         this.listcolors = this.facadeService.listcolor;
         this.labelsize = this.facadeService.labelsize;
         this.textsize = this.facadeService.textsize;
@@ -30,7 +34,11 @@ export class accordionViewController{
         this.textStyle = this.facadeService.textstyle;
     }
 
-    //returning the names of the lists that are present in the data
+    
+    /**
+     * @returns string
+     * returning the names of the lists that are present in the data
+     */
     private list_names():string[]{
         return this.facadeService.list_names;
     }

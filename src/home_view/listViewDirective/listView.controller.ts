@@ -17,8 +17,12 @@ export class listViewController{
         this.facadeService = facadeService;
     }
     
-    //Initializing the variables in the controller for their initial values
-    private datainit(){
+    
+    /**
+     * @returns void
+     * Initializing the variables in the controller for their initial values
+     */
+    private datainit():void{
         this.totalItems = this.list.length;
         this.currentPage = 1;
         this.itemsPerPage = this.facadeService.pagesize;

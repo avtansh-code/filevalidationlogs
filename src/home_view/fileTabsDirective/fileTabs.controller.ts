@@ -15,14 +15,20 @@ export class fileTabsController{
         this.facadeService = facadeService;
     }
 
-    /*initialize the variables with initial values
-    some values are stored in the services*/
+    
+    /**
+     * @returns void
+     * initialize the variables with initial values
+     * some values are stored in the services
+     */
     public datainit():void{
-        if(this.downloadIcon === undefined)
+        if(this.downloadIcon === undefined){
 				this.downloadIcon = 'block';
+        }
 
-		if(this.pageSize === undefined)
+		if(this.pageSize === undefined){
 				this.pageSize = 20;
+        }
                 
         this.facadeService.data = this.data;
         this.facadeService.pagesize = this.pageSize;
@@ -31,42 +37,73 @@ export class fileTabsController{
         this.facadeService.textsize = this.textsize;
     }
 
-    /*return the list of files present in the data
-    returned value called from facadeservice*/
+    
+    /**
+     * @returns string
+     * return the list of files present in the data
+     * returned value called from facadeservice
+     */
     public file_list():string[]{
         return this.facadeService.file_list;
     }
 
-    /*returns the names of all the lists present in the data
-    returned value called from facadeservice*/
+    
+    /**
+     * @returns string
+     * returns the names of all the lists present in the data
+     * returned value called from facadeservice
+     */
     public list_names():string[]{
         return this.facadeService.list_names;
     } 
 
-    /*returns the total count of the logs present in all the files for the passed listname
-    returned value called from facadeservice*/
+    
+    /**
+     * @param  {string} list
+     * @returns number
+     * returns the total count of the logs present in all the files for the passed listname
+     * returned value called from facadeservice
+     */
     public total_count(list:string):number{
         return this.facadeService.totalcount(list);
     }
 
-    /*returns the count of the total logs given in the passed filename
-    returned value called from facadeservice*/
+    
+    /**
+     * @param  {string} file
+     * @returns number
+     * returns the count of the total logs given in the passed filename
+     * returned value called from facadeservice
+     */
     public file_count(file:string):number{
         return this.facadeService.filecount(file);
     }
 
-    //returns the colors of the list passed
+    
+    /**
+     * @param  {string} list
+     * @returns string
+     * returns the color associated to the passed list
+     */
     public listcolor(list:string):string{
         return this.listcolors[list];
     }
 
-    //returns the data for a particular file(the one passed as argument)
+    
+    /**
+     * @param  {string} file
+     * @returns any
+     * returns the data for a particular file(the one passed as argument)
+     */
     public filedata(file:string):any{
         return this.data[file];
     }
 
-    /*setting up the download link
-    returned value called from facadeservice*/
+   
+    /**
+     * @returns void
+     * setting up the download link - including the download action
+     */
     public setupDownloadLink():void{ 
         this.facadeService.downloadlinkHtml();
     }

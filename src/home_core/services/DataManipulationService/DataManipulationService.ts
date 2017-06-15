@@ -1,17 +1,28 @@
 import {IfcDataExchangeService} from '../DataExchangeService/IfcDataExchangeService';
 import {IfcDataManipulationService} from './IfcDataManipulationService'
 
+/** This class is used to define the DataManipulationService
+ * This service is used to extract useful information from the data that has been passed to
+   the directives.
+ * It calls and uses values stored in DataExchangeService
+ */
 export class DataManipulationService implements IfcDataManipulationService{
     private DataExchangeService: IfcDataExchangeService;
     private labelText:any = [];
     private labelStyle:any = [];
     private textStyle:any = [];
-
+    
+    
     constructor(DataExchangeService: IfcDataExchangeService){
         this.DataExchangeService = DataExchangeService;
     }
 
-    //returns the total count of values in all the files for the passed list
+    
+    /**
+     * @param  {string} list
+     * @returns number
+     * returns the total count of values in all the files for the passed list
+     */
     public totalcount(list: string):number{
         let t_count:number = 0;
         for (let file of this.DataExchangeService.file_list) 
@@ -21,7 +32,12 @@ export class DataManipulationService implements IfcDataManipulationService{
         return t_count;
     }
 
-    //returns the count of all the logs for a passed file
+    
+    /**
+     * @param  {string} file
+     * @returns number
+     * returns the count of all the logs for a passed file
+     */
     public filecount(file:string):number{
         let f_count:number = 0;
         for (let list of this.DataExchangeService.list_names) 
@@ -30,9 +46,12 @@ export class DataManipulationService implements IfcDataManipulationService{
         }
         return f_count;
     }
+    
 
-    //setup the html data for the download link and call the function to implement download
-
+    /**
+     * @returns void
+     * setup the html data for the download link and call the function to implement download
+     */
     public downloadlinkHtml():void{
 
         /*Loops to build the logs file that has to be downloaded*/
@@ -41,10 +60,11 @@ export class DataManipulationService implements IfcDataManipulationService{
         let count:number= 0;
 
         for(let list of this.DataExchangeService.list_names){
-            logs = `${logs} 
-                <b>${this.totalcount(list)} ${list} </b>`;
+            logs = `${logs}<b>${this.totalcount(list)} ${list} </b>`;
             if(count < length-1)
+            {
                 logs = `${logs}and `;
+            }
             count++;
         }
 
@@ -78,11 +98,15 @@ export class DataManipulationService implements IfcDataManipulationService{
         this.downloadaction(logs);	        
     }
 
-    /*This funtion generates the action of download when the download button is clicked.
-    It generates a temporary anchor tag that is used to download the required html file.
-    And then it deletes that anchor tag once done.*/
 
-    private downloadaction(logs:string){
+    /**
+     * @param  {string} logs
+     * @returns void
+     * This funtion generates the action of download when the download button is clicked.
+       It generates a temporary anchor tag that is used to download the required html file.
+       And then it deletes that anchor tag once done.
+     */
+    private downloadaction(logs:string):void{
         let uri = 'data:text/html;charset=utf-8,' + encodeURIComponent(logs);
         let downloadLink = document.createElement("a");
         downloadLink.setAttribute("href", uri);
@@ -92,10 +116,14 @@ export class DataManipulationService implements IfcDataManipulationService{
         document.body.removeChild(downloadLink);
     }
 
-    /*This function is used to convert the hex value of a color to its RGB format.
-    It takes in a hex string as input and outputs three variablesiables R,G and B, ie, their 
-    cooresponding values*/
 
+    /**
+     * @param  {string} hex
+     * @returns any
+     * This function is used to convert the hex value of a color to its RGB format.
+       It takes in a hex string as input and outputs three variables R,G and B, 
+       ie, their cooresponding values
+     */
     private hexToRgb(hex:string):any {
         let shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
         hex = hex.replace(shorthandRegex, function(m, r, g, b) {
@@ -110,8 +138,12 @@ export class DataManipulationService implements IfcDataManipulationService{
         } : null;
     }
 
-    /*This function is used to initialize the styling arrays(labelStyle, labelText, textStyle) 
-    that are required to give the style to the label and the text that are present in ui*/
+    
+    /**
+     * @returns void
+     * This function is used to initialize the styling arrays(labelStyle, labelText, textStyle) 
+       that are required to give the style to the label and the text that are present in ui
+     */
     public initializestyles():void{
         let r,g,b;
         for(let count = 0; count<this.DataExchangeService.list_names.length; count++){
@@ -151,17 +183,29 @@ export class DataManipulationService implements IfcDataManipulationService{
         }
     }
     
-    //returns the array which stores the styling for the text
+    
+    /**
+     * @returns any
+     * returns the array which stores the styling for the text displayed(list)
+     */
     public get textstyle():any{
         return this.textStyle;
     }
 
-    //retunrs the array which stores the styling for the label container
+    
+    /**
+     * @returns any
+     * returns the array which stores the styling for the label container
+     */
     public get labelstyle():any{
         return this.labelStyle;
     }
 
-    //returns the array which stores the styling for the label text
+    
+    /**
+     * @returns any
+     * returns the array which stores the styling for the label text
+     */
     public get labeltext():any{
         return this.labelText;
     }

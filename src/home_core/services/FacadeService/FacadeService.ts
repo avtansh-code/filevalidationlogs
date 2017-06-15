@@ -11,106 +11,182 @@ export class FacadeService implements IfcFacadeService{
         this.DataManipulationService = DataManipulationService;
     }
 
-    //store data jsonfile in the DataExchangeService
+    
+    /**
+     * @param  {any} rdata
+     * store data jsonfile in the DataExchangeService
+     */
     public set data(rdata: any){
         this.DataExchangeService.data = rdata;
     }
 
-    //return data jsonfile from the DataExchangeService
-    public get data(){
+    
+    /**
+     * @returns any
+     * return data jsonfile from the DataExchangeService
+     */
+    public get data():any{
         return this.DataExchangeService.data;
     }
 
-    //store pagesize in the DataExchangeService
+    
+    /**
+     * @param  {number} psize
+     * store pagesize in the DataExchangeService
+     */
     public set pagesize(psize:number){
         this.DataExchangeService.pagesize = psize;
     }
     
-    //return pagesize from the DataExchangeService
+    
+    /**
+     * @returns number
+     * return pagesize from the DataExchangeService
+     */
     public get pagesize():number{
         return this.DataExchangeService.pagesize;
     }
 
-    //store listcolor scope variable in DataExchangeService
-    public set listcolor(lcolor){
+    
+    /**
+     * @param  {any} lcolor
+     * store listcolor scope variable in DataExchangeService
+     */
+    public set listcolor(lcolor:any){
         this.DataExchangeService.listcolor = lcolor;
     }
 
-    //return listcolor stored in DataExchangeService
-    public get listcolor(){
+    /**
+     * @returns any
+     * returns the object that stores the colors associated to each list
+     */
+    public get listcolor():any{
         return this.DataExchangeService.listcolor;
     }
 
-    //store labelsize scope variable in DataExchangeService
-    public set labelsize(lsize){
+    
+    /**
+     * @param  {string} lsize
+     * store labelsize scope variable in DataExchangeService
+     */
+    public set labelsize(lsize:string){
         this.DataExchangeService.labelsize = lsize;
     }
 
-    //return labelsize variable stored in DataExchangeService
-    public get labelsize(){
+    
+    /**
+     * @returns string
+     * return labelsize variable stored in DataExchangeService
+     */
+    public get labelsize():string{
         return this.DataExchangeService.labelsize;
     }
 
-    //store textsize scope variable in DataExchangeService
-    public set textsize(tsize){
+    
+    /**
+     * @param  {string} tsize
+     * store textsize scope variable in DataExchangeService
+     */
+    public set textsize(tsize:string){
         this.DataExchangeService.textsize = tsize;
     }
 
-    //return textsize variable stored in DataExchangeService
-    public get textsize(){
+    
+    /**
+     * @returns string
+     * return textsize variable stored in DataExchangeService
+     */
+    public get textsize():string{
         return this.DataExchangeService.textsize;
     }
 
-    /*Returns the names of all the lists in the data
-    These names are extracted in the DataExchangeService*/
-    public get list_names(){
+    /**
+     * @returns string
+     * Returns the names of all the lists in the data 
+     * These names are extracted in the DataExchangeService
+     */
+    public get list_names():string[]{
         return this.DataExchangeService.list_names;
     }
 
-    /*returns the names of all the files that are present in the data
-    these names are extracted in the DataExchangeService*/
-    public get file_list(){
+    
+    /**
+     * @returns string
+     * returns the names of all the files that are present in the data
+     * these names are extracted in the DataExchangeService
+     */
+    public get file_list():string[]{
         return this.DataExchangeService.file_list;
     }
 
-    /*returns the total count of logs for a particular list - errors or warnings 
-    This value is calculated in the DataManipulationService*/
+   
+    /**
+     * @param  {string} list
+     * @returns number
+     * returns the total count of logs for a particular list - errors or warnings 
+     * This value is calculated in the DataManipulationService
+     */
     public totalcount(list:string):number{
         return this.DataManipulationService.totalcount(list);
     }
 
-    /*returns the total count of logs for a particular file - errors and warnings 
-    This value is calculated in the DataManipulationService*/
+    
+    /**
+     * @param  {string} file
+     * @returns number
+     * returns the total count of logs for a particular file - errors and warnings 
+     * This value is calculated in the DataManipulationService
+     */
     public filecount(file:string):number{
         return this.DataManipulationService.filecount(file);
     }
 
-    /*Funnction call for setting up the download functionality
-    the action and the html are generated in DataManipulationService*/
+    
+    /**
+     * @returns void
+     * Function call for setting up the download functionality
+     * the action and the html are generated in DataManipulationService
+     */
     public downloadlinkHtml():void{
         this.DataManipulationService.downloadlinkHtml();
     }
 
-    /*Function call for initializing the style arrays
-    The arrays are generated in the DataManipulationService */
+    
+    /**
+     * @returns void
+     * Function call for initializing the style arrays
+     * The arrays are generated in the DataManipulationService
+     */
     public initializestyles():void{
         this.DataManipulationService.initializestyles();
     }
 
-    /*returns the labelstyle(styling for the label container) array 
-    generated in DataManipulationService*/
+    
+    /**
+     * @returns any
+     * returns the labelstyle(styling for the label container) array 
+     * generated in DataManipulationService
+     */
     public get labelstyle():any{
         return this.DataManipulationService.labelstyle;
     }
 
-    /*returns the textstyle(styling for the list displayed) array 
-    generated in DataManipulationService*/
+    
+    /**
+     * @returns any
+     * returns the textstyle(styling for the list displayed) array 
+     * generated in DataManipulationService
+     */
     public get textstyle():any{
         return this.DataManipulationService.textstyle;
     }
 
-    /*returns the labeltext(styling for the text displayed as the label) array 
-    generated in DataManipulationService*/
+    
+    /**
+     * @returns any
+     * returns the labeltext(styling for the text displayed as the label) array 
+     * generated in DataManipulationService
+     */
     public get labeltext():any{
         return this.DataManipulationService.labeltext;
     }
