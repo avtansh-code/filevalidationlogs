@@ -178,8 +178,7 @@ export class DataManipulationService implements IfcDataManipulationService{
             b = this.hexToRgb(this.DataExchangeService.listcolor[this.DataExchangeService.list_names[count]]).b;
             this.labelStyle[count] = {
                 'background-color': `rgba(${r},${g},${b},0.3)`,
-                'border-bottom': `1px solid 
-                                    ${this.DataExchangeService.listcolor[this.DataExchangeService.list_names[count]]}`
+                'border-bottom': `1px solid ${this.DataExchangeService.listcolor[this.DataExchangeService.list_names[count]]}`
             }
         }
     }

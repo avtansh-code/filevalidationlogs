@@ -34,17 +34,14 @@
     "imports-loader": "^0.6.5",
     "isomorphic-fetch": "^2.2.1",
     "istanbul-instrumenter-loader": "^0.2.0",
-    "jasmine": "^2.4.1",
-    "jasmine-core": "^2.5.2",
     "jquery": "^3.2.1",
-    "karma": "^0.13.22",
     "karma-browserify": "^5.0.5",
-    "karma-chrome-launcher": "^1.0.1",
     "karma-coverage": "^1.1.1",
-    "karma-jasmine": "^1.1.0",
     "karma-phantomjs-launcher": "^1.0.1",
     "karma-source-map-support": "^1.1.0",
+    "karma-typescript": "^3.0.4",
     "karma-webpack": "^1.8.0",
+    "less": "^2.7.2",
     "less-loader": "^2.2.3",
     "merge2": "^1.0.2",
     "moment": "^2.15.1",
@@ -71,13 +68,19 @@
     "webpack": "^1.13.2",
     "webpack-dashboard": "^0.2.0",
     "webpack-dev-server": "^1.16.2",
-    "webpack-split-by-path": "0.0.10"
+    "webpack-split-by-path": "0.0.10",
+    "jasmine": "^2.6.0",
+    "jasmine-core": "^2.6.3",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^2.1.1",
+    "karma-jasmine": "^1.1.0"
   },
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dashboard -- webpack-dev-server -d",
     "prestart": "npm install",
     "build": "webpack",
-    "start": "http-server -a localhost -p 8000 -c-1"
+    "test": "npm run karma",
+    "karma": "karma start"
   },
   "repository": {
     "type": "git",

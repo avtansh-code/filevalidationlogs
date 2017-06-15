@@ -29,7 +29,6 @@ module.exports = {
   resolve: {
     root: [
       path.join(__dirname, "src"),
-      path.join(__dirname, "static/bower_components"),
       path.join(__dirname, "node_modules"),
     ],
     extensions: ['', '.webpack.js', '.web.js', '.ts', '.js'],
