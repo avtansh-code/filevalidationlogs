@@ -3,7 +3,7 @@ import {fileTabsController} from './fileTabs.controller';
 //Class defining the cirective fileTabs
 export class FileTabs {
 
-    private link: (ctrl: fileTabsController, scope: angular.IScope, element: Element, attrs: angular.IAttributes) => void;
+    private link: (scope: angular.IScope, element: Element, attrs: angular.IAttributes) => void;
     private scope = {
         data: '=',
         listcolors: '=',
@@ -33,7 +33,7 @@ export class FileTabs {
     }
 
     constructor() {
-        FileTabs.prototype.link = (ctrl: fileTabsController, scope: angular.IScope, element: Element, attrs: angular.IAttributes) => {};
+        FileTabs.prototype.link = (scope: angular.IScope, element: Element, attrs: angular.IAttributes) => {};
     }
 }
 
