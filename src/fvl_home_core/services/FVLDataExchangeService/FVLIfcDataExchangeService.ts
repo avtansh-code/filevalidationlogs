@@ -1,4 +1,4 @@
-export interface IfcDataExchangeService{
+export interface FVLIfcDataExchangeService{
     data:any;
     pagesize:number;
     listcolor:any;

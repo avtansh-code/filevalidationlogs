@@ -1,4 +1,4 @@
-require('dist/app.js');
-require('src/index.css');
+require('./dist/app.js');
+require('./index.css');
 
 module.exports = 'filevalidationlogs';

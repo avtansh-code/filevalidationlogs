@@ -1,19 +1,19 @@
-import {IfcDataExchangeService} from '../DataExchangeService/IfcDataExchangeService';
-import {IfcDataManipulationService} from './IfcDataManipulationService'
+import {FVLIfcDataExchangeService} from '../FVLDataExchangeService/FVLIfcDataExchangeService';
+import {FVLIfcDataManipulationService} from './FVLIfcDataManipulationService'
 
 /** This class is used to define the DataManipulationService
  * This service is used to extract useful information from the data that has been passed to
    the directives.
  * It calls and uses values stored in DataExchangeService
  */
-export class DataManipulationService implements IfcDataManipulationService{
-    private DataExchangeService: IfcDataExchangeService;
+export class FVLDataManipulationService implements FVLIfcDataManipulationService{
+    private DataExchangeService: FVLIfcDataExchangeService;
     private labelText:any = [];
     private labelStyle:any = [];
     private textStyle:any = [];
     
     
-    constructor(DataExchangeService: IfcDataExchangeService){
+    constructor(DataExchangeService: FVLIfcDataExchangeService){
         this.DataExchangeService = DataExchangeService;
     }
 
@@ -212,4 +212,4 @@ export class DataManipulationService implements IfcDataManipulationService{
 
 }
 
-DataManipulationService.$inject = ['DataExchangeService'];
+FVLDataManipulationService.$inject = ['FVLDataExchangeService'];

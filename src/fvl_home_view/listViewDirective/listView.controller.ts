@@ -1,11 +1,11 @@
-import { IfcFacadeService } from '../../home_core/services/FacadeService/IfcFacadeService';
+import { FVLIfcFacadeService } from '../../fvl_home_core/services/FVLFacadeService/FVLIfcFacadeService';
 
 
 //Class defining the controller for the listVew directive
 
 export class listViewController{
 
-    private facadeService: IfcFacadeService;
+    private fvlFacadeService: FVLIfcFacadeService;
     private list:string[];
     private styling:any;
     private totalItems:number;
@@ -13,8 +13,8 @@ export class listViewController{
     private itemsPerPage:number;
     private maxSize:number;
 
-    constructor(facadeService: IfcFacadeService){
-        this.facadeService = facadeService;
+    constructor(fvlFacadeService: FVLIfcFacadeService){
+        this.fvlFacadeService = fvlFacadeService;
     }
     
     
@@ -25,10 +25,10 @@ export class listViewController{
     private datainit():void{
         this.totalItems = this.list.length;
         this.currentPage = 1;
-        this.itemsPerPage = this.facadeService.pagesize;
+        this.itemsPerPage = this.fvlFacadeService.pagesize;
         this.maxSize = 5; 
     }
 
 }
 
-listViewController.$inject = ['FacadeService'];
+listViewController.$inject = ['FVLFacadeService'];
