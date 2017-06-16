@@ -1,4 +1,4 @@
-require('./app.config.js');
-require('angular-sanitize');
-require('./index.css');
+require('dist/app.js');
+require('src/index.css');
+
 module.exports = 'filevalidationlogs';
