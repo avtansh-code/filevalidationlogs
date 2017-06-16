@@ -1,12 +1,12 @@
-import {IfcDataExchangeService} from '../DataExchangeService/IfcDataExchangeService';
-import {IfcDataManipulationService} from '../DataManipulationService/IfcDataManipulationService';
-import {IfcFacadeService} from './IfcFacadeService'
+import {FVLIfcDataExchangeService} from '../FVLDataExchangeService/FVLIfcDataExchangeService';
+import {FVLIfcDataManipulationService} from '../FVLDataManipulationService/FVLIfcDataManipulationService';
+import {FVLIfcFacadeService} from './FVLIfcFacadeService'
 
-export class FacadeService implements IfcFacadeService{
-    private DataExchangeService: IfcDataExchangeService;
-    private DataManipulationService: IfcDataManipulationService;    
+export class FVLFacadeService implements FVLIfcFacadeService{
+    private DataExchangeService: FVLIfcDataExchangeService;
+    private DataManipulationService: FVLIfcDataManipulationService;    
 
-    constructor(DataExchangeService: IfcDataExchangeService, DataManipulationService: IfcDataManipulationService){
+    constructor(DataExchangeService: FVLIfcDataExchangeService, DataManipulationService: FVLIfcDataManipulationService){
         this.DataExchangeService = DataExchangeService;
         this.DataManipulationService = DataManipulationService;
     }
@@ -192,4 +192,4 @@ export class FacadeService implements IfcFacadeService{
     }
 }
 
-FacadeService.$inject = ['DataExchangeService','DataManipulationService'];
+FVLFacadeService.$inject = ['FVLDataExchangeService','FVLDataManipulationService'];

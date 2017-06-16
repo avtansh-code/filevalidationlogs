@@ -2,10 +2,8 @@
 
 export const AppName: string = 'filevalidationlogs';
 
-require('index.css');
-
-import {AppName as HomeCore} from './home_core/main';
-import {AppName as HomeView} from './home_view/main';
+import {AppName as HomeCore} from './fvl_home_core/main';
+import {AppName as HomeView} from './fvl_home_view/main';
 
 angular
     .module( AppName, [HomeCore,HomeView]);

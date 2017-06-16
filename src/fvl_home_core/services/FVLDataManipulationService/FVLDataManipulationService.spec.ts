@@ -1,8 +1,8 @@
-import { AppName } from '../../../main';
-import { IfcDataManipulationService } from '../../../services/DataManipulationService/IfcDataManipulationService';
-import { DataManipulationService } from '../../../services/DataManipulationService/DataManipulationService';
-import { IfcDataExchangeService } from '../../../services/DataExchangeService/IfcDataExchangeService';
-import { DataExchangeService } from '../../../services/DataExchangeService/DataExchangeService';
+import { AppName } from '../../main';
+import { FVLIfcDataManipulationService } from './FVLIfcDataManipulationService';
+import { FVLDataManipulationService } from './FVLDataManipulationService';
+import { FVLIfcDataExchangeService } from '../FVLDataExchangeService/FVLIfcDataExchangeService';
+import { FVLDataExchangeService } from '../FVLDataExchangeService/FVLDataExchangeService';
 
     
 describe ('testing data manipulation service',() =>{
@@ -73,17 +73,17 @@ describe ('testing data manipulation service',() =>{
         angular.mock.module(AppName)
     );
 
-    let dataExchangeService : IfcDataExchangeService;
-    let dataManipulationService : IfcDataManipulationService;
+    let dataExchangeService : FVLIfcDataExchangeService;
+    let dataManipulationService : FVLIfcDataManipulationService;
 
     beforeEach( () => {
-        dataExchangeService = new DataExchangeService();
+        dataExchangeService = new FVLDataExchangeService();
         dataExchangeService.data = _data;
         dataExchangeService.labelsize = _labelsize;
         dataExchangeService.listcolor = _listcolors;
         dataExchangeService.textsize = _textsize;
         dataExchangeService.pagesize = _pageSize;
-        dataManipulationService = new DataManipulationService(dataExchangeService);
+        dataManipulationService = new FVLDataManipulationService(dataExchangeService);
         dataManipulationService.initializestyles();
    });
 

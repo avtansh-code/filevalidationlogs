@@ -1,11 +1,11 @@
-import {IfcDataExchangeService} from './IfcDataExchangeService';
+import {FVLIfcDataExchangeService} from './FVLIfcDataExchangeService';
 
 /**
  * Class to define the following service
  * This service is used to store the variables that need to be exchanged between the directives
  * These variables are used in multiple directives
  */
-export class DataExchangeService implements IfcDataExchangeService{
+export class FVLDataExchangeService implements FVLIfcDataExchangeService{
     
     private _data:any;
     private _pagesize:number;

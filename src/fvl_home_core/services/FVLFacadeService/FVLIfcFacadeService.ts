@@ -1,4 +1,4 @@
-export interface IfcFacadeService{
+export interface FVLIfcFacadeService{
     data:any;
     pagesize:number;
     listcolor:any;

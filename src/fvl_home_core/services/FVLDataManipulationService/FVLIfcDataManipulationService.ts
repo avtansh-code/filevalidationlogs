@@ -1,4 +1,4 @@
-export interface IfcDataManipulationService{
+export interface FVLIfcDataManipulationService{
     totalcount(list: string):number;
     filecount(file: string):number;
     downloadlinkHtml():void;
