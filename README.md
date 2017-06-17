@@ -8,17 +8,18 @@ File Validation Logs is a resuable frontend component that is used for the displ
 
 ##Required External Dependecies
 
-The following files need to be used in the project before the use of this component - this can be done by using cdn links, node modules paths, bower paths, etc.
+The following packages need to be installed in the project before the use of this component - this can be done by using cdn links, node modules paths, bower paths, etc.
 
-	1. jquery.js
-	2. bootstrap.min.css
-	3. bootstrap.min.js
-	4. angular.min.js
-	5. angular-aria.js
-	6. angular-animate.js
-	7. angular-material.js
-	8. anular-material.css
+	1. jquery
+	2. bootstrap
+	3. angular
+	4. angular-aria
+	5. angular-animate
+	6. angular-material
+	7. angular-sanitize
+	8. angular-ui-bootstrap@2.5.0
 
+angular, angular-animate, angular-aria and angular-sanitize version should be same.
 These dependencies play a major role in the functioning of the module and hence cannot be avoided.
 
 
