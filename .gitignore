@@ -3,3 +3,6 @@ typings/
 .awcache/
 package-lock.json
 .webpack-records.json
+.babelrc
+.vscode/
+spec/
