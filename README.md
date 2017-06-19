@@ -1,29 +1,30 @@
 # File Validation Logs
 
 
-##About:
+## About:
 
 File Validation Logs is a resuable frontend component that is used for the display of errors, warnings and other such details about uploaded files that need to be shown to the user before they proceed further.
 
 
-##Required External Dependecies
+## Required External Dependecies
 
-The following packages need to be installed in the project before the use of this component - this can be done by using cdn links, node modules paths, bower paths, etc.
+The following packages need to be installed and required in the project before the use of this component - this can be done by using cdn links, node modules paths, bower paths, etc.
 
-	1. jquery
-	2. bootstrap
-	3. angular
-	4. angular-aria
-	5. angular-animate
-	6. angular-material
-	7. angular-sanitize
-	8. angular-ui-bootstrap@2.5.0
+	1. jquery - js file
+	2. bootstrap - js and css file
+	3. angular - js file
+	4. angular-aria - js file
+	5. angular-animate - js file
+	6. angular-sanitize - js file
+	7. angular-material - js and css file
+	8. angular-ui-bootstrap - tpls.js file
 
-angular, angular-animate, angular-aria and angular-sanitize version should be same.
+_**Note: angular, angular-animate, angular-aria and angular-sanitize version should be same (minimum version of these packages should be 1.5.8). The version for angular-ui-bootrap should be a minimum of 2.5.0**_
+ 
 These dependencies play a major role in the functioning of the module and hence cannot be avoided.
 
 
-##Steps for Installation:
+## Steps for Installation:
 
 1. Update npmrc config file
 
@@ -59,7 +60,7 @@ These dependencies play a major role in the functioning of the module and hence 
 		app.module('myModule',[filevalidationlogs])
 	
 
-##Usage:
+## Usage:
 
 
 	<file-tabs
@@ -74,7 +75,7 @@ These dependencies play a major role in the functioning of the module and hence 
 
 
 
-######SAMPLE DATA
+## Sample Data
 
 
 	sample_data = {
@@ -109,7 +110,7 @@ The file name is the key to an object. Each object will have arrays of the detai
 
 **Note: All the objects in the JSON object should contain all the arrays. If the array does not have any entries associated to it for that particular file, then the list can be left empty, but it needs to be defined. For references please have a look at the above example.**
 
-##The customisations possible in the module
+## The customisations possible in the module
 
 
 **1. listcolors – it will be the color corresponding to each list in the given data**

@@ -1,5 +1,3 @@
-
-
 export const AppName: string = 'filevalidationlogs';
 
 import {AppName as HomeCore} from './fvl_home_core/main';
