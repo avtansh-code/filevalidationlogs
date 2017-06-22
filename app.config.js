@@ -66,8 +66,8 @@ mod.directive('fileTabs', function() {
 					g = $scope.hexToRgb('#000000').g;
 					b = $scope.hexToRgb('#000000').b;
 					$scope.labelStyle[count] = {
-						'background-color': `rgba(${r},${g},${b},0.3)`,
-						'border-bottom': `0.5px solid #000`
+						'background-color': 'rgba'+r+','+g+','+b+','+'0.3)',
+						'border-bottom': '0.5px solid #000'
 					}
 					continue;	
 				}
@@ -84,8 +84,8 @@ mod.directive('fileTabs', function() {
 				g = $scope.hexToRgb($scope.listcolors[$scope.list_names[count]]).g;
 				b = $scope.hexToRgb($scope.listcolors[$scope.list_names[count]]).b;
 				$scope.labelStyle[count] = {
-					'background-color': `rgba(${r},${g},${b},0.3)`,
-					'border-bottom': `1px solid ${$scope.listcolors[$scope.list_names[count]]}`
+					'background-color': 'rgba('+r+','+g+','+b+','+'0.3)',
+					'border-bottom': '1px solid '+$scope.listcolors[$scope.list_names[count]]
 				}
 			}
 				
@@ -113,40 +113,40 @@ mod.directive('fileTabs', function() {
 			
 			/*Loops to build the logs file that has to be downloaded*/
 
-			$scope.logs = 'The file(s) contains';
+			$scope.logs = 'The file(s) contains ';
 			for(var list_no = 0; list_no < $scope.list_names.length; list_no++){
-				$scope.logs = `${$scope.logs} 
-					<b>${$scope.total_count[list_no]} ${$scope.list_names[list_no]} </b>`;
+				$scope.logs += '<b>'+$scope.total_count[list_no]+$scope.list_names[list_no]+'</b> ';
 				if(list_no < $scope.list_names.length - 1)
-					$scope.logs = `${$scope.logs}and `;
+					$scope.logs += 'and ';
 			}
 
 
-			$scope.logs = `${$scope.logs}\n\n`;
+			$scope.logs += '\n\n';
 			for (var file_no = 0; file_no < $scope.file_list.length; file_no++) 
 			{
 					if($scope.file_count[file_no] > 0){
-						$scope.logs = `${$scope.logs}\t<h1>${$scope.file_list[file_no]}</h1>\n\t<div>\n`;
+						$scope.logs += '\t<h1>'+$scope.file_list[file_no]+'</h1>\n\t<div>\n';
 						for(var list_no = 0; list_no < $scope.list_names.length; list_no++)
 						{
 							if($scope.data[$scope.file_list[file_no]][$scope.list_names[list_no]].length>0)
 							{
-								$scope.logs = `${$scope.logs}\t\t<h4>${$scope.list_names[list_no]}
-								(${$scope.data[$scope.file_list[file_no]][$scope.list_names[list_no]].length})</h4>\n`;
-								$scope.logs = `${$scope.logs}\t\t<ul>\n`;
+								$scope.logs += '\t\t<h4>'+$scope.list_names[list_no]+
+								'('+$scope.data[$scope.file_list[file_no]][$scope.list_names[list_no]].length
+								+')</h4>\n';
+								$scope.logs += '\t\t<ul>\n';
 								for(var count = 0; 
 									count < $scope.data[$scope.file_list[file_no]][$scope.list_names[list_no]].length; 
 									count++)
 								{
 									
-									$scope.logs = `${$scope.logs}\t\t\t<li>
-									${$scope.data[$scope.file_list[file_no]][$scope.list_names[list_no]][count]}
-									</li>\n`;
+									$scope.logs += '\t\t\t<li>'+
+									$scope.data[$scope.file_list[file_no]][$scope.list_names[list_no]][count]+
+									'</li>\n';
 								}
-								$scope.logs = `${$scope.logs}\t\t</ul><br/>\n`;
+								$scope.logs += '\t\t</ul><br/>\n';
 							}
 						}
-						$scope.logs = `${$scope.logs}\t</div><br/><br/>\n`;
+						$scope.logs += '\t</div><br/><br/>\n';
 					}
 
 			}		
@@ -171,55 +171,8 @@ mod.directive('fileTabs', function() {
 	    	
 	    },
 
-	    template: 	`<div class="top_bar">
-	    				The file(s) contains 
-						<span ng-repeat="list in list_names track by $index"
-						ng-style="{'color': listcolors[list]}"
-						ng-if="total_count[$index]>0">
-	    				 	<b>{{total_count[$index]}} {{list | uppercase}}</b>
-							 <span ng-if="$index<list_names.length-1" class="and-text">
-							  and
-							 </span>
-	    				</span>
-						<p class="download" 
-							ng-click="setupDownloadLink()" 
-							ng-style='{"display": downloadIcon}'>
-								<span class="glyphicon glyphicon-download-alt"></span>
-						</p>
-	    			</div>
-	    			<div ng-cloak="" class="tabsdemoDynamicHeight tabs">
-					  <md-content>
-					    <md-tabs md-dynamic-height md-border-bottom>
-					      <md-tab ng-repeat="file in file_list track by $index" 
-						  label="{{file}}"
-						  ng-if="file_count[$index]>0">
-					        <md-content class="md-padding">
-								  <uib-accordion>
-									<div uib-accordion-group
-								  	ng-repeat="lname in list_names" 
-									  style="border-color: {{listcolors[lname]}}"
-									ng-if="data[file][lname].length>0"
-								  	is-open="status.open"  class="accgrp {{lname}}">
-										<uib-accordion-heading>
-											<div class= "heading" 
-											ng-style="labelStyle[{{$index}}]">
-											<h4 ng-style="labelText[{{$index}}]">{{lname | uppercase}} 
-											({{data[file][lname].length}})
-										    <i class="pull-right glyphicon" 
-												ng-class="{'glyphicon-triangle-bottom': status.open, 
-												'glyphicon-triangle-right': !status.open}"></i></h4>
-											</div>
-										</uib-accordion-heading>
-										<div list-display list="data[file][lname]" list-type="lname" 
-											styling="textStyle[$index]">
-										</div>
-									</div>
-								</uib-accordion>
-							</md-content>
-					      </md-tab>    
-					    </md-tabs>  
-					  </md-content>
-					</div>`
+	    template: 	
+'<div class="top_bar">The file(s) contains <span ng-repeat="list in list_names track by $index "ng-style="{\'color\': listcolors[list]}" ng-if="total_count[$index]>0"> <b>{{total_count [$index]}} {{list | uppercase}}</b> <span ng-if="$index<list_names.length-1" class="and-text"> and </span> </span> <p class="download"  ng-click="setupDownloadLink()"  ng-style=\'{"display": downloadIcon}\'> <span class="glyphicon glyphicon-download-alt"></span> </p> </div> <div ng-cloak="" class="tabsdemoDynamicHeight tabs"> <md-content> <md-tabs md-dynamic-height md-border-bottom> <md-tab ng-repeat="file in file_list track by $index" label="{{file}}" ng-if="file_count[$index]>0"> <md-content class="md-padding"> <uib-accordion> <div uib-accordion-group ng-repeat="lname in list_names" style="border-color: {{listcolors[lname]}}" ng-if="data[file][lname].length>0" is-open="status.open"  class="accgrp {{lname}}"> <uib-accordion-heading> <div class= "heading" ng-style="labelStyle[{{$index}}]"> <h4 ng-style="labelText[{{$index}}]">{{lname | uppercase}} ({{data[file][lname].length}}) <i class="pull-right glyphicon" ng-class="{\'glyphicon-triangle-bottom\': status.open, \'glyphicon-triangle-right\': !status.open}"></i></h4> </div> </uib-accordion-heading> <div list-display list="data[file][lname]" list-type="lname" styling="textStyle[$index]"> </div> </div> </uib-accordion> </md-content> </md-tab>    </md-tabs>  </md-content> </div>'
   	};
 });
 
@@ -237,26 +190,7 @@ mod.directive('listDisplay', function(){
   			$scope.itemsPerPage = $scope.$parent.pageSize;
   			$scope.maxSize = 5; //Number of pager buttons to show
 		},
-		template: `<ul class="list-group">
-					<li ng-repeat="list_item in list.slice(((currentPage-1)*itemsPerPage), 
-						((currentPage)*itemsPerPage))" 
-						ng-style="styling">
-								<div ng-bind-html="list_item"></div>
-					</li>
-				</ul>
-				<center>
-					<ul uib-pagination total-items="totalItems" 
-						ng-model="currentPage" 
-						max-size="maxSize" 
-						class="pagination-sm"
-						rotate="false"
-						items-per-page="itemsPerPage" 
-						previous-text="&lsaquo;" 
-						next-text="&rsaquo;" 
-						first-text="&laquo;" 
-						last-text="&raquo;"
-						data-ng-show="list.length > itemsPerPage">
-					</ul>
-				</center>`
+		template: 
+'<ul class="list-group"> <li ng-repeat="list_item in list.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))" ng-style="styling"> <div ng-bind-html="list_item"></div> </li> </ul> <center> <ul uib-pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" rotate="false" items-per-page="itemsPerPage" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" data-ng-show="list.length > itemsPerPage"> </ul> </center>'	
 	};
 });
