@@ -1,30 +1,37 @@
-<div class="top_bar" ng-init="vm.datainit()">
-    The file(s) contains 
-    <span ng-repeat="list in vm.list_names() track by $index"
-    ng-style="{'color': vm.listcolor(list)}"
-    ng-if="vm.total_count(list) > 0">
-        <b>{{vm.total_count(list)}} {{list | uppercase}}</b>
-            <span ng-if="$index < vm.list_names().length-1" class="and-text">
-            and
+<div class="container">
+    <div class="top_bar" ng-init="vm.datainit()" ng-if="vm.titleVisible === true">
+        <div ng-if="vm.customTitle == false">
+            The file(s) contains 
+            <span ng-repeat="list in vm.list_names() track by $index"
+            ng-style="{'color': vm.listcolor(list)}"
+            ng-if="vm.total_count(list) > 0">
+                <b>{{vm.total_count(list)}} {{list | uppercase}}</b>
+                    <span ng-if="$index < vm.list_names().length-1" class="and-text">
+                    and
+                    </span>
             </span>
-    </span>
-    <p class="download" 
-        ng-click="vm.setupDownloadLink()" 
-        ng-style='{"display": vm.downloadIcon}'>
-            <span class="glyphicon glyphicon-download-alt"></span>
-    </p>
-</div>
-<div ng-cloak="" class="tabsdemoDynamicHeight tabs">
-    <md-content>
-    <md-tabs md-dynamic-height md-border-bottom>
-        <md-tab ng-repeat="file in vm.file_list() track by $index" 
-        label="{{file}}"
-        ng-if="vm.file_count(file)>0">
-        <md-content class="md-padding">
-                <div accordion-view filedata="vm.filedata(file)">
-                </div>
-        </md-content>
-        </md-tab>    
-    </md-tabs>  
-    </md-content>
+        </div>
+        <div ng-if="vm.customTitle == true">
+            <span ng-bind-html="vm.title"></span>
+        </div>
+    </div>
+    <div ng-cloak="" class="tabsdemoDynamicHeight tabs tab-controller">
+        <span class="download" 
+            ng-click="vm.setupDownloadLink()" 
+            ng-style='{"display": vm.downloadIcon}'>
+                <i class="zmdi zmdi-download zmdi-hc-3x"></i>
+        </span>
+        <div class="filetabs">
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab ng-repeat="file in vm.file_list() track by $index" 
+                label="{{file}}"
+                ng-if="vm.file_count(file)>0">
+                <md-content class="md-padding">
+                        <div accordion-view filedata="vm.filedata(file)">
+                        </div>
+                </md-content>
+                </md-tab>    
+            </md-tabs>
+        </div>  
+    </div>
 </div>

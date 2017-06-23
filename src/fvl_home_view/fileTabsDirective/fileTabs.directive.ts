@@ -10,7 +10,8 @@ export class FileTabs {
         labelsize: '@',
         textsize: '@',
         downloadIcon: '@',
-        pageSize: '@'
+        pageSize: '@',
+        title: '@'
     };
     private bindToController = {
         data: '=',
@@ -18,7 +19,8 @@ export class FileTabs {
         labelsize: '@',
         textsize: '@',
         downloadIcon: '@',
-        pageSize: '@'
+        pageSize: '@',
+        title: '@'
     };
     private controllerAs = 'vm';
     private controller = fileTabsController;
