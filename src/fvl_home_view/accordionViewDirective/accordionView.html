@@ -7,11 +7,11 @@
         <uib-accordion-heading>
             <div class= "heading" 
             ng-style="vm.labelStyle[{{$index}}]">
-            <h4 ng-style="vm.labelText[{{$index}}]">{{lname | uppercase}} 
-            ({{vm.filedata[lname].length}})
-            <i class="pull-right glyphicon" 
-                ng-class="{'glyphicon-triangle-bottom': status.open, 
-                'glyphicon-triangle-right': !status.open}"></i></h4>
+            <h4 ng-style="vm.labelText[{{$index}}]"><b>{{lname | uppercase}} 
+            ({{vm.filedata[lname].length}})</b>
+            <i class="pull-right zmdi" 
+                ng-class="{'zmdi-caret-down': status.open, 
+                'zmdi-caret-right': !status.open}"></i></h4>
             </div>
         </uib-accordion-heading>
         <div list-view list="vm.filedata[lname]" 
