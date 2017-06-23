@@ -10,6 +10,9 @@ export class fileTabsController{
     private labelsize:string;
     private textsize:string;
     private downloadIcon:string;
+    private title:string;
+    private customTitle: boolean = true;
+    private titleVisible: boolean = true;
 
     constructor(fvlFacadeService: FVLIfcFacadeService){
         this.fvlFacadeService = fvlFacadeService;
@@ -22,13 +25,44 @@ export class fileTabsController{
      * some values are stored in the services
      */
     public datainit():void{
-        if(this.downloadIcon === undefined){
-				this.downloadIcon = 'block';
+        if(this.labelsize === undefined){
+            this.labelsize = "25px";
         }
 
-		if(this.pageSize === undefined){
-				this.pageSize = 20;
+        if(this.textsize === undefined){
+            this.textsize = "15px"
         }
+
+        if(this.pageSize === undefined){
+            this.pageSize = 10;
+        }
+
+        if(this.downloadIcon === undefined){
+            this.downloadIcon = "block";
+        }
+
+        if(this.listcolors === undefined){
+            let lists = Object.keys(this.data[Object.keys(this.data)[0]]);
+            let lColors: string = '{';
+            for(let list of lists){
+                lColors += `"${list}":"#000000",`;
+            }
+            lColors = lColors.slice(0, -1);
+            lColors += "}";
+            this.listcolors = JSON.parse(lColors);
+        }
+
+        if(this.title === undefined){
+            this.customTitle = false;
+        }
+        else{
+            if(this.title === ""){
+                this.titleVisible = false;
+            }
+        }
+
+        console.log(this.customTitle);
+        console.log(this.titleVisible);
                 
         this.fvlFacadeService.data = this.data;
         this.fvlFacadeService.pagesize = this.pageSize;
