@@ -15,7 +15,7 @@ mod.directive('fileTabs', function() {
 			pageSize: '@'
 		},
 
-		controller: function($scope){
+		controller: ['$scope',function($scope){
 
 			/*This function is used to convert the hex value of a color to its RGB format.
 			It takes in a hex string as input and outputs three variables R,G and B, ie, their 
@@ -66,7 +66,7 @@ mod.directive('fileTabs', function() {
 					g = $scope.hexToRgb('#000000').g;
 					b = $scope.hexToRgb('#000000').b;
 					$scope.labelStyle[count] = {
-						'background-color': 'rgba'+r+','+g+','+b+','+'0.3)',
+						'background-color': 'rgba('+r+','+g+','+b+','+'0.3)',
 						'border-bottom': '0.5px solid #000'
 					}
 					continue;	
@@ -164,7 +164,7 @@ mod.directive('fileTabs', function() {
 		       	downloadLink.click();
 		       	document.body.removeChild(downloadLink);
 			};
-		},
+		}],
 
 		
 	    link: function($scope, element, attrs){
@@ -184,12 +184,12 @@ mod.directive('listDisplay', function(){
 			listType: '=',
 			styling: '='
 		},
-		controller: function($scope){
+		controller: ['$scope',function($scope){
 			$scope.totalItems = $scope.list.length;
   			$scope.currentPage = 1;
   			$scope.itemsPerPage = $scope.$parent.pageSize;
   			$scope.maxSize = 5; //Number of pager buttons to show
-		},
+		}],
 		template: 
 '<ul class="list-group"> <li ng-repeat="list_item in list.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))" ng-style="styling"> <div ng-bind-html="list_item"></div> </li> </ul> <center> <ul uib-pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" rotate="false" items-per-page="itemsPerPage" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" data-ng-show="list.length > itemsPerPage"> </ul> </center>'	
 	};
