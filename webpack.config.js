@@ -52,7 +52,13 @@ module.exports = {
     ],
     loaders: [
       { loader: 'exports?window.angular', test: require.resolve('angular') },
-      loaders.ts,
+      {
+        test: /\.ts$/,
+        loaders: [
+          'babel-loader?presets[]=es2015',
+          'awesome-typescript-loader'
+        ]
+      },
       loaders.html,
       loaders.vendoredCss,
       loaders.rawCss,
