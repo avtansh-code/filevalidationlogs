@@ -1,6 +1,10 @@
 {
   "name": "@eluci/filevalidationlogs",
+<<<<<<< 1324f846286c8b8a40bcd20cdd7591de4bd383a6
   "version": "2.1.5",
+=======
+  "version": "2.1.6",
+>>>>>>> Removing the default title functonality
   "description": "A Reusable frontend compenent which is used to display the error logs and the warnings of the files whose data is being prvided to us. The component is customisable to some extent. The user can as well download the error and warning logs as an html file.",
   "main": "index.js",
   "dependencies": {
@@ -19,6 +23,7 @@
     "angular-mocks": "^1.5.5",
     "angular-ui-router": "^0.3.2",
     "awesome-typescript-loader": "^1.1.1",
+    "babel-loader": "^7.1.1",
     "babel-polyfill": "^6.16.0",
     "babel-preset-es2015": "^6.16.0",
     "bower": "^1.7.9",

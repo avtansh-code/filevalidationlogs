@@ -1,19 +1,6 @@
 <div class="container">
-    <div class="top_bar" ng-init="vm.datainit()" ng-if="vm.titleVisible === true">
-        <div ng-if="vm.customTitle == false">
-            The file(s) contains 
-            <span ng-repeat="list in vm.list_names() track by $index"
-            ng-style="{'color': vm.listcolor(list)}"
-            ng-if="vm.total_count(list) > 0">
-                <b>{{vm.total_count(list)}} {{list | uppercase}}</b>
-                    <span ng-if="$index < vm.list_names().length-1" class="and-text">
-                    and
-                    </span>
-            </span>
-        </div>
-        <div ng-if="vm.customTitle == true">
-            <span ng-bind-html="vm.title"></span>
-        </div>
+    <div class="top_bar" ng-init="vm.datainit()" ng-if="vm.customTitle == true">
+        <span ng-bind-html="vm.title"></span>
     </div>
     <div ng-cloak="" class="tabsdemoDynamicHeight tabs tab-controller">
         <span class="download" 
