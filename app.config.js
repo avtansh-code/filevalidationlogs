@@ -51,7 +51,6 @@ mod.directive('fileTabs', function() {
 				$scope.customTitle = false;
 			}
 
-			console.log($scope.customTitle);
 			$scope.file_list = Object.keys($scope.data);
 			$scope.list_names = Object.keys($scope.data[$scope.file_list[0]]);
 
