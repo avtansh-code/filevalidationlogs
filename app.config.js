@@ -176,7 +176,9 @@ mod.directive('fileTabs', function() {
 			};
 		}],
 
-		templateUrl: 'filetabs.html'	
+		template: 
+'<div class="container"><div class="top_bar" ng-if = "customTitle === \'true\'"><span ng-bind-html="title"></span></div><div class="tabsdemoDynamicHeight tabs tab-controller"> <span class="download"  ng-click="setupDownloadLink()"  ng-style=\'{"display": downloadIcon}\'> <i class="zmdi zmdi-download zmdi-hc-3x"></i> </span><div clas="fileatabs"><md-tabs md-dynamic-height md-border-bottom> <md-tab ng-repeat="file in file_list track by $index" label="{{file}}" ng-if="file_count[$index]>0"> <md-content class="md-padding"> <uib-accordion> <div uib-accordion-group ng-repeat="lname in list_names" style="border-color: {{listcolors[lname]}}" ng-if="data[file][lname].length>0" is-open="status.open"  class="accgrp {{lname}}"> <uib-accordion-heading> <div class= "heading" ng-style="labelStyle[{{$index}}]"> <h4 ng-style="labelText[{{$index}}]">{{lname | uppercase}} ({{data[file][lname].length}}) <i class="pull-right zmdi" ng-class="{\'zmdi-caret-down\': status.open, \'zmdi-caret-right\': status.open}"></i></h4> </div> </uib-accordion-heading> <div list-display list="data[file][lname]" list-type="lname" styling="textStyle[$index]"> </div> </div> </uib-accordion> </md-content> </md-tab>    </md-tabs> </div> </div> </div>'
+
   	};
 });
 
