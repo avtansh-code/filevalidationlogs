@@ -1,33 +1,35 @@
 # File Validation Logs
 
 
-##About:
+## About:
 
 File Validation Logs is a resuable frontend component that is used for the display of errors, warnings and other such details about uploaded files that need to be shown to the user before they proceed further.
 
 
-##Required External Dependecies
+## Required External Dependecies
 
-The following packages need to be required in the project before the use of this component
+The following packages need to be installed and required in the project before the use of this component - this can be done by using cdn links, node modules paths, bower paths, etc.
 
-	npm install angular --save
+	1. jquery - js file
+	2. bootstrap - js and css file
+	3. angular - js file
+	4. angular-aria - js file
+	5. angular-animate - js file
+	6. angular-sanitize - js file
+	7. angular-material - js and css file
+	8. angular-ui-bootstrap - tpls.js file
 
-	npm install angular-animate --save
-	
-	npm install angular-aria --save
+>_**Note: angular, angular-animate, angular-aria and angular-sanitize version should be same (minimum version of these packages should be 1.5.8). The version for angular-ui-bootrap should be a minimum of 2.5.0**_
 
-	npm install angular-material --save
-
-	npm install angular-sanitize --save
-
-	npm install angular-ui-bootstrap --save
-
-	npm install bootstrap --save
-
-	npm install jquery --save
+Apart from the above mentioned dependencies the user also needs to add the following css for material design icons 
 
 
-##Steps for Installation:
+```html
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+```
+
+
+## Steps for Installation:
 
 1. Update npmrc config file
 
@@ -63,25 +65,94 @@ The following packages need to be required in the project before the use of this
 		app.module('myModule',[filevalidationlogs])
 	
 
-##Usage:
+## Usage:
+
+```html
+    <file-tabs
+        data = "sampleData"
+        listcolors = "listColors"
+        labelsize = "1.9em" 
+        textsize = "1em"
+        download-icon = "block" 
+        page-size = 5      
+        title = "File Validation Logs">
+    </file-tabs>
+```
+
+>_**sampleData and listColors are variables that are being set by the user please refer below for the example of the value they can take**_
 
 
-	<file-tabs
-	    data = "sample_data"
-	    listcolors='{errors:"#EA4436",warnings:"#C57D00"}' 
-        labelsize='1.9em' 
-		textsize='1em'
-        download-icon="block" 
-		page-size=5>
-	</file-tabs>
+
+## The customisations possible in the module
+
+
+**1. data (mandatory) - it will take the logs which need to be printed**
+
+The data needs to be inputted in the JSON format. The file name is the key to an object. Each object will have arrays of the different types of logs that the users wishes to display. Here we are using only two types of logs - errors and  warnings. All the objects in the JSON should contain all the arrays. If the array does not have any entries associated to it for that particular file, then the list can be left empty, but it needs to be defined. 
+
+**This attribute is mandatory and cannot be skipped**
+	
+	For references please have a look at the example below.
+
+
+**2. listcolors (optional) – it will be the color corresponding to each list in the given data**
+
+It will take an object as input. The keys will be the same as the names of the arrays in each object of the json data and the colors need to be input in the **hex format only**. Default value is **black**. 
+
+	Please have a look at the sample data mentioned below for example references.
+
+
+**3. labelsize (optional) – the font size of the accordion label – text size**
+
+It will take values just like the font-size attribute of css. Default value is **25px**.
+
+**e.g.**
+
+	labelsize = "1.9em"
+
+
+**4. textsize (optional) – the font size of the body of each accordion**
+
+It will take values just like the font-size attribute of css. Default value is **15px**.
+
+**e.g.**
+	
+	textsize = "1.2em"
+
+
+**5. download-icon (optional) – this is to set whether the user wishes to see the download icon or not**
+
+It takes in one of the two values – block(show icon) or none(hide icon). Default value is **block**, i.e. the download icon will be displayed by default.
+
+**e.g.**
+
+	download-icon = "block"
+
+
+**6. page-size (optional) – this is for the pagination section. This defines the number of items per page when applying pagination.**
+
+It takes in a number as the input which depicts the item per page. Default value is **20**.
+
+**e.g.**
+	
+	page-size = 5
+
+
+**7. title (optional) - this is for displaying the title for the module.**
+
+It takes in a string as the input. The inputted string will be the title of the module. If the attribute is not defined then it will not be displaying any title.
+
+**e.g.**
+
+	title = "File Validation Logs"
 
 
 
+## Sample Data
 
-######SAMPLE DATA
+    listColors:object = {errors:"#EA4436",warnings:"#C27600"}
 
-
-	sample_data = {
+	sampleData:object = {
 		"file 1": {
 			"errors": ["error1", "error2", "error3", "error4", "error5", "error6"],
 			"warnings": []
@@ -107,57 +178,3 @@ The following packages need to be required in the project before the use of this
 			"warnings": ["warning1"]
 		}
 	}
-
-
-The file name is the key to an object. Each object will have arrays of the details that the users wishes to display. Here we are using only two details warnings and errors but the user can display summary as well. It will also be in the same manner.
-
-**Note: All the objects in the JSON object should contain all the arrays. If the array does not have any entries associated to it for that particular file, then the list can be left empty, but it needs to be defined. For references please have a look at the above example.**
-
-##The customisations possible in the module
-
-
-**1. listcolors – it will be the color corresponding to each list in the given data**
-
-It will take an object as input. The keys will be the same as the names of the arrays in each object of the json data and the colors need to be input in the hex/string format. Default value is **black** for all the accordions.
-
-**e.g.**
-
-	listcolors = '{errors:"#EA4436",warnings:"#FBBD09"}'
-
-if the object has two arrays – errors and warnings
-
-
-**2. labelsize – the font size of the accordion label – text size**
-
-It will take values just like the font-size attribute of css.
-
-**e.g.**
-
-	labelsize = '1.9em'
-
-
-**3. textsize – the font size of the body of each accordion**
-
-It will take values just like the font-size attribute of css
-
-**e.g.**
-	
-	textsize = '1.2em'
-
-
-**4. download-icon – this is to set whether the user wishes to see the download icon or not**
-
-It takes in one of the two values – block(show icon) or none(hide icon). Default value is block, i.e. the download icon will be displayed by default.
-
-**e.g.**
-
-	download-icon = 'block'
-
-
-**5. page-size – this is for the pagination section. This defines the number of items per page when applying pagination.**
-
-It takes in a number as the input which depicts the item per page. Default value is 20.
-
-**e.g.**
-	
-	page-size = 5

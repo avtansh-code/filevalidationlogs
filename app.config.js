@@ -46,6 +46,14 @@ mod.directive('fileTabs', function() {
 				$scope.pageSize = 20;
 			}
 
+			if($scope.labelsize === undefined){
+				$scope.labelsize = '25px';
+			}
+
+			if($scope.textsize === undefined){
+				$scope.template = '15px';
+			}
+
 			$scope.customTitle = "true";
 			if($scope.title === undefined){
 				$scope.customTitle = false;
