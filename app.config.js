@@ -12,7 +12,8 @@ mod.directive('fileTabs', function() {
 			labelsize: '@',
 			textsize: '@',
 			downloadIcon: '@',
-			pageSize: '@'
+			pageSize: '@',
+			title: '@'
 		},
 
 		controller: ['$scope',function($scope){
@@ -36,11 +37,21 @@ mod.directive('fileTabs', function() {
 			}
 
 			if($scope.downloadIcon === undefined)
+			{	
 				$scope.downloadIcon = 'block';
+			}
 
 			if($scope.pageSize === undefined)
+			{	
 				$scope.pageSize = 20;
+			}
 
+			$scope.customTitle = "true";
+			if($scope.title === undefined){
+				$scope.customTitle = false;
+			}
+
+			console.log($scope.customTitle);
 			$scope.file_list = Object.keys($scope.data);
 			$scope.list_names = Object.keys($scope.data[$scope.file_list[0]]);
 
@@ -166,13 +177,7 @@ mod.directive('fileTabs', function() {
 			};
 		}],
 
-		
-	    link: function($scope, element, attrs){
-	    	
-	    },
-
-	    template: 	
-'<div class="top_bar">The file(s) contains <span ng-repeat="list in list_names track by $index "ng-style="{\'color\': listcolors[list]}" ng-if="total_count[$index]>0"> <b>{{total_count [$index]}} {{list | uppercase}}</b> <span ng-if="$index<list_names.length-1" class="and-text"> and </span> </span> <p class="download"  ng-click="setupDownloadLink()"  ng-style=\'{"display": downloadIcon}\'> <span class="glyphicon glyphicon-download-alt"></span> </p> </div> <div ng-cloak="" class="tabsdemoDynamicHeight tabs"> <md-content> <md-tabs md-dynamic-height md-border-bottom> <md-tab ng-repeat="file in file_list track by $index" label="{{file}}" ng-if="file_count[$index]>0"> <md-content class="md-padding"> <uib-accordion> <div uib-accordion-group ng-repeat="lname in list_names" style="border-color: {{listcolors[lname]}}" ng-if="data[file][lname].length>0" is-open="status.open"  class="accgrp {{lname}}"> <uib-accordion-heading> <div class= "heading" ng-style="labelStyle[{{$index}}]"> <h4 ng-style="labelText[{{$index}}]">{{lname | uppercase}} ({{data[file][lname].length}}) <i class="pull-right glyphicon" ng-class="{\'glyphicon-triangle-bottom\': status.open, \'glyphicon-triangle-right\': !status.open}"></i></h4> </div> </uib-accordion-heading> <div list-display list="data[file][lname]" list-type="lname" styling="textStyle[$index]"> </div> </div> </uib-accordion> </md-content> </md-tab>    </md-tabs>  </md-content> </div>'
+		templateUrl: 'filetabs.html'	
   	};
 });
 
