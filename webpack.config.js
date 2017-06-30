@@ -75,5 +75,5 @@ module.exports = {
       loaders.otf,
       { loader: 'ify', test: /node_modules/ },
     ],
-  },
+  }
 };
