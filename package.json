@@ -1,6 +1,6 @@
 {
   "name": "@eluci/filevalidationlogs",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "A Reusable frontend compenent which is used to display the error logs and the warnings of the files whose data is being prvided to us. The component is customisable to some extent. The user can as well download the error and warning logs as an html file.",
   "main": "index.js",
   "dependencies": {
