@@ -12,7 +12,6 @@ export class fileTabsController{
     private downloadIcon:string;
     private title:string;
     private customTitle: boolean = true;
-    private titleVisible: boolean = true;
 
     constructor(fvlFacadeService: FVLIfcFacadeService){
         this.fvlFacadeService = fvlFacadeService;
@@ -55,14 +54,6 @@ export class fileTabsController{
         if(this.title === undefined){
             this.customTitle = false;
         }
-        else{
-            if(this.title === ""){
-                this.titleVisible = false;
-            }
-        }
-
-        console.log(this.customTitle);
-        console.log(this.titleVisible);
                 
         this.fvlFacadeService.data = this.data;
         this.fvlFacadeService.pagesize = this.pageSize;
