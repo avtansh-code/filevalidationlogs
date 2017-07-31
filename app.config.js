@@ -12,7 +12,8 @@ mod.directive('fileTabs', function() {
 			labelsize: '@',
 			textsize: '@',
 			downloadIcon: '@',
-			pageSize: '@'
+			pageSize: '@',
+			title: '@'
 		},
 
 		controller: ['$scope',function($scope){
@@ -36,10 +37,27 @@ mod.directive('fileTabs', function() {
 			}
 
 			if($scope.downloadIcon === undefined)
+			{	
 				$scope.downloadIcon = 'block';
+			}
 
 			if($scope.pageSize === undefined)
+			{	
 				$scope.pageSize = 20;
+			}
+
+			if($scope.labelsize === undefined){
+				$scope.labelsize = '25px';
+			}
+
+			if($scope.textsize === undefined){
+				$scope.template = '15px';
+			}
+
+			$scope.customTitle = "true";
+			if($scope.title === undefined){
+				$scope.customTitle = false;
+			}
 
 			$scope.file_list = Object.keys($scope.data);
 			$scope.list_names = Object.keys($scope.data[$scope.file_list[0]]);
@@ -166,13 +184,9 @@ mod.directive('fileTabs', function() {
 			};
 		}],
 
-		
-	    link: function($scope, element, attrs){
-	    	
-	    },
+		template: 
+'<div class="container"><div class="top_bar" ng-if = "customTitle === \'true\'"><span ng-bind-html="title"></span></div><div class="tabsdemoDynamicHeight tabs tab-controller"> <span class="download"  ng-click="setupDownloadLink()"  ng-style=\'{"display": downloadIcon}\'> <i class="zmdi zmdi-download zmdi-hc-3x"></i> </span><div clas="fileatabs"><md-tabs md-dynamic-height md-border-bottom> <md-tab ng-repeat="file in file_list track by $index" label="{{file}}" ng-if="file_count[$index]>0"> <md-content class="md-padding"> <uib-accordion> <div uib-accordion-group ng-repeat="lname in list_names" style="border-color: {{listcolors[lname]}}" ng-if="data[file][lname].length>0" is-open="status.open"  class="accgrp {{lname}}"> <uib-accordion-heading> <div class= "heading" ng-style="labelStyle[{{$index}}]"> <h4 ng-style="labelText[{{$index}}]">{{lname | uppercase}} ({{data[file][lname].length}}) <i class="pull-right zmdi" ng-class="{\'zmdi-caret-down\': status.open, \'zmdi-caret-right\': status.open}"></i></h4> </div> </uib-accordion-heading> <div list-display list="data[file][lname]" list-type="lname" styling="textStyle[$index]"> </div> </div> </uib-accordion> </md-content> </md-tab>    </md-tabs> </div> </div> </div>'
 
-	    template: 	
-'<div class="top_bar">The file(s) contains <span ng-repeat="list in list_names track by $index "ng-style="{\'color\': listcolors[list]}" ng-if="total_count[$index]>0"> <b>{{total_count [$index]}} {{list | uppercase}}</b> <span ng-if="$index<list_names.length-1" class="and-text"> and </span> </span> <p class="download"  ng-click="setupDownloadLink()"  ng-style=\'{"display": downloadIcon}\'> <span class="glyphicon glyphicon-download-alt"></span> </p> </div> <div ng-cloak="" class="tabsdemoDynamicHeight tabs"> <md-content> <md-tabs md-dynamic-height md-border-bottom> <md-tab ng-repeat="file in file_list track by $index" label="{{file}}" ng-if="file_count[$index]>0"> <md-content class="md-padding"> <uib-accordion> <div uib-accordion-group ng-repeat="lname in list_names" style="border-color: {{listcolors[lname]}}" ng-if="data[file][lname].length>0" is-open="status.open"  class="accgrp {{lname}}"> <uib-accordion-heading> <div class= "heading" ng-style="labelStyle[{{$index}}]"> <h4 ng-style="labelText[{{$index}}]">{{lname | uppercase}} ({{data[file][lname].length}}) <i class="pull-right glyphicon" ng-class="{\'glyphicon-triangle-bottom\': status.open, \'glyphicon-triangle-right\': !status.open}"></i></h4> </div> </uib-accordion-heading> <div list-display list="data[file][lname]" list-type="lname" styling="textStyle[$index]"> </div> </div> </uib-accordion> </md-content> </md-tab>    </md-tabs>  </md-content> </div>'
   	};
 });
 

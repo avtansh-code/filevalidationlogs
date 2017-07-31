@@ -1,14 +1,21 @@
+/*@import url('../node_modules/bootstrap/dist/css/bootstrap.min.css');
+@import url('../node_modules/angular-material/angular-material.min.css');*/
+
 .tabsdemoDynamicHeight md-content {
 	background-color: transparent !important; 
+	padding: 0px !important;
+	margin-top: 20px;
 }
 
 .tabsdemoDynamicHeight md-tabs-wrapper {
 	background-color: transparent !important; 
+	width: calc(100% - 30px) !important;
 }
 
 .tabsdemoDynamicHeight md-tab-item{
 	font-weight: bold !important;
-	font-size: 1.2em;
+	min-width: 100px !important;
+	max-width: 200px !important;
 }
 
 .tabsdemoDynamicHeight .md-tab.md-active{
@@ -34,20 +41,25 @@
 	color: #000;
 }
 
-.pull-right {
-    float: right;
-}
-
 .download{
-	float: right;
 	right:0;
-	top: 0;
+	top: 15px;
+	width: auto;
+	position:absolute;
+	cursor: pointer;
+	z-index: 1000;
+	text-decoration: none !important;
 }
  
 .top_bar{
 	font-size: 1.5em;
-	padding: 0.2em 0.8em 0.5em 0.8em;
-	/*font-weight: bold;*/
+	font-weight: bold;
+	margin-top: 30px;
+}
+
+.tab-controller{
+	margin-top: 30px;
+	position: relative;
 }
 
 .download:focus{
@@ -60,7 +72,6 @@
 
 .accgrp{
 	border:1px solid;
-	margin: 1em !important;
 	margin-bottom: 45px !important;
 	background-color: #fff !important;
 	padding: 0px !important;
@@ -90,4 +101,13 @@
 
 .accgrp > .panel-heading+.panel-collapse > .panel-body {
     border-top: none !important;
+}
+
+body{
+	background-color: #F5F5F5;
+}
+
+h4{
+	margin-top: 2px;
+	margin-bottom: 5px;
 }
