@@ -1,0 +1,17 @@
+.awcache/
+
+.vscode/
+
+dist/
+
+node_modules/
+
+spec/
+
+typings/
+
+.gitignore
+
+.webpack-records.json
+
+package-lock.json
